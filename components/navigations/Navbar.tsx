@@ -6,7 +6,7 @@ import MobileNav from "./MobileNav";
 
 const Navbar = () => {
   return (
-    <nav className="fixed left-0 top-0 right-0 z-50 w-full bg-light-100 shadow-md">
+    <nav className="fixed left-0 top-0 right-0 z-50 w-full bg-light-100 shadow-sm">
       <div className="flex justify-between items-center gap-10 navbar-h max-width">
         <div>
           <Image
