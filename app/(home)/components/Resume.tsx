@@ -48,21 +48,26 @@ const Resume = () => {
             </Button>
           </div>
           <div className="bg-light-200 md:w-full flex flex-col items-center shadow gap-6 px-6 py-8 md:px-8 md:py-10 rounded-xl">
-            <div className="h-[80px] w-[80px] rounded-full flex items-center justify-center bg-light-230">
-              <Image src={"/icons/bag.svg"} width={40} height={40} alt="uiux" />
+            <div className="h-[80px] w-[80px] rounded-full flex items-center justify-center bg-primary-240">
+              <Image
+                src={"/icons/security.svg"}
+                width={40}
+                height={40}
+                alt="security"
+              />
             </div>
 
             <h3 className="font-bold text-[20.4px] text-center">
-              UI/UX Design Resume
+              Cybersecurity Resume
             </h3>
 
             <p className="text-[13.6px] text-center max-w-[320px]">
-              A comprehensive overview of my design experience, process, and
-              skills. Includes case studies and measurable results from previous
-              projects.
+              Detailing my technical expertise in cybersecurity, including
+              certifications, security assessments, and threat mitigation
+              strategies.
             </p>
 
-            <Button className="w-[120px] h-[40px] md:w-[151px] md:h-[50px] bg-primary-100 text-light-100 hover:bg-primary-120 cursor-pointer">
+            <Button className="w-[120px] h-[40px] md:w-[151px] md:h-[50px] bg-primary-220 text-light-100 hover:bg-primary-200 cursor-pointer">
               <Image
                 src={"/icons/download.svg"}
                 width={20}
