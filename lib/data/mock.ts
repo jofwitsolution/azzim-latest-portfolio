@@ -129,3 +129,42 @@ export const services = [
     icon: "/icons/security-audit.svg",
   },
 ];
+
+export const certifications = [
+  {
+    title: "AWS Certified Solutions Architect - Associate",
+    issuer: "Amazon Web Services",
+    date: "January 2023",
+    validUntil: "January 2026",
+    image: "/images/certifications/aws.png",
+    type: "Professional",
+    id: "AWS-SA-12345",
+  },
+  {
+    title: "Certified Ethical Hacker (CEH)",
+    issuer: "EC-Council",
+    date: "March 2023",
+    validUntil: "March 2026",
+    image: "/images/certifications/microsoft.png",
+    type: "Associates",
+    id: "AWS-SA-12345",
+  },
+  {
+    title: "Google UX Design Professional Certificate",
+    issuer: "Google",
+    date: "June 2022",
+    validUntil: "June 2025",
+    image: "/images/certifications/aws.png",
+    type: "Professional",
+    id: "AWS-SA-12345",
+  },
+  {
+    title: "Certified Information Systems Security Professional (CISSP)",
+    issuer: "ISC2",
+    date: "August 2023",
+    validUntil: "August 2026",
+    image: "/images/certifications/aws.png",
+    type: "Associates",
+    id: "AWS-SA-12345",
+  },
+];
