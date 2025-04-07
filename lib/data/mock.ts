@@ -102,3 +102,30 @@ export const experiences = [
     color: "#9333EA",
   },
 ];
+
+export const services = [
+  {
+    title: "UI/UX Design",
+    description:
+      "Crafting user-centered designs that enhance usability and accessibility.",
+    icon: "/icons/ui-ux-design.svg",
+  },
+  {
+    title: "Security Consulting",
+    description:
+      "Implementing security measures to protect user data and ensure secure transactions.",
+    icon: "/icons/cybersecurity.svg",
+  },
+  {
+    title: "User Research",
+    description:
+      "Conducting user research to inform design decisions and improve user experience.",
+    icon: "/icons/user-research.svg",
+  },
+  {
+    title: "Security Audits",
+    description:
+      "Performing security audits to identify vulnerabilities and recommend improvements.",
+    icon: "/icons/security-audit.svg",
+  },
+];
