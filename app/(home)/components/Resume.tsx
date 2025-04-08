@@ -152,3 +152,60 @@ const Resume = () => {
 };
 
 export default Resume;
+
+export const projects = [
+  {
+    title: "Cryptocurrency & Learning Platform",
+    category: "UI/UX Design",
+    category_bg: "#E0E7FF",
+    description:
+      "Designed a Cryptocurrency & Learning Platform called NOFOMOE to Unlock the power of cryptocurrency and education in one seamless platform.",
+    source: "#",
+    image: "/images/projects/nofomoe.png",
+  },
+  {
+    title: "Devcent",
+    category: "UI/UX Design",
+    category_bg: "#CFFAFE",
+    description:
+      "An innovative online learning platform designed to equip learners with in-demand tech skills. Tech education...",
+    source: "https://devcent.net",
+    image: "/images/projects/devcent.png",
+  },
+  {
+    title: "Diesel NG",
+    category: "UI/UX Design",
+    category_bg: "#E0E7FF",
+    description:
+      "A go-to source for the most up-to-date diesel (AGO) depot prices in Nigeria. They provide accurate information..",
+    source: "https://www.dieselng.com",
+    image: "/images/projects/dieselng.png",
+  },
+  {
+    title: "Prompay",
+    category: "UI/UX Design",
+    category_bg: "#E0E7FF",
+    description:
+      "Prompay is an online platform that lets you earn money while you learn! Experience the joy of answering questions to earn.",
+    source: "https://theprompay.com",
+    image: "/images/projects/prompay.png",
+  },
+  {
+    title: "BibzyCarter Model",
+    category: "UI/UX Design",
+    category_bg: "#E0E7FF",
+    description:
+      "BibzyCarter Model. A Professional Model Website. BibzyCarter Model BibzyCarter Model BibzyCarter Model.",
+    source: "https://bibzy-carter-model.vercel.app/",
+    image: "/images/projects/bibzycarter.png",
+  },
+  {
+    title: "Pawmeets",
+    category: "UI/UX Design",
+    category_bg: "#E0E7FF",
+    description:
+      "The ultimate online marketplace for dogs and puppies. Mobile app that helps dog breeders connect to find matching studs services",
+    source: "#",
+    image: "/images/projects/pawmeets.png",
+  },
+];

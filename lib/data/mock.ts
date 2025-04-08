@@ -1,56 +1,65 @@
 export const projects = [
   {
-    title: "Banking App Redesign",
+    title: "Cryptocurrency & Learning Platform",
     category: "UI/UX Design",
     category_bg: "#E0E7FF",
     description:
-      "Redesigned a banking application with focus on accessibility and intuitive navigation while maintaining strict security standards.",
+      "Designed a Cryptocurrency & Learning Platform called NOFOMOE to Unlock the power of cryptocurrency and education in one seamless platform.",
     source: "#",
-    image: "/images/projects/banking-app.png",
+    image: "/images/projects/nofomoe.png",
   },
   {
-    title: "Security Dashboard",
-    category: "Cybersecurity",
+    title: "Devcent",
+    category: "UI/UX Design",
     category_bg: "#CFFAFE",
     description:
-      "Developed a comprehensive security monitoring dashboard for IT teams with real-time threat visualization.",
-    source: "#",
-    image: "/images/projects/security-dashboard.png",
+      "An innovative online learning platform designed to equip learners with in-demand tech skills. Tech education...",
+    source: "https://devcent.net",
+    image: "/images/projects/devcent.png",
   },
   {
-    title: "E-commerce UI/UX Audit Design",
+    title: "Diesel NG",
     category: "UI/UX Design",
     category_bg: "#E0E7FF",
     description:
-      "Performed a comprehensive UX audit for an e-commerce platform, improving conversion rates by 24%.",
-    source: "#",
-    image: "/images/projects/ecommerce-audit.png",
+      "A go-to source for the most up-to-date diesel (AGO) depot prices in Nigeria. They provide accurate information..",
+    source: "https://www.dieselng.com",
+    image: "/images/projects/dieselng.png",
   },
   {
-    title: "Secure Authentication Flow",
-    category: "Cybersecurity",
+    title: "Prompay",
+    category: "UI/UX Design",
     category_bg: "#CFFAFE",
     description:
-      "Designed and implemented a secure yet user-friendly multi-factor authentication system.",
-    source: "#",
-    image: "/images/projects/secure-auth.png",
+      "Prompay is an online platform that lets you earn money while you learn! Experience the joy of answering questions to earn.",
+    source: "https://theprompay.com",
+    image: "/images/projects/prompay.png",
   },
   {
-    title: "Health Care Portal",
+    title: "BibzyCarter Model",
     category: "UI/UX Design",
     category_bg: "#E0E7FF",
     description:
-      "Created an accessible patient portal focusing on simplicity and clarity for users of all ages.",
+      "BibzyCarter Model. A Professional Model Website. BibzyCarter Model BibzyCarter Model BibzyCarter Model.",
+    source: "https://bibzy-carter-model.vercel.app/",
+    image: "/images/projects/bibzycarter.png",
+  },
+  {
+    title: "Pawmeets",
+    category: "UI/UX Design",
+    category_bg: "#CFFAFE",
+    description:
+      "The ultimate online marketplace for dogs and puppies. Mobile app that helps dog breeders connect to find matching studs services",
     source: "#",
-    image: "/images/projects/healthcare-portal.png",
+    image: "/images/projects/pawmeets.png",
   },
   {
     title: "Vulnerability Assessment",
     category: "Cybersecurity",
-    category_bg: "#CFFAFE",
+    category_bg: "#E0E7FF",
     description:
       "Conducted a thorough security assessment for a financial institution, identifying and remediating critical vulnerabilities.",
-    source: "#",
+    source: "https://noughtaegis.com/",
     image: "/images/projects/vulnerability-assessment.png",
   },
 ];
@@ -132,12 +141,12 @@ export const services = [
 
 export const certifications = [
   {
-    title: "AWS Certified Solutions Architect - Associate",
-    issuer: "Amazon Web Services",
-    date: "January 2023",
-    validUntil: "January 2026",
+    title: "Introduction to Cybersecurity - Certificate",
+    issuer: "CISCO",
+    date: "February 2025",
+    validUntil: "Present",
     image: "/images/certifications/aws.png",
-    type: "Professional",
+    type: "Certificate",
     id: "AWS-SA-12345",
   },
   {
