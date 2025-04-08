@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navigations/Navbar";
 import Footer from "@/components/Footer";
+import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -20,8 +21,24 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Azzim Aina",
+  title: "Azzim Aina | Portfolio",
   description: "The official portfolio of Azzim Aina",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+  },
+  keywords: [
+    "azzim aina",
+    "azzim",
+    "azzim aina portfolio",
+    "azzim aina resume",
+  ],
+  openGraph: {
+    title: "Azzim Aina | Portfolio",
+    description: "The official portfolio of Azzim Aina",
+    url: "https://portfolio.azzimaina.com",
+    siteName: "Azzim Aina | Portfolio",
+  },
 };
 
 export default function RootLayout({
@@ -36,6 +53,7 @@ export default function RootLayout({
       >
         <Navbar />
         {children}
+        <Toaster position="bottom-right" />
         <Footer />
       </body>
     </html>

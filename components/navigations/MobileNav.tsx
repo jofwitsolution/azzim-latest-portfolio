@@ -33,12 +33,14 @@ const MobileNav = () => {
       <SheetContent side="left" className="bg-light-220">
         <SheetHeader>
           <SheetTitle>
-            <Image
-              src={"/icons/site-logo.svg"}
-              width={111}
-              height={20}
-              alt="azzim-aina"
-            />
+            <Link href={"/"} scroll={false}>
+              <Image
+                src={"/icons/site-logo.svg"}
+                width={111}
+                height={20}
+                alt="azzim-aina"
+              />
+            </Link>
           </SheetTitle>
           <SheetDescription className="sr-only"></SheetDescription>
         </SheetHeader>

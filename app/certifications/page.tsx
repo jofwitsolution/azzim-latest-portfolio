@@ -1,7 +1,29 @@
+import React from "react";
+import { Metadata } from "next";
+import Image from "next/image";
 import { certifications } from "@/lib/data/mock";
 import { Calendar } from "lucide-react";
-import Image from "next/image";
-import React from "react";
+
+export const metadata: Metadata = {
+  title: "Certifications | Azzim Aina",
+  description: "The official portfolio of Azzim Aina",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+  },
+  keywords: [
+    "azzim aina",
+    "azzim",
+    "azzim aina portfolio",
+    "azzim aina resume",
+  ],
+  openGraph: {
+    title: "Azzim Aina | Portfolio",
+    description: "The official portfolio of Azzim Aina",
+    url: "https://portfolio.azzimaina.com",
+    siteName: "Azzim Aina | Portfolio",
+  },
+};
 
 const Page = () => {
   return (

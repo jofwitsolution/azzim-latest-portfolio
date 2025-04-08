@@ -8,7 +8,7 @@ const Navbar = () => {
   return (
     <nav className="fixed left-0 top-0 right-0 z-50 w-full bg-light-100 shadow-sm">
       <div className="flex justify-between items-center gap-10 navbar-h max-width">
-        <div>
+        <Link href={"/"} scroll={false}>
           <Image
             src={"/icons/site-logo.svg"}
             width={111}
@@ -16,7 +16,7 @@ const Navbar = () => {
             alt="azzim-aina"
             priority
           />
-        </div>
+        </Link>
 
         <ul className="flex gap-8 font-medium">
           {navbarLinks.map((item) => {

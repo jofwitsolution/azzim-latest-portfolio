@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import {
   Form,
   FormControl,
@@ -12,11 +12,13 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { z } from "zod";
+import emailjs from "@emailjs/browser";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
@@ -26,6 +28,8 @@ const formSchema = z.object({
 });
 
 const Contact = () => {
+  const [loading, setLoading] = useState(false);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -36,9 +40,47 @@ const Contact = () => {
     },
   });
 
-  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
     // Handle form submission logic here
-    console.log(data);
+    console.log(values);
+    setLoading(true);
+
+    emailjs
+      .send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID as string,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID as string,
+        {
+          from_name: values.name,
+          to_name: "Azzim",
+          from_email: values.email,
+          subject: values.subject,
+          to_email: "azzimaina@gmail.com",
+          message: values.message,
+        },
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+      )
+      .then(
+        () => {
+          setLoading(false);
+
+          toast.success(
+            "Thank you. I will get back to you as soon as possible."
+          );
+
+          form.reset({
+            name: "",
+            email: "",
+            message: "",
+            subject: "",
+          });
+        },
+        (error) => {
+          setLoading(false);
+          console.error(error);
+
+          toast.error("Ahh, something went wrong. Please try again.");
+        }
+      );
   };
 
   return (
@@ -157,6 +199,7 @@ const Contact = () => {
                         <FormLabel className="text-sm">Name</FormLabel>
                         <FormControl>
                           <Input
+                            disabled={loading}
                             type="text"
                             placeholder="Your name"
                             autoComplete="off"
@@ -176,6 +219,7 @@ const Contact = () => {
                         <FormLabel className="text-sm">Email</FormLabel>
                         <FormControl>
                           <Input
+                            disabled={loading}
                             type="email"
                             placeholder="Your email"
                             autoComplete="off"
@@ -195,6 +239,7 @@ const Contact = () => {
                         <FormLabel className="text-sm">Subject</FormLabel>
                         <FormControl>
                           <Input
+                            disabled={loading}
                             type="text"
                             placeholder="Subject"
                             autoComplete="off"
@@ -214,6 +259,7 @@ const Contact = () => {
                         <FormLabel className="text-sm">Message</FormLabel>
                         <FormControl>
                           <Textarea
+                            disabled={loading}
                             placeholder="Your message"
                             autoComplete="off"
                             className="h-40 border border-light-300 rounded-md px-4 py-2 resize-none"
@@ -226,7 +272,7 @@ const Contact = () => {
                   />
 
                   <Button className="w-full h-[40px] bg-primary-100 text-light-100 hover:bg-primary-120 cursor-pointer rounded-md">
-                    Send Message
+                    {loading ? "Sending..." : "Send message"}
                   </Button>
                 </form>
               </Form>

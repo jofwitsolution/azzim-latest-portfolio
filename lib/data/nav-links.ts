@@ -5,19 +5,19 @@ export const navbarLinks = [
   },
   {
     label: "About",
-    route: "#about",
+    route: "/#about",
   },
   {
     label: "Portfolio",
-    route: "#portfolio",
+    route: "/#portfolio",
   },
   {
     label: "Resume",
-    route: "#resume",
+    route: "/#resume",
   },
   {
     label: "Contact",
-    route: "#contact",
+    route: "/#contact",
   },
   {
     label: "Certifications",
