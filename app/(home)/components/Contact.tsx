@@ -42,7 +42,7 @@ const Contact = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     // Handle form submission logic here
-    console.log(values);
+    // console.log(values);
     setLoading(true);
 
     emailjs
@@ -97,7 +97,7 @@ const Contact = () => {
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-between gap-x-8 gap-y-12 max-w-[1100px] mx-auto mt-8 md:mt-12">
+        <div className="flex flex-wrap justify-between gap-x-8 gap-y-12 max-w-[1100px] mx-auto mt-8 md:mt-18">
           <div>
             <h3 className="font-bold text-[20.4px]">Contact Information</h3>
 

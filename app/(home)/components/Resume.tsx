@@ -33,7 +33,7 @@ const Resume = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 place-items-center max-w-[1100px] mx-auto gap-x-8 gap-y-8 mt-12 md:mt-20">
+        <div className="grid md:grid-cols-2 max-w-[1100px] mx-auto gap-x-8 gap-y-8 mt-12 md:mt-20">
           <div className="bg-light-200 md:w-full flex flex-col items-center shadow gap-6 px-6 py-8 md:px-8 md:py-10 rounded-xl">
             <div className="h-[80px] w-[80px] rounded-full flex items-center justify-center bg-light-230">
               <Image src={"/icons/bag.svg"} width={40} height={40} alt="uiux" />
