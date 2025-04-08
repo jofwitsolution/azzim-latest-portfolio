@@ -41,7 +41,7 @@ const Resume = () => {
 
             <TooltipWrapper message="Click to preview the CV">
               <h3
-                onClick={() => handlePreview("/docs/sample-cv.pdf")}
+                onClick={() => handlePreview("/docs/azzim-aina-uiux-cv.pdf")}
                 className="font-bold text-[20.4px] text-center"
               >
                 UI/UX Design Resume
@@ -56,7 +56,10 @@ const Resume = () => {
 
             <Button
               onClick={() =>
-                handleDownload("/docs/sample-cv.pdf", "azzim-uiux-cv")
+                handleDownload(
+                  "/docs/azzim-aina-uiux-cv.pdf",
+                  "azzim-aina-uiux-cv"
+                )
               }
               className="w-[120px] h-[40px] md:w-[151px] md:h-[50px] bg-primary-100 text-light-100 hover:bg-primary-120 cursor-pointer"
             >
@@ -82,7 +85,7 @@ const Resume = () => {
 
             <TooltipWrapper message="Click to preview the CV">
               <h3
-                onClick={() => handlePreview("/docs/sample-cv.pdf")}
+                onClick={() => handlePreview("/docs/azzim-aina-cyber-cv.pdf")}
                 className="font-bold text-[20.4px] text-center"
               >
                 Cybersecurity Resume
@@ -97,7 +100,10 @@ const Resume = () => {
 
             <Button
               onClick={() =>
-                handleDownload("/docs/sample-cv.pdf", "azzim-cyber-cv")
+                handleDownload(
+                  "/docs/azzim-aina-cyber-cv.pdf",
+                  "azzim-aina-cyber-cv"
+                )
               }
               className="w-[120px] h-[40px] md:w-[151px] md:h-[50px] bg-primary-220 text-light-100 hover:bg-primary-200 cursor-pointer"
             >

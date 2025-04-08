@@ -43,7 +43,7 @@ const HomeHero = () => {
                     width={312}
                     height={312}
                     alt="azzim-hero"
-                    className=""
+                    className="rounded-full"
                     // sizes="(max-width: 400px) 70vw,"
                   />
                 </div>
