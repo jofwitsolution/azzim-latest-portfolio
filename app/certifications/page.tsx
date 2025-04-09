@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 import { certifications } from "@/lib/data/mock";
 import { Calendar } from "lucide-react";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Certifications | Azzim Aina",
@@ -49,7 +50,15 @@ const Page = () => {
 
           <p className="max-w-[768px]">
             These certifications represent my ongoing commitment to excellence
-            and professional development in various technical domains.
+            and professional development in various technical domains. You can
+            access my badges on credly at:{" "}
+            <Link
+              href={"https://www.credly.com/users/azzim-aina"}
+              target="_blank"
+              className="text-primary-120"
+            >
+              credly.com/users/azzim-aina
+            </Link>
           </p>
         </div>
 
@@ -102,9 +111,13 @@ const Page = () => {
                   </div>
                   <div className="border-b border-[#F3F4F6] w-full" />
                   <div className="flex items-center justify-between">
-                    <span className="text-[11.9px]">
-                      ID: {certification.id}
-                    </span>
+                    <Link
+                      href={certification.source}
+                      target="_blank"
+                      className="text-primary-120 text-[11.9px]"
+                    >
+                      View
+                    </Link>
                     <span className="flex items-center gap-1 text-green-400 text-[11.9px]">
                       {" "}
                       <Image
