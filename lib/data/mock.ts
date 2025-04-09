@@ -68,7 +68,7 @@ export const experiences = [
   {
     id: 1,
     job: "Cybersecurity Analyst",
-    company: "TechSecure Solutions",
+    company: "Noughtaegis",
     date: "2024 - Present",
     jobType: "Hybrid",
     role: "Lead cross-functional teams in designing secure user experiences. Conduct security reviews of UI/UX designs and implement security-focused design thinking across product teams.",
@@ -77,7 +77,7 @@ export const experiences = [
   {
     id: 2,
     job: "Senior UX Designer",
-    company: "Digital Innovations Inc.",
+    company: "Devcent",
     date: "2020 - Present",
     jobType: "Part-Time",
     role: "Designed user interfaces for web and mobile applications with a focus on accessibility and usability. Conducted user research and usability testing to inform design decisions.",
@@ -159,7 +159,7 @@ export const certifications = [
     source: "https://www.credly.com/users/azzim-aina",
   },
   {
-    title: "Understanding Threaths and Attacks",
+    title: "Understanding Threats and Attacks",
     issuer: "Splunk(Certificate of Completion)",
     date: "June 2022",
     validUntil: "Present",
