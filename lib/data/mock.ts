@@ -228,7 +228,7 @@ export const myWork = [
       "Prototyping",
       "A/B Testing",
     ],
-    image: "/images/projects/payment-split-app.jpg",
+    image: "/images/projects/payment-split-app.png",
     source: "#",
   },
   {
@@ -296,7 +296,7 @@ export const myWork = [
     problem:
       "Users needed a platform to learn tech skills with interactive content and community support.",
     solution:
-      "Developed a comprehensive learning management system with interactive courses, quizzes, and community forums.",
+      "Designed a comprehensive learning management system with interactive courses, quizzes, and community forums.",
     results: [
       "50% increase in course completion rates",
       "30% growth in user engagement",
@@ -307,5 +307,113 @@ export const myWork = [
     categories: ["Web Design", "User Research", "Prototyping", "A/B Testing"],
     image: "/images/projects/devcent-training-institute.png",
     source: "https://devcent.net",
+  },
+  {
+    title: "Prompay",
+    description:
+      "Prompay is an online platform that lets you earn money while you learn! Experience the joy of answering questions to earn.",
+    problem:
+      "Users needed a platform to earn while learning through answering questions.",
+    solution:
+      "Designed a gamified learning experience with rewards for participation and knowledge sharing.",
+    results: [],
+    mainCategory: "UI/UX Design",
+    category_bg: "#CFFAFE",
+    categories: ["Web Design", "User Research", "Prototyping", "A/B Testing"],
+    image: "/images/projects/prompay.png",
+    source: "https://prompay.vercel.app/",
+  },
+  {
+    title: "BibzyCarter Model",
+    description:
+      "BibzyCarter Model. A Professional Model Website. BibzyCarter Model BibzyCarter Model BibzyCarter Model.",
+    problem:
+      "Client needed a professional model website to showcase portfolio and services.",
+    solution:
+      "Designed a visually appealing and user-friendly website to highlight the model's portfolio, services, and contact information.",
+    results: [
+      "Increased online visibility",
+      "Improved client inquiries",
+      "Enhanced portfolio presentation",
+    ],
+    mainCategory: "UI/UX Design",
+    category_bg: "#E0E7FF",
+    categories: ["Web Design", "User Research", "Prototyping", "A/B Testing"],
+    image: "/images/projects/bibzycarter.png",
+    source: "https://bibzy-carter-model.vercel.app/",
+  },
+  {
+    title: "E-commerce Dashboard",
+    description:
+      "Designed an intuitive dashboard for e-commerce store owners to manage their business efficiently.",
+    problem:
+      "Store owners struggled with complex navigation and couldn't quickly access key business metrics.",
+    solution:
+      "Created a unified dashboard with customizable widgets, clear data visualization, and streamlined navigation.",
+    results: [
+      "50% reduction in task completion time",
+      "90% positive user feedback",
+      "30% increase in feature adoption",
+    ],
+    mainCategory: "UI/UX Design",
+    category_bg: "#CFFAFE",
+    categories: [
+      "Dashboard Design",
+      "Data Visualization",
+      "Web App",
+      "Analytics",
+    ],
+    image: "/images/projects/e-commerce-dashboard.jpg",
+    source: "#",
+  },
+  {
+    title: "Pawmeets",
+    description:
+      "The ultimate online marketplace for dogs and puppies. Mobile app that helps dog breeders connect to find matching studs services.",
+    problem:
+      "Users needed a platform to connect dog breeders and find suitable stud services.",
+    solution:
+      "Designed a mobile app with user-friendly interface, search functionality, and secure payment options.",
+    results: [],
+    mainCategory: "UI/UX Design",
+    category_bg: "#CFFAFE",
+    categories: [
+      "Mobile Design",
+      "User Research",
+      "Prototyping",
+      "A/B Testing",
+    ],
+    image: "/images/projects/pawmeets.png",
+    source: "#",
+  },
+  {
+    title: "Virtual Classroom Platform",
+    description:
+      "Tutoring platform that connects students with lesson tutors. (Giggle-Learn)",
+    problem:
+      "Students needed a convenient way to find and connect with qualified tutors for personalized lessons.",
+    solution:
+      "Designed a virtual classroom platform with real-time video, interactive whiteboards, and scheduling features.",
+    results: [],
+    mainCategory: "UI/UX Design",
+    category_bg: "#E0E7FF",
+    categories: ["Web Design", "User Research", "Prototyping", "A/B Testing"],
+    image: "/images/projects/e-commerce-dashboard.jpg",
+    source: "#",
+  },
+  {
+    title: "Regulatory Technology",
+    description:
+      "A secure, transparent financial reporting platform for project funding accountability. (TranSpend) A personal project. Designed to address real-world problems tied to corruption, mismanagement, and lack of transparency in financial activities — especially in public and donor-funded projects.",
+    problem:
+      "The lack of transparency and accountability in project funding often leads to corruption and mismanagement.",
+    solution:
+      "Designed a platform that provides real-time financial reporting, audit trails, and stakeholder access to project budgets and expenditures.",
+    results: [],
+    mainCategory: "UI/UX Design",
+    category_bg: "#CFFAFE",
+    categories: ["Web Design", "User Research", "Prototyping", "A/B Testing"],
+    image: "/images/projects/e-commerce-dashboard.jpg",
+    source: "#",
   },
 ];
