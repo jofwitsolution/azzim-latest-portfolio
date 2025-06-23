@@ -186,3 +186,126 @@ export const certifications = [
     source: "https://www.credly.com/users/azzim-aina",
   },
 ];
+
+export const myWork = [
+  {
+    title: "Cryptocurrency and NFT Platform",
+    description:
+      "Complete design of a Cryptocurrency and NFT web & mobile app to improve user engagement and reduce drop-off rates and to Unlock the power of cryptocurrency and education in one seamless platform.",
+    problem: "New users struggle with wallet setups MetaMask, Ledger.",
+    solution:
+      "Conducted user research, simplified the onboarding flow, improved visual hierarchy, and implemented progressive disclosure for a Secure & Easy Wallet Integration.",
+    results: [
+      "40% reduction in onboarding drop-off",
+      "85% increase in user satisfaction",
+      "25% increase in daily active users",
+    ],
+    mainCategory: "UI/UX Design",
+    category_bg: "#CFFAFE",
+    categories: [
+      "Mobile Design",
+      "User Research",
+      "Prototyping",
+      "A/B Testing",
+    ],
+    image: "/images/projects/cryptocurrency-and-nft-platform.jpg",
+    source: "#",
+  },
+  {
+    title: "Payment Split App for Group Expenses",
+    description:
+      "Designed a mobile bill-splitting app with an engaging onboarding process and a fully interactive interface.",
+    problem:
+      "Users found it difficult to split bills and track expenses in group settings.",
+    solution:
+      "The app will help users easily solve the problem of splitting expenses, track who owes what, and send payment reminders to friends.",
+    results: [],
+    mainCategory: "UI/UX Design",
+    category_bg: "#E0E7FF",
+    categories: [
+      "Mobile Design",
+      "User Research",
+      "Prototyping",
+      "A/B Testing",
+    ],
+    image: "/images/projects/payment-split-app.jpg",
+    source: "#",
+  },
+  {
+    title: "Enterprise Security Assessment",
+    description:
+      "Part of the team at Noughtaegis that did Comprehensive security audit and vulnerability assessment for a private company and Nigeria Airforce Base.",
+    problem:
+      "Company had multiple security gaps and needed to meet SOC 2 compliance requirements.",
+    solution:
+      "Conducted thorough security assessment, identified 47 vulnerabilities, and provided actionable remediation plan.",
+    results: [
+      "100% critical vulnerabilities patched",
+      "SOC 2 compliance achieved",
+      "60% improvement in security score",
+    ],
+    mainCategory: "Cybersecurity",
+    category_bg: "#CFFAFE",
+    categories: [
+      "Risk Assessment",
+      "Penetration Testing",
+      "NIST Framework",
+      "Compliance",
+    ],
+    image: "/images/projects/enterprise-security-assessment.jpg",
+    source: "#",
+  },
+  {
+    title: "Secure Authentication System",
+    description:
+      "Designed and implemented a multi-factor authentication system with biometric integration.",
+    problem:
+      "Legacy authentication system was vulnerable to credential theft and didn't support modern security requirements.",
+    solution:
+      "Implemented zero-trust architecture with biometric MFA, adaptive authentication, and continuous monitoring.",
+    results: [
+      "99.9% reduction in unauthorized access",
+      "40% faster authentication process",
+      "Zero security incidents post-implementation",
+    ],
+    mainCategory: "Cybersecurity",
+    category_bg: "#E0E7FF",
+    categories: ["MFA", "Zero Trust", "Biometrics", "Identity Management"],
+    image: "/images/projects/secure-authentication-system.jpg",
+    source: "#",
+  },
+  {
+    title: "Diesel Delivery & Price Tracking",
+    description:
+      "Diesel NG, A go-to source for the most up-to-date diesel (AGO) depot prices in Nigeria. They provide accurate information. (https://www.dieselng.com)",
+    problem:
+      "Client needed a Webapp product that can solve the Inefficient Fuel Procurement & Budgeting for Businesses.",
+    solution:
+      "Helped solved the problem of Inefficient Diesel Procurement for Businesses, Hassle of Manual Diesel Ordering & Delivery and Emergency Diesel Needs (Shortages & Panic Buying)",
+    results: [],
+    mainCategory: "UI/UX Design",
+    category_bg: "#CFFAFE",
+    categories: ["Web Design", "User Research", "Prototyping", "A/B Testing"],
+    image: "/images/projects/diesel-delivery-and-price-tracking.png",
+    source: "https://www.dieselng.com",
+  },
+  {
+    title: "Devcent Training Institute",
+    description:
+      "An innovative online learning platform designed to equip learners with in-demand tech skills.",
+    problem:
+      "Users needed a platform to learn tech skills with interactive content and community support.",
+    solution:
+      "Developed a comprehensive learning management system with interactive courses, quizzes, and community forums.",
+    results: [
+      "50% increase in course completion rates",
+      "30% growth in user engagement",
+      "High satisfaction ratings from learners",
+    ],
+    mainCategory: "UI/UX Design",
+    category_bg: "#E0E7FF",
+    categories: ["Web Design", "User Research", "Prototyping", "A/B Testing"],
+    image: "/images/projects/devcent-training-institute.png",
+    source: "https://devcent.net",
+  },
+];

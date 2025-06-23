@@ -6,7 +6,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#111827] padding-y">
+    <footer className="bg-[#111827] padding-y text-light-230">
       <div className="max-width">
         <div className="flex flex-col md:flex-row gap-10 md:gap-6 justify-between md:items-center">
           <div>

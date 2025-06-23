@@ -1,7 +1,7 @@
 import React from "react";
 import HomeHero from "./components/HomeHero";
 import About from "./components/About";
-import Portfolio from "./components/Portfolio";
+import MyWork from "./components/MyWork";
 import Resume from "./components/Resume";
 import Contact from "./components/Contact";
 
@@ -10,7 +10,7 @@ const Page = () => {
     <main className="top-padding">
       <HomeHero />
       <About />
-      <Portfolio />
+      <MyWork />
       <Resume />
       <Contact />
     </main>
