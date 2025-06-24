@@ -363,7 +363,7 @@ export const myWork = [
       "Web App",
       "Analytics",
     ],
-    image: "/images/projects/e-commerce-dashboard.jpg",
+    image: "/images/projects/ecommerce.png",
     source: "#",
   },
   {
@@ -398,7 +398,7 @@ export const myWork = [
     mainCategory: "UI/UX Design",
     category_bg: "#E0E7FF",
     categories: ["Web Design", "User Research", "Prototyping", "A/B Testing"],
-    image: "/images/projects/e-commerce-dashboard.jpg",
+    image: "/images/projects/virtualclass.png",
     source: "#",
   },
   {
@@ -413,7 +413,7 @@ export const myWork = [
     mainCategory: "UI/UX Design",
     category_bg: "#CFFAFE",
     categories: ["Web Design", "User Research", "Prototyping", "A/B Testing"],
-    image: "/images/projects/e-commerce-dashboard.jpg",
+    image: "/images/projects/regulatory-technology.png",
     source: "#",
   },
 ];

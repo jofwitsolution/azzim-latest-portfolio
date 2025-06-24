@@ -57,16 +57,22 @@ const MyWork = () => {
                     </h4>
                   </div>
 
-                  <p className="text-[13.6px] mt-4">{project.description}</p>
+                  <p className="text-[13.6px] text-[rgba(75,85,99,1)] mt-4">
+                    {project.description}
+                  </p>
 
                   <h5 className="mt-2 font-semibold">Problem</h5>
-                  <p className="text-[13.6px] mt-1">{project.problem}</p>
+                  <p className="text-[13.6px] mt-1 text-[rgba(75,85,99,1)]">
+                    {project.problem}
+                  </p>
 
                   <h5 className="mt-2 font-semibold">Solution</h5>
-                  <p className="text-[13.6px] mt-1">{project.solution}</p>
+                  <p className="text-[13.6px] mt-1 text-[rgba(75,85,99,1)]">
+                    {project.solution}
+                  </p>
 
                   <h5 className="mt-2 font-semibold">Outcome</h5>
-                  <ul className="text-[13.6px] mt-1 list-none">
+                  <ul className="text-[13.6px] text-[rgba(75,85,99,1)] mt-1 list-none">
                     {project.results.length === 0 && (
                       <li className="flex items-center gap-2 mb-1">
                         <span className="inline-block size-2.5 rounded-full bg-red-500" />
