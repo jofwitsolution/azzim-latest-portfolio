@@ -91,7 +91,7 @@ const MyWork = () => {
                     {project.categories.map((category, index) => (
                       <span
                         key={index}
-                        className="text-[10px] bg-slate-300 text-primary-100 px-2 py-1 rounded-full"
+                        className="text-[10px] bg-[rgba(228,236,244)] font-bold px-2 py-1 rounded-full"
                       >
                         {category}
                       </span>
