@@ -47,6 +47,77 @@ const About = () => {
               combination has proven valuable in an era where both user
               experience and security are paramount concerns.
             </p>
+
+            <div className="mt-4 md:mt-8 space-y-3">
+              <h3 className="text-[#1F2937] font-bold text-[20.4px]">
+                My UI/UX Design Process (Tool - Figma)
+              </h3>
+              <div className="mt-4 md:mt-6">
+                <div>
+                  <p>1. Understand the Problem</p>
+                  <ul className="ml-8 list-disc">
+                    <li>Review the PRD and business goals</li>
+                    <li>Identify target users and their pain points</li>
+                    <li>Ask clarifying questions to align with stakeholders</li>
+                  </ul>
+                </div>
+              </div>
+              <div>
+                <p>2. Research & User Insights</p>
+                <ul className="ml-8 list-disc">
+                  <li>
+                    Conduct user interviews or define personas (if data isn’t
+                    available)
+                  </li>
+                  <li>Map user journeys or key flows</li>
+                  <li>Identify usability gaps or opportunities</li>
+                </ul>
+              </div>
+              <div>
+                <p>3. Information Architecture</p>
+                <ul className="ml-8 list-disc">
+                  <li>Create sitemaps and user flows</li>
+                  <li>Define navigation structure and page hierarchy</li>
+                </ul>
+              </div>
+              <div>
+                <p>4. Wireframing</p>
+                <ul className="ml-8 list-disc">
+                  <li>Build low-fidelity wireframes in Figma</li>
+                  <li>Focus on layout, user flow, and core functionality</li>
+                  <li>Share for early feedback and iteration</li>
+                </ul>
+              </div>
+              <div>
+                <p>5. High-Fidelity UI Design</p>
+                <ul className="ml-8 list-disc">
+                  <li>
+                    Apply brand guidelines, typography, color, and spacing
+                  </li>
+                  <li>Design responsive layouts for multiple screen sizes</li>
+                  <li>Ensure accessibility (contrast, tap targets, etc.)</li>
+                </ul>
+              </div>
+              <div>
+                <p>6. Prototyping</p>
+                <ul className="ml-8 list-disc">
+                  <li>
+                    Create interactive flows to simulate real user interaction
+                  </li>
+                  <li>Test internally or with users (if time allows)</li>
+                </ul>
+              </div>
+              <div>
+                <p>7. Developer Handoff</p>
+                <ul className="ml-8 list-disc">
+                  <li>Use Figma’s inspect & dev mode for handoff</li>
+                  <li>
+                    Provide documentation: component specs, states, edge cases
+                  </li>
+                  <li>Collaborate with developers during implementation</li>
+                </ul>
+              </div>
+            </div>
           </div>
           <div className="w-full md:w-[472px] justify-self-center space-y-8">
             <Card className="w-full bg-light-200 !shadow-none">
