@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {navbarLinks} from "@/lib/data/nav-links";
 import MobileNav from "./MobileNav";
-import {ChevronDownIcon} from "lucide-react";
+
 import {
     NavigationMenu, NavigationMenuContent,
     NavigationMenuItem, NavigationMenuLink,
