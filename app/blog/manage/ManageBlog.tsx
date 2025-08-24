@@ -273,14 +273,14 @@ export default function ManageBlog() {
   }
 
   return (
-    <main className="container mx-auto px-4 py-10 max-w-5xl">
+    <main className="min-h-screen container mx-auto px-4 py-10 max-w-5xl">
       <h1 className="text-2xl font-semibold mb-6">Manage Blog</h1>
 
       {/* Tabs */}
       <div className="mb-6">
         <div className="inline-flex rounded-md border overflow-hidden">
           <button
-            className={`px-4 py-2 text-sm ${
+            className={`px-4 py-2 text-sm cursor-pointer ${
               activeTab === "create"
                 ? "bg-primary text-primary-foreground"
                 : "bg-background"
@@ -290,7 +290,7 @@ export default function ManageBlog() {
             Create
           </button>
           <button
-            className={`px-4 py-2 text-sm border-l ${
+            className={`px-4 py-2 text-sm border-l cursor-pointer ${
               activeTab === "update"
                 ? "bg-primary text-primary-foreground"
                 : "bg-background"
@@ -300,7 +300,7 @@ export default function ManageBlog() {
             Update
           </button>
           <button
-            className={`px-4 py-2 text-sm border-l ${
+            className={`px-4 py-2 text-sm border-l cursor-pointer ${
               activeTab === "delete"
                 ? "bg-primary text-primary-foreground"
                 : "bg-background"
@@ -466,7 +466,11 @@ export default function ManageBlog() {
               />
 
               <div className="flex justify-end gap-3">
-                <Button type="submit" disabled={submitting}>
+                <Button
+                  type="submit"
+                  disabled={submitting}
+                  className="cursor-pointer"
+                >
                   {submitting ? "Creating..." : "Create Post"}
                 </Button>
               </div>
@@ -656,7 +660,11 @@ export default function ManageBlog() {
                   />
 
                   <div className="flex justify-end gap-3">
-                    <Button type="submit" disabled={submitting}>
+                    <Button
+                      type="submit"
+                      disabled={submitting}
+                      className="cursor-pointer"
+                    >
                       {submitting ? "Saving..." : "Save Changes"}
                     </Button>
                   </div>
@@ -700,6 +708,7 @@ export default function ManageBlog() {
                   variant="destructive"
                   size="sm"
                   onClick={() => onDelete(item._id)}
+                  className="cursor-pointer"
                 >
                   Delete
                 </Button>

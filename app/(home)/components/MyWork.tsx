@@ -75,8 +75,8 @@ const MyWork = () => {
                   <ul className="text-[13.6px] text-[rgba(75,85,99,1)] mt-1 list-none">
                     {project.results.length === 0 && (
                       <li className="flex items-center gap-2 mb-1">
-                        <span className="inline-block size-2.5 rounded-full bg-red-500" />
-                        <span>Still in progress</span>
+                        <span className="inline-block size-2.5 rounded-full bg-yellow-400" />
+                        <span>Under development</span>
                       </li>
                     )}
                     {project.results.map((item, index) => (

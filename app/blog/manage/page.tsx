@@ -3,7 +3,7 @@ import ManageBlog from "./ManageBlog";
 
 const ManageBlogPage = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<div className="w-full min-h-screen">Loading...</div>}>
       <ManageBlog />
     </Suspense>
   );
