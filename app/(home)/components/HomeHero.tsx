@@ -39,7 +39,7 @@ const HomeHero = () => {
               <div className="absolute top-0 flex items-center justify-center bg-light-100 max-sm:w-full max-sm:h-[360px] w-[480px] h-[432px] rounded-2xl">
                 <div className="bg-linear-to-r from-primary-100 to-primary-200 p-1 rounded-full">
                   <Image
-                    src={"/images/azzim-hero.png"}
+                    src={"/images/azzim.png"}
                     width={312}
                     height={312}
                     alt="azzim-hero"
