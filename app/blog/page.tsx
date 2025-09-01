@@ -9,6 +9,13 @@ import {
   CardDescription,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Blog - Azzim Aina",
+  description:
+    "Read the latest articles on UX design, cybersecurity, research, and more.",
+};
 
 function formatDate(dateStr: string) {
   const d = new Date(dateStr);

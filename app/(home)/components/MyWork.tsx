@@ -99,7 +99,7 @@ const MyWork = () => {
                   </div>
                 </div>
 
-                <div className="flex gap-10">
+                <div className="flex justify-between">
                   {project.source && (
                     <div className="">
                       <Link
@@ -110,12 +110,12 @@ const MyWork = () => {
                         <span className="text-[13.6px] text-primary-100">
                           View Project
                         </span>
-                        <Image
+                        {/* <Image
                           src={"/icons/open-link.svg"}
                           width={16}
                           height={16}
                           alt="open-link"
-                        />
+                        /> */}
                       </Link>
                     </div>
                   )}
@@ -127,14 +127,14 @@ const MyWork = () => {
                         className="flex gap-2 items-center"
                       >
                         <span className="text-[13.6px] text-primary-100">
-                          Behance
+                          View Case Study
                         </span>
-                        <Image
+                        {/* <Image
                           src={"/icons/open-link.svg"}
                           width={16}
                           height={16}
                           alt="open-link"
-                        />
+                        /> */}
                       </Link>
                     </div>
                   )}

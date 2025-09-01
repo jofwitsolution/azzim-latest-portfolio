@@ -1,7 +1,14 @@
 import { dbConnect } from "@/lib/db/mongoose";
 import BlogModel from "@/models/Blog";
+import { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Blog - Azzim Aina",
+  description:
+    "Read the latest articles on UX design, cybersecurity, research, and more.",
+};
 
 function formatDate(dateStr: string | Date) {
   const d = new Date(dateStr);
