@@ -192,6 +192,7 @@ const Contact = () => {
                   width={24}
                   height={24}
                   alt="behance"
+                  className="invert-30"
                 />
               </Link>
             </div>

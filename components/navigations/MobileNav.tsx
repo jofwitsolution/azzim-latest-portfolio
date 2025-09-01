@@ -99,6 +99,7 @@ const MobileNav = () => {
                   width={24}
                   height={24}
                   alt="behance"
+                  className="invert-48"
                 />
               </Link>
             </SheetClose>

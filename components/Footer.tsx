@@ -74,6 +74,7 @@ const Footer = () => {
                   width={18}
                   height={18}
                   alt="behance"
+                  className="invert-48"
                 />
               </Link>
             </div>
