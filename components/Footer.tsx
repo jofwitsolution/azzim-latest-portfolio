@@ -39,9 +39,7 @@ const Footer = () => {
               </h5>
               <div className="flex flex-col gap-2">
                 {services.map((item) => (
-                  <Link href={item.title} key={item.title}>
-                    {item.title}
-                  </Link>
+                  <span key={item.title}>{item.title}</span>
                 ))}
               </div>
             </div>
@@ -54,7 +52,7 @@ const Footer = () => {
               © 2024 Azzim Aina. All rights reserved.
             </p>
             <div className="flex gap-6 items-center">
-              <Link href={"https://linkedin.com"}>
+              <Link href={"https://www.linkedin.com/in/azzim-aina-uxdesigner"}>
                 <Image
                   src={"/icons/linkedin-light.svg"}
                   width={18}
@@ -62,12 +60,20 @@ const Footer = () => {
                   alt="linkedin"
                 />
               </Link>
-              <Link href={"https://twitter.com"}>
+              <Link href={"https://x.com/azzimeme"}>
                 <Image
                   src={"/icons/twitter-light.svg"}
                   width={18}
                   height={18}
                   alt="twitter"
+                />
+              </Link>
+              <Link href={"https://www.behance.net/azzimaina"}>
+                <Image
+                  src={"/icons/behance.svg"}
+                  width={18}
+                  height={18}
+                  alt="behance"
                 />
               </Link>
             </div>

@@ -209,7 +209,8 @@ export const myWork = [
       "A/B Testing",
     ],
     image: "/images/projects/cryptocurrency-and-nft-platform.jpg",
-    source: "#",
+    behance: "https://www.behance.net/azzimaina",
+    source: "",
   },
   {
     title: "Payment Split App for Group Expenses",
@@ -229,7 +230,8 @@ export const myWork = [
       "A/B Testing",
     ],
     image: "/images/projects/payment-split-app.png",
-    source: "#",
+    behance: "https://www.behance.net/gallery/225936961/Split-Easy",
+    source: "",
   },
   {
     title: "Enterprise Security Assessment",
@@ -253,7 +255,8 @@ export const myWork = [
       "Compliance",
     ],
     image: "/images/projects/enterprise-security-assessment.jpg",
-    source: "#",
+    behance: "",
+    source: "",
   },
   {
     title: "Secure Authentication System",
@@ -272,7 +275,8 @@ export const myWork = [
     category_bg: "#E0E7FF",
     categories: ["MFA", "Zero Trust", "Biometrics", "Identity Management"],
     image: "/images/projects/secure-authentication-system.jpg",
-    source: "#",
+    behance: "",
+    source: "",
   },
   {
     title: "Diesel Delivery & Price Tracking",
@@ -287,6 +291,7 @@ export const myWork = [
     category_bg: "#CFFAFE",
     categories: ["Web Design", "User Research", "Prototyping", "A/B Testing"],
     image: "/images/projects/diesel-delivery-and-price-tracking.png",
+    behance: "https://www.behance.net/gallery/225938217/httpswwwdieselngcom",
     source: "https://www.dieselng.com",
   },
   {
@@ -306,6 +311,7 @@ export const myWork = [
     category_bg: "#E0E7FF",
     categories: ["Web Design", "User Research", "Prototyping", "A/B Testing"],
     image: "/images/projects/devcent-training-institute.png",
+    behance: "https://www.behance.net/azzimaina",
     source: "https://devcent.net",
   },
   {
@@ -321,6 +327,7 @@ export const myWork = [
     category_bg: "#CFFAFE",
     categories: ["Web Design", "User Research", "Prototyping", "A/B Testing"],
     image: "/images/projects/prompay.png",
+    behance: "https://www.behance.net/azzimaina",
     source: "https://prompay.vercel.app/",
   },
   {
@@ -340,6 +347,7 @@ export const myWork = [
     category_bg: "#E0E7FF",
     categories: ["Web Design", "User Research", "Prototyping", "A/B Testing"],
     image: "/images/projects/bibzycarter.png",
+    behance: "https://www.behance.net/azzimaina",
     source: "https://bibzy-carter-model.vercel.app/",
   },
   {
@@ -364,7 +372,8 @@ export const myWork = [
       "Analytics",
     ],
     image: "/images/projects/ecommerce.png",
-    source: "#",
+    behance: "https://www.behance.net/azzimaina",
+    source: "",
   },
   {
     title: "Pawmeets",
@@ -384,7 +393,8 @@ export const myWork = [
       "A/B Testing",
     ],
     image: "/images/projects/pawmeets.png",
-    source: "#",
+    behance: "https://www.behance.net/azzimaina",
+    source: "",
   },
   {
     title: "Virtual Classroom Platform",
@@ -399,7 +409,8 @@ export const myWork = [
     category_bg: "#E0E7FF",
     categories: ["Web Design", "User Research", "Prototyping", "A/B Testing"],
     image: "/images/projects/virtualclass.png",
-    source: "#",
+    behance: "https://www.behance.net/azzimaina",
+    source: "",
   },
   {
     title: "Regulatory Technology",
@@ -414,6 +425,7 @@ export const myWork = [
     category_bg: "#CFFAFE",
     categories: ["Web Design", "User Research", "Prototyping", "A/B Testing"],
     image: "/images/projects/regulatory-technology.png",
-    source: "#",
+    behance: "https://www.behance.net/gallery/233267895/TranSpend",
+    source: "",
   },
 ];

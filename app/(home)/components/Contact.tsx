@@ -127,7 +127,7 @@ const Contact = () => {
                     src={"/icons/phone.svg"}
                     width={24}
                     height={24}
-                    alt="linkedin"
+                    alt="phone"
                   />
                 </div>
                 <div className="flex flex-col gap-1">
@@ -143,7 +143,7 @@ const Contact = () => {
                     src={"/icons/location.svg"}
                     width={24}
                     height={24}
-                    alt="linkedin"
+                    alt="location"
                   />
                 </div>
                 <div className="flex flex-col gap-1">
@@ -156,7 +156,7 @@ const Contact = () => {
             <h3 className="font-bold text-[20.4px] mt-8">Connect</h3>
             <div className="flex gap-6 items-center mt-6">
               <Link
-                href={"https://www.linkedin.com"}
+                href={"https://www.linkedin.com/in/azzim-aina-uxdesigner/"}
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center justify-center h-12 w-12 rounded-sm bg-light-230"
@@ -169,7 +169,7 @@ const Contact = () => {
                 />
               </Link>
               <Link
-                href={"https://www.x.com"}
+                href={"https://www.x.com/azzimeme"}
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center justify-center h-12 w-12 rounded-sm bg-light-230"
@@ -179,6 +179,19 @@ const Contact = () => {
                   width={24}
                   height={24}
                   alt="twitter"
+                />
+              </Link>
+              <Link
+                href={"https://www.behance.net/azzimaina"}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center justify-center h-12 w-12 rounded-sm bg-light-230"
+              >
+                <Image
+                  src={"/icons/behance.svg"}
+                  width={24}
+                  height={24}
+                  alt="behance"
                 />
               </Link>
             </div>
