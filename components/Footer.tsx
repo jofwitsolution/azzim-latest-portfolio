@@ -49,7 +49,7 @@ const Footer = () => {
           <div className="border-b border-[#1F2937] my-8"></div>
           <div className="flex flex-col md:flex-row max-md:flex-col-reverse gap-6 md:gap-0 justify-between items-center">
             <p className="text-[11.9px] font-semibold">
-              © 2024 Azzim Aina. All rights reserved.
+              © 2025 Azzim Aina. All rights reserved.
             </p>
             <div className="flex gap-6 items-center">
               <Link href={"https://www.linkedin.com/in/azzim-aina-uxdesigner"}>
