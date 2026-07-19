@@ -17,6 +17,7 @@ services) backed by MongoDB. See `implementation-plan.md` for the task breakdown
 - **next-themes** (dark default + toggle) · **sonner** (toasts)
 - **GSAP** + `@gsap/react` (`ScrollTrigger`) for animation
 - **Quill** rich-text editor (blog)
+- **Cloudinary** for file storage — `next-cloudinary` (client) + `cloudinary` Node SDK (server)
 
 ## Commands
 ```bash
@@ -60,7 +61,8 @@ No deep relative `../../..` chains.
 - **Images:** use `next/image` with explicit `width`/`height` (or `fill` + sized parent) and `alt`.
 - **Params:** in Next 15, `params`/`searchParams` are async — `await` them in server components/handlers.
 - **Env:** server secrets are plain `process.env.X`; only `NEXT_PUBLIC_*` is exposed to the client.
-  Never leak `MONGODB_URI`, `ADMIN_PASSWORD`, or `AUTH_SECRET` to client code.
+  Never leak `MONGODB_URI`, `ADMIN_PASSWORD`, `AUTH_SECRET`, or `CLOUDINARY_API_SECRET` to client code
+  (only `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` may be public).
 
 ## TypeScript conventions
 - **No `any`.** Prefer precise types; use `unknown` + narrowing at boundaries. Avoid `@ts-ignore`
@@ -90,6 +92,21 @@ No deep relative `../../..` chains.
 - Enable `{ timestamps: true }`; add an `order` field for user-sortable collections.
 - Use `.lean()` for read-only queries returned to the client; `select()` only needed fields.
 - Keep validation in the schema **and** at the API boundary (zod).
+- **Assets:** store both the Cloudinary `secure_url` and its `public_id` per asset field (e.g. `image`
+  + `imagePublicId`) so files can be deleted/replaced.
+
+## File storage (Cloudinary) conventions
+- **All uploads go to Cloudinary** — images, resume PDFs, certification files. Do **not** add new
+  files under `public/` for user-managed content; store the returned URL + `public_id` in the model.
+- Configure the server SDK once in `lib/cloudinary.ts` (cloud name, key, secret). Never import the
+  `cloudinary` Node SDK (or use the secret) in client code.
+- Use a **signed** upload flow: a `requireAuth`-guarded route (`app/api/upload/sign`) signs the
+  request; the client uses `next-cloudinary`'s `CldUploadWidget` with that signature. Don't rely on
+  unsigned presets for dashboard uploads.
+- Render Cloudinary images with `next-cloudinary`'s `CldImage` (or `next/image` with the remote
+  domain allowed) — keep explicit `width`/`height` + `alt` per the Images convention.
+- **Clean up on delete/replace:** when a record is deleted or its file swapped, call
+  `cloudinary.uploader.destroy(public_id)` server-side so storage doesn't accumulate orphans.
 
 ---
 

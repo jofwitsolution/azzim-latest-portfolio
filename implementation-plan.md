@@ -6,7 +6,9 @@ database-managed (CRUD) from a secured `/dashboard`, alongside the existing Blog
 
 ## Decisions (confirmed)
 - **Auth:** Password login → httpOnly cookie session, protecting `/dashboard/*` and all write APIs.
-- **Images:** URL / `/public` path text inputs (no cloud upload).
+- **File storage:** **Cloudinary** for all uploads (project/portfolio images, resume PDFs,
+  certification images). Dashboard forms upload to Cloudinary; models store the returned secure
+  URL (+ `public_id` for later deletion) instead of `/public` paths.
 - **CRUD scope:** Projects (case studies + portfolio grid), Experience & Education, Resume cards,
   Certifications, Services. Blog already exists.
 - **Design:** Sleek dark default with indigo→cyan glow, glassmorphism, subtle gradients, scroll
@@ -15,6 +17,10 @@ database-managed (CRUD) from a secured `/dashboard`, alongside the existing Blog
 ## Tech notes
 - Next.js 15 App Router, React 19, Tailwind v4, Mongoose, shadcn/ui, react-hook-form + zod,
   sonner, next-themes (already installed — currently unused).
+- **File storage:** Cloudinary via `next-cloudinary` (`CldUploadWidget`/`CldImage`) on the client
+  and the `cloudinary` Node SDK on the server. Uploads use a **signed** flow — a server route
+  signs the request with `CLOUDINARY_API_SECRET`; the secret never reaches the client. Delete an
+  asset by `public_id` (server-side) when its record is removed or its file is replaced.
 - **Animation:** GSAP (with `ScrollTrigger`) for all motion — hero entrance, scroll-reveals,
   staggered card/grid reveals, hover/parallax accents. Wrapped in React-safe hooks
   (`useGSAP` / `gsap.context` cleanup).
@@ -51,6 +57,8 @@ database-managed (CRUD) from a secured `/dashboard`, alongside the existing Blog
 - [ ] 1.6 Finalize whether Projects + Portfolio share one collection (`type` discriminator) or two;
   document the choice at the top of the models.
 - [ ] 1.7 Shared TypeScript types in `types/` and a small `lib/data/queries.ts` for server reads.
+- [ ] 1.8 For every asset field (`image`, `pdfUrl`, certification image, …) store both the Cloudinary
+  `secure_url` and its `public_id` (e.g. `image` + `imagePublicId`) so assets can be deleted/replaced.
 
 ## Phase 2 — Authentication
 - [ ] 2.1 `lib/auth.ts` — session helpers: sign/verify a signed httpOnly cookie (using `ADMIN_PASSWORD`
@@ -69,12 +77,19 @@ database-managed (CRUD) from a secured `/dashboard`, alongside the existing Blog
 - [ ] 3.5 `app/api/services` + `[id]`.
 - [ ] 3.6 Guard all write methods (POST/PUT/DELETE) with `requireAuth()`; return proper status codes.
 - [ ] 3.7 (Optional) Migrate Blog write auth from `?key=` to the new session guard for consistency.
+- [ ] 3.8 **Cloudinary integration:**
+  - `lib/cloudinary.ts` — configured server-side `cloudinary` SDK instance (cloud name, key, secret).
+  - `app/api/upload/sign` (POST, `requireAuth`) — returns a signature/timestamp for the signed
+    `CldUploadWidget` flow.
+  - On resource DELETE (or when an asset is replaced on PUT), call `cloudinary.uploader.destroy(public_id)`
+    to remove the old asset so storage doesn't leak orphans.
 
 ## Phase 4 — Dashboard UI (`/dashboard`)
 - [ ] 4.1 Dashboard layout with a sidebar (shadcn `sidebar` already present) + header + logout.
 - [ ] 4.2 Overview page: counts per collection + quick links.
 - [ ] 4.3 Reusable admin building blocks: data table/list, resource form dialog, delete confirm,
-  image-URL field with live preview, drag-to-reorder (or order number input).
+  a **Cloudinary upload field** (`CldUploadWidget`) with live image/PDF preview and remove/replace,
+  drag-to-reorder (or order number input).
 - [ ] 4.3b Loading states: skeleton rows while lists load, skeleton form while an item loads for
   edit, and submit/pending states on every mutation.
 - [ ] 4.4 Projects manager (list, create, edit, delete).
@@ -88,7 +103,9 @@ database-managed (CRUD) from a secured `/dashboard`, alongside the existing Blog
 - [ ] 5.1 `scripts/seed.ts` — connect via existing `dbConnect()`, read arrays from `lib/data/mock.ts`
   (projects, myWork, experiences, certifications, services) + the two resume cards from `Resume.tsx`.
 - [ ] 5.2 Map static shapes → model shapes; split `experiences` array into experience vs education by
-  content; assign `order` from array index.
+  content; assign `order` from array index. For asset fields, **upload the existing `/public` images
+  and PDFs to Cloudinary** (`cloudinary.uploader.upload`) and persist the returned `secure_url` +
+  `public_id` (skip re-upload on idempotent runs).
 - [ ] 5.3 Make it idempotent (upsert by slug/title, or `--fresh` flag to wipe+reseed).
 - [ ] 5.4 Add `"seed": "tsx scripts/seed.ts"` script; install `tsx` + `dotenv` if needed.
 - [ ] 5.5 **Run the seed** against the configured `MONGODB_URI` and verify documents exist.
@@ -121,7 +138,9 @@ database-managed (CRUD) from a secured `/dashboard`, alongside the existing Blog
 - [ ] 8.1 Responsive pass (mobile → desktop) on public site and dashboard.
 - [ ] 8.2 Accessibility: focus states, contrast in both themes, alt text, aria labels.
 - [ ] 8.3 `next build` / lint clean; fix type errors.
-- [ ] 8.4 Update `README.md` (auth, dashboard routes, seed command, env vars).
+- [ ] 8.4 Update `README.md` (auth, dashboard routes, seed command, env vars — including
+  `CLOUDINARY_CLOUD_NAME` / `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`,
+  `CLOUDINARY_API_SECRET`, and the upload preset).
 - [ ] 8.5 Manual QA checklist: login, each CRUD create/edit/delete, public site reflects changes,
   theme toggle persists.
 
