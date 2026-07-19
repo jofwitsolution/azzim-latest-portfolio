@@ -46,18 +46,22 @@ database-managed (CRUD) from a secured `/dashboard`, alongside the existing Blog
   components and convert to theme tokens so both themes render correctly.
 
 ## Phase 1 — Data Layer (Mongoose Models)
-- [ ] 1.1 `models/Project.ts` — case-study project (title, slug, description, problem, solution,
+- [x] 1.1 `models/Project.ts` — case-study project (title, slug, description, problem, solution,
   results[], mainCategory, categories[], image, behance, source, featured, order).
-- [ ] 1.2 `models/PortfolioItem.ts` — lightweight portfolio grid card (title, category, description,
+- [x] 1.2 `models/PortfolioItem.ts` — lightweight portfolio grid card (title, category, description,
   source, image, order). *(Or fold into Project with a `type` field — decide in 1.6.)*
-- [ ] 1.3 `models/Experience.ts` — timeline entry (kind: "experience" | "education", job/title,
+- [x] 1.3 `models/Experience.ts` — timeline entry (kind: "experience" | "education", job/title,
   company, date, jobType, role, color, order).
-- [ ] 1.4 `models/ResumeCard.ts` — resume download card (title, description, icon, pdfUrl, accent, order).
-- [ ] 1.5 `models/Certification.ts` and `models/Service.ts`.
-- [ ] 1.6 Finalize whether Projects + Portfolio share one collection (`type` discriminator) or two;
-  document the choice at the top of the models.
-- [ ] 1.7 Shared TypeScript types in `types/` and a small `lib/data/queries.ts` for server reads.
-- [ ] 1.8 For every asset field (`image`, `pdfUrl`, certification image, …) store both the Cloudinary
+- [x] 1.4 `models/ResumeCard.ts` — resume download card (title, description, icon, pdfUrl, accent, order).
+- [x] 1.5 `models/Certification.ts` and `models/Service.ts`.
+- [x] 1.6 Finalize whether Projects + Portfolio share one collection (`type` discriminator) or two;
+  document the choice at the top of the models. **→ Two separate collections** (`Project` for case
+  studies, `PortfolioItem` for grid cards); their shapes differ too much to share cleanly. Documented
+  in the header of each model.
+- [x] 1.7 Shared TypeScript types in `types/` and a small `lib/data/queries.ts` for server reads.
+  (`types/models.ts` re-exports each model's inferred type; `lib/data/queries.ts` holds `.lean()`
+  serialized read helpers; slug generation lives in `lib/slugify.ts`.)
+- [x] 1.8 For every asset field (`image`, `pdfUrl`, certification image, …) store both the Cloudinary
   `secure_url` and its `public_id` (e.g. `image` + `imagePublicId`) so assets can be deleted/replaced.
 
 ## Phase 2 — Authentication
