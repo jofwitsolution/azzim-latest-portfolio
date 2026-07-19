@@ -1,28 +1,36 @@
 import { NextRequest, NextResponse } from "next/server";
+import { SESSION_COOKIE, verifySessionToken } from "@/lib/auth";
 
-// Name of the query parameter to check
+// Legacy blog manager guard (query-param key) — kept until Blog auth is migrated.
 const QUERY_PARAM = "key";
 
-export function middleware(req: NextRequest) {
-  const url = new URL(req.url);
-  const pathname = url.pathname;
+export async function middleware(req: NextRequest) {
+  const { pathname, search } = req.nextUrl;
 
-  // Only protect the manage page
+  // Protect the CMS dashboard: require a valid session cookie.
+  if (pathname === "/dashboard" || pathname.startsWith("/dashboard/")) {
+    const token = req.cookies.get(SESSION_COOKIE)?.value;
+    const session = await verifySessionToken(token);
+    if (!session) {
+      const loginUrl = new URL("/login", req.url);
+      loginUrl.searchParams.set("from", pathname + search);
+      return NextResponse.redirect(loginUrl);
+    }
+    return NextResponse.next();
+  }
+
+  // Legacy: protect the blog manage page via the MANAGE_KEY query param.
   if (pathname === "/blog/manage") {
-    const provided = url.searchParams.get(QUERY_PARAM) || "";
+    const provided = req.nextUrl.searchParams.get(QUERY_PARAM) || "";
     const expected = process.env.MANAGE_KEY || "";
-
-    // If no expected key is configured, deny access by default
     if (!expected || provided !== expected) {
-      const redirectUrl = new URL("/", req.url);
-      return NextResponse.redirect(redirectUrl);
+      return NextResponse.redirect(new URL("/", req.url));
     }
   }
 
   return NextResponse.next();
 }
 
-// Match only the manage page route
 export const config = {
-  matcher: ["/blog/manage"],
+  matcher: ["/dashboard/:path*", "/blog/manage"],
 };

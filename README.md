@@ -36,6 +36,35 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
 
+## Dashboard Authentication
+
+The CMS dashboard (`/dashboard/*`) and all content write APIs are protected by a
+password-based session. Logging in sets a signed, httpOnly cookie
+(`azzim_session`, HMAC-SHA256, 7-day expiry). The middleware guards
+`/dashboard/:path*` and redirects unauthenticated visitors to `/login`.
+
+Environment variables:
+
+```
+ADMIN_PASSWORD=your-strong-admin-password   # the password entered on /login
+AUTH_SECRET=a-long-random-secret            # signs/verifies the session cookie
+```
+
+Generate a secret with:
+
+```bash
+node -e "console.log(require('crypto').randomBytes(48).toString('base64url'))"
+```
+
+Routes:
+- `GET /login` — styled password form (redirects to `/dashboard` if already signed in).
+- `POST /api/auth/login` — validates the password, sets the session cookie.
+- `POST /api/auth/logout` — clears the session cookie.
+
+In route handlers / server components, use the helpers in `lib/auth.ts`:
+`getSession()` (returns the session or `null`) and `requireAuth()` (returns the
+session or throws `AuthError` — guard write methods with it and return `401`).
+
 ## Blog Setup
 
 This project includes a simple blog built with Next.js App Router and MongoDB (Mongoose), with SSR pages and a rich text editor for creating posts.

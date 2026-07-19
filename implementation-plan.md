@@ -65,13 +65,13 @@ database-managed (CRUD) from a secured `/dashboard`, alongside the existing Blog
   `secure_url` and its `public_id` (e.g. `image` + `imagePublicId`) so assets can be deleted/replaced.
 
 ## Phase 2 — Authentication
-- [ ] 2.1 `lib/auth.ts` — session helpers: sign/verify a signed httpOnly cookie (using `ADMIN_PASSWORD`
+- [x] 2.1 `lib/auth.ts` — session helpers: sign/verify a signed httpOnly cookie (using `ADMIN_PASSWORD`
   + a secret from env); `getSession()` and `requireAuth()`.
-- [ ] 2.2 `app/login/page.tsx` — styled login form (password), posts to `/api/auth/login`.
-- [ ] 2.3 `app/api/auth/login` + `app/api/auth/logout` route handlers (set/clear cookie).
-- [ ] 2.4 Update `middleware.ts` to protect `/dashboard/:path*` (redirect to `/login`) and keep/retire
+- [x] 2.2 `app/login/page.tsx` — styled login form (password), posts to `/api/auth/login`.
+- [x] 2.3 `app/api/auth/login` + `app/api/auth/logout` route handlers (set/clear cookie).
+- [x] 2.4 Update `middleware.ts` to protect `/dashboard/:path*` (redirect to `/login`) and keep/retire
   the old `?key=` blog guard.
-- [ ] 2.5 Add `ADMIN_PASSWORD` + `AUTH_SECRET` to `.env` and document in README.
+- [x] 2.5 Add `ADMIN_PASSWORD` + `AUTH_SECRET` to `.env` and document in README.
 
 ## Phase 3 — CRUD APIs
 - [ ] 3.1 `app/api/projects` (GET list, POST) + `app/api/projects/[id]` (GET, PUT, DELETE).
