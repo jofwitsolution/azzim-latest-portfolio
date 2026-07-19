@@ -84,10 +84,10 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="bg-light-220 padding-y">
+    <section id="contact" className="bg-muted/30 padding-y">
       <div className="max-width">
         <div className="flex flex-col items-center justify-center gap-4">
-          <h2 className="text-center font-bold text-black text-[24px] md:text-[30.6px] md:leading-[37px]">
+          <h2 className="text-center font-bold text-foreground text-[24px] md:text-[30.6px] md:leading-[37px]">
             Get in Touch
           </h2>
           <div className="w-[96px] h-[4px] bg-linear-to-r from-primary-100 to-primary-200" />
@@ -103,7 +103,7 @@ const Contact = () => {
 
             <div className="space-y-5 md:space-y-6 mt-6">
               <div className="flex gap-4 items-center">
-                <div className="flex items-center justify-center h-12 w-12 rounded-sm bg-light-230">
+                <div className="flex items-center justify-center h-12 w-12 rounded-sm bg-accent">
                   <Image
                     src={"/icons/email.svg"}
                     width={24}
@@ -122,7 +122,7 @@ const Contact = () => {
                 </div>
               </div>
               <div className="flex gap-4 items-center">
-                <div className="flex items-center justify-center h-12 w-12 rounded-sm bg-light-230">
+                <div className="flex items-center justify-center h-12 w-12 rounded-sm bg-accent">
                   <Image
                     src={"/icons/phone.svg"}
                     width={24}
@@ -138,7 +138,7 @@ const Contact = () => {
                 </div>
               </div>
               <div className="flex gap-4 items-center">
-                <div className="flex items-center justify-center h-12 w-12 rounded-sm bg-light-230">
+                <div className="flex items-center justify-center h-12 w-12 rounded-sm bg-accent">
                   <Image
                     src={"/icons/location.svg"}
                     width={24}
@@ -159,7 +159,7 @@ const Contact = () => {
                 href={"https://www.linkedin.com/in/azzim-aina-uxdesigner/"}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center justify-center h-12 w-12 rounded-sm bg-light-230"
+                className="flex items-center justify-center h-12 w-12 rounded-sm bg-accent"
               >
                 <Image
                   src={"/icons/linkedin-primary.svg"}
@@ -172,7 +172,7 @@ const Contact = () => {
                 href={"https://www.x.com/azzimeme"}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center justify-center h-12 w-12 rounded-sm bg-light-230"
+                className="flex items-center justify-center h-12 w-12 rounded-sm bg-accent"
               >
                 <Image
                   src={"/icons/twitter-primary.svg"}
@@ -185,7 +185,7 @@ const Contact = () => {
                 href={"https://www.behance.net/azzimaina"}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center justify-center h-12 w-12 rounded-sm bg-light-230"
+                className="flex items-center justify-center h-12 w-12 rounded-sm bg-accent"
               >
                 <Image
                   src={"/icons/behance.svg"}
@@ -199,7 +199,7 @@ const Contact = () => {
           </div>
           <div className="max-sm:w-full">
             <h3 className="font-bold text-[20.4px]">Send Me a Message</h3>
-            <div className="w-full bg-light-200 flex flex-col items-center shadow gap-6 px-6 py-8 md:px-8 md:py-10 rounded-xl mt-6">
+            <div className="w-full bg-card border border-border flex flex-col items-center shadow gap-6 px-6 py-8 md:px-8 md:py-10 rounded-xl mt-6">
               <Form {...form}>
                 <form
                   onSubmit={form.handleSubmit(onSubmit)}
@@ -217,7 +217,7 @@ const Contact = () => {
                             type="text"
                             placeholder="Your name"
                             autoComplete="off"
-                            className="border border-light-300 rounded-md px-4 py-2"
+                            className="border border-border rounded-md px-4 py-2"
                             {...field}
                           />
                         </FormControl>
@@ -237,7 +237,7 @@ const Contact = () => {
                             type="email"
                             placeholder="Your email"
                             autoComplete="off"
-                            className="border border-light-300 rounded-md px-4 py-2"
+                            className="border border-border rounded-md px-4 py-2"
                             {...field}
                           />
                         </FormControl>
@@ -257,7 +257,7 @@ const Contact = () => {
                             type="text"
                             placeholder="Subject"
                             autoComplete="off"
-                            className="border border-light-300 rounded-md px-4 py-2"
+                            className="border border-border rounded-md px-4 py-2"
                             {...field}
                           />
                         </FormControl>
@@ -276,7 +276,7 @@ const Contact = () => {
                             disabled={loading}
                             placeholder="Your message"
                             autoComplete="off"
-                            className="h-40 border border-light-300 rounded-md px-4 py-2 resize-none"
+                            className="h-40 border border-border rounded-md px-4 py-2 resize-none"
                             {...field}
                           />
                         </FormControl>

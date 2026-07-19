@@ -23,7 +23,7 @@ const Resume = () => {
     <section id="resume" className="padding-y">
       <div className="max-width">
         <div className="flex flex-col items-center justify-center gap-4">
-          <h2 className="text-center font-bold text-black text-[24px] md:text-[30.6px] md:leading-[37px]">
+          <h2 className="text-center font-bold text-foreground text-[24px] md:text-[30.6px] md:leading-[37px]">
             Resume
           </h2>
           <div className="w-[96px] h-[4px] bg-linear-to-r from-primary-100 to-primary-200" />
@@ -34,8 +34,8 @@ const Resume = () => {
         </div>
 
         <div className="grid md:grid-cols-2 max-w-[1100px] mx-auto gap-x-8 gap-y-8 mt-12 md:mt-20">
-          <div className="bg-light-200 md:w-full flex flex-col items-center shadow gap-6 px-6 py-8 md:px-8 md:py-10 rounded-xl">
-            <div className="h-[80px] w-[80px] rounded-full flex items-center justify-center bg-light-230">
+          <div className="bg-card border border-border md:w-full flex flex-col items-center shadow gap-6 px-6 py-8 md:px-8 md:py-10 rounded-xl">
+            <div className="h-[80px] w-[80px] rounded-full flex items-center justify-center bg-accent">
               <Image src={"/icons/bag.svg"} width={40} height={40} alt="uiux" />
             </div>
 
@@ -73,7 +73,7 @@ const Resume = () => {
               <span className="text-[13.6px]">Download CV</span>
             </Button>
           </div>
-          <div className="bg-light-200 md:w-full flex flex-col items-center shadow gap-6 px-6 py-8 md:px-8 md:py-10 rounded-xl">
+          <div className="bg-card border border-border md:w-full flex flex-col items-center shadow gap-6 px-6 py-8 md:px-8 md:py-10 rounded-xl">
             <div className="h-[80px] w-[80px] rounded-full flex items-center justify-center bg-primary-240">
               <Image
                 src={"/icons/security.svg"}
@@ -128,8 +128,8 @@ const Resume = () => {
         </div>
 
         {isPreviewOpen && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-white p-4 rounded-lg w-full overflow-auto">
+          <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
+            <div className="bg-card p-4 rounded-lg w-full overflow-auto">
               <iframe
                 src={pdfUrl}
                 className="w-full h-[90vh]"

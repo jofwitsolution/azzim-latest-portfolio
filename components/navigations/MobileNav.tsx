@@ -28,7 +28,7 @@ const MobileNav = () => {
           priority
         />
       </SheetTrigger>
-      <SheetContent side="left" className="bg-light-220">
+      <SheetContent side="left" className="bg-sidebar">
         <SheetHeader>
           <SheetTitle>
             <Link href={"/"} scroll={false}>
@@ -47,7 +47,7 @@ const MobileNav = () => {
             return (
               <li key={item.label}>
                 <SheetClose asChild>
-                  <Link href={item.route} className="hover:text-primary-100">
+                  <Link href={item.route} className="hover:text-primary">
                     {item.label}
                   </Link>
                 </SheetClose>
@@ -62,7 +62,7 @@ const MobileNav = () => {
                 href={"https://www.linkedin.com/in/azzim-aina-uxdesigner/"}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center justify-center h-12 w-12 rounded-sm bg-light-230"
+                className="flex items-center justify-center h-12 w-12 rounded-sm bg-accent"
               >
                 <Image
                   src={"/icons/linkedin-primary.svg"}
@@ -77,7 +77,7 @@ const MobileNav = () => {
                 href={"https://www.x.com/azzimeme"}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center justify-center h-12 w-12 rounded-sm bg-light-230"
+                className="flex items-center justify-center h-12 w-12 rounded-sm bg-accent"
               >
                 <Image
                   src={"/icons/twitter-primary.svg"}
@@ -92,7 +92,7 @@ const MobileNav = () => {
                 href={"https://www.behance.net/azzimaina"}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center justify-center h-12 w-12 rounded-sm bg-light-230"
+                className="flex items-center justify-center h-12 w-12 rounded-sm bg-accent"
               >
                 <Image
                   src={"/icons/behance.svg"}

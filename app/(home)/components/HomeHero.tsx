@@ -5,12 +5,12 @@ import Image from "next/image";
 
 const HomeHero = () => {
   return (
-    <section id="home" className="bg-light-220">
+    <section id="home" className="bg-muted/30">
       <div className="max-width py-10 sm:py-16 md:py-20 lg:py-30">
         <div className="flex flex-col items-center lg:flex-row gap-y-10 gap-x-16 xl:gap-x-30 justify-center">
           <header className="space-y-6">
             <h1 className="flex flex-col max-[403px]:text-[32px] max-[403px]:leading-[41px] max-[501px]:text-[40px] max-[501px]:leading-[49px] text-[51px] leading-[60px] font-bold">
-              <span className="text-black">Hi, I'm Azzim Aina</span>
+              <span className="text-foreground">Hi, I'm Azzim Aina</span>
               <span className="text-primary-120">UI/UX Designer &</span>
               <span className="text-primary-300">Cybersecurity</span>
               <span className="text-primary-200">Analyst</span>
@@ -36,7 +36,7 @@ const HomeHero = () => {
           <div className="max-sm:w-full">
             <div className="relative w-full">
               <div className="bg-linear-to-r from-light-230 to-primary-200 max-sm:w-full max-sm:h-[360px] w-[480px] h-[432px] rounded-2xl rotate-[2.3deg]"></div>
-              <div className="absolute top-0 flex items-center justify-center bg-light-100 max-sm:w-full max-sm:h-[360px] w-[480px] h-[432px] rounded-2xl">
+              <div className="absolute top-0 flex items-center justify-center bg-card max-sm:w-full max-sm:h-[360px] w-[480px] h-[432px] rounded-2xl">
                 <div className="bg-linear-to-r from-primary-100 to-primary-200 p-1 rounded-full">
                   <Image
                     src={"/images/azzim.png"}

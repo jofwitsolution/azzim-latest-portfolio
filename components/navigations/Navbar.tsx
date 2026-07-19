@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { navbarLinks } from "@/lib/data/nav-links";
 import MobileNav from "./MobileNav";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 import {
   NavigationMenu,
@@ -15,7 +16,7 @@ import {
 
 const Navbar = () => {
   return (
-    <nav className="fixed left-0 top-0 right-0 z-50 w-full bg-light-100 shadow-sm">
+    <nav className="fixed left-0 top-0 right-0 z-50 w-full border-b border-border bg-background/70 backdrop-blur-md shadow-sm supports-[backdrop-filter]:bg-background/60">
       <div className="flex justify-between items-center gap-10 navbar-h max-width">
         <Link href={"/"} scroll={false}>
           <Image
@@ -63,7 +64,12 @@ const Navbar = () => {
               </NavigationMenuItem>
             ))}
 
-            <li className={"lg:hidden"}>
+            <NavigationMenuItem className="max-lg:hidden">
+              <ThemeToggle />
+            </NavigationMenuItem>
+
+            <li className={"flex items-center gap-1 lg:hidden"}>
+              <ThemeToggle />
               <MobileNav />
             </li>
           </NavigationMenuList>

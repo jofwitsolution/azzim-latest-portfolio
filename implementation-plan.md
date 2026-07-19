@@ -24,19 +24,19 @@ database-managed (CRUD) from a secured `/dashboard`, alongside the existing Blog
 ---
 
 ## Phase 0 — Foundations & Theming
-- [ ] 0.1 Wire up `next-themes`: create a `ThemeProvider`, add it in `app/layout.tsx`, set
+- [x] 0.1 Wire up `next-themes`: create a `ThemeProvider`, add it in `app/layout.tsx`, set
   `defaultTheme="dark"` + `attribute="class"` + `suppressHydrationWarning` on `<html>`.
-- [ ] 0.2 Rework `globals.css`: refine the `.dark` palette (indigo/cyan accents, glass surfaces,
+- [x] 0.2 Rework `globals.css`: refine the `.dark` palette (indigo/cyan accents, glass surfaces,
   glow shadows), make `:root` the light variant, replace body `text-grey-100` with token-based
   `text-foreground` / `bg-background`.
-- [ ] 0.3 Add reusable design utilities: glass card, gradient text, glow border, section container.
-- [ ] 0.3b Install GSAP (`gsap` + `@gsap/react`), register `ScrollTrigger`, and build reusable
+- [x] 0.3 Add reusable design utilities: glass card, gradient text, glow border, section container.
+- [x] 0.3b Install GSAP (`gsap` + `@gsap/react`), register `ScrollTrigger`, and build reusable
   animation primitives: a `<Reveal>` wrapper (fade/slide on scroll), a `useScrollReveal` hook,
   and a stagger helper — all using `useGSAP`/`gsap.context` for proper cleanup and SSR safety.
-- [ ] 0.3c Add reusable skeleton components (card skeleton, list-row skeleton, timeline skeleton,
+- [x] 0.3c Add reusable skeleton components (card skeleton, list-row skeleton, timeline skeleton,
   form skeleton) built on the existing shadcn `Skeleton`.
-- [ ] 0.4 Build a `ThemeToggle` button and place it in the Navbar (desktop + mobile).
-- [ ] 0.5 Audit hardcoded light-only colors (`text-black`, `bg-light-*`, `bg-white`) across
+- [x] 0.4 Build a `ThemeToggle` button and place it in the Navbar (desktop + mobile).
+- [x] 0.5 Audit hardcoded light-only colors (`text-black`, `bg-light-*`, `bg-white`) across
   components and convert to theme tokens so both themes render correctly.
 
 ## Phase 1 — Data Layer (Mongoose Models)

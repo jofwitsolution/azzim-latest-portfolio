@@ -44,7 +44,7 @@ const Page = () => {
 
       <div className="max-width py-10">
         <div className="flex flex-col gap-3">
-          <h2 className="font-semibold text-[#1F2937] text-[20.4px] leading-[27px]">
+          <h2 className="font-semibold text-foreground text-[20.4px] leading-[27px]">
             My Credentials
           </h2>
 
@@ -66,7 +66,7 @@ const Page = () => {
           {certifications.map((certification) => (
             <div
               key={certification.title}
-              className="relative w-full rounded-md overflow-hidden shadow-md"
+              className="relative w-full rounded-md overflow-hidden shadow-md bg-card border border-border"
             >
               <Image
                 src={certification.image}
@@ -75,13 +75,13 @@ const Page = () => {
                 alt="aws"
                 className="w-full"
               />
-              <span className="absolute z-[10] top-3 right-3 bg-light-100 rounded-md py-1 px-2 text-[11.9px]">
+              <span className="absolute z-[10] top-3 right-3 bg-background/90 backdrop-blur-sm rounded-md py-1 px-2 text-[11.9px]">
                 {certification.type}
               </span>
 
               <div className="px-2 py-4 sm:p-4">
                 <div className="flex items-center gap-2 sm:gap-4">
-                  <span className="w-9 h-9 bg-[#DBEAFE] flex items-center justify-center rounded-full">
+                  <span className="w-9 h-9 bg-accent flex items-center justify-center rounded-full">
                     <Image
                       src={"/icons/award.svg"}
                       width={20}
@@ -109,7 +109,7 @@ const Page = () => {
                       Valid until {certification.validUntil}
                     </span>
                   </div>
-                  <div className="border-b border-[#F3F4F6] w-full" />
+                  <div className="border-b border-border w-full" />
                   <div className="flex items-center justify-between">
                     <Link
                       href={certification.source}

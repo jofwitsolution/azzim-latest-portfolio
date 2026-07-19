@@ -6,24 +6,24 @@ import Link from "next/link";
 
 const MyWork = () => {
   return (
-    <section id="portfolio" className="bg-light-220 padding-y">
+    <section id="portfolio" className="bg-muted/30 padding-y">
       <div className="max-width">
         <div className="flex flex-col items-center justify-center gap-4">
-          <h2 className="text-center font-bold text-black text-[24px] md:text-[30.6px] md:leading-[37px]">
+          <h2 className="text-center font-bold text-foreground text-[24px] md:text-[30.6px] md:leading-[37px]">
             My Portfolio
           </h2>
           <div className="w-[96px] h-[4px] bg-linear-to-r from-primary-100 to-primary-200" />
           <p className="max-w-[768px] text-center mt-1 md:mt-4">
             Explore my work across UI/UX design and cybersecurity projects.
           </p>
-          <h3 className="mt-6 text-center text-black">All Projects</h3>
+          <h3 className="mt-6 text-center text-foreground">All Projects</h3>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 place-items-center max-w-[1100px] mx-auto gap-x-4 gap-y-8 mt-12 md:mt-20">
           {myWork.map((project) => (
             <div
               key={project.title}
-              className="max-w-[338px] bg-light-100 shadow-lg rounded-[12px] overflow-hidden"
+              className="max-w-[338px] bg-card border border-border shadow-lg rounded-[12px] overflow-hidden"
             >
               <div className="w-full h-[151px] relative">
                 <div
@@ -52,27 +52,27 @@ const MyWork = () => {
               <div className="px-3 py-4 min-h-[450px] md:min-h-[590px] justify-between gap-4 flex flex-col">
                 <div>
                   <div className="flex justify-between gap-2">
-                    <h4 className="text-[#1F2937] font-bold line-clamp-2">
+                    <h4 className="text-foreground font-bold line-clamp-2">
                       {project.title}
                     </h4>
                   </div>
 
-                  <p className="text-[13.6px] text-[rgba(75,85,99,1)] mt-4">
+                  <p className="text-[13.6px] text-muted-foreground mt-4">
                     {project.description}
                   </p>
 
                   <h5 className="mt-2 font-semibold">Problem</h5>
-                  <p className="text-[13.6px] mt-1 text-[rgba(75,85,99,1)]">
+                  <p className="text-[13.6px] mt-1 text-muted-foreground">
                     {project.problem}
                   </p>
 
                   <h5 className="mt-2 font-semibold">Solution</h5>
-                  <p className="text-[13.6px] mt-1 text-[rgba(75,85,99,1)]">
+                  <p className="text-[13.6px] mt-1 text-muted-foreground">
                     {project.solution}
                   </p>
 
                   <h5 className="mt-2 font-semibold">Outcome</h5>
-                  <ul className="text-[13.6px] text-[rgba(75,85,99,1)] mt-1 list-none">
+                  <ul className="text-[13.6px] text-muted-foreground mt-1 list-none">
                     {project.results.length === 0 && (
                       <li className="flex items-center gap-2 mb-1">
                         <span className="inline-block size-2.5 rounded-full bg-yellow-400" />
@@ -91,7 +91,7 @@ const MyWork = () => {
                     {project.categories.map((category, index) => (
                       <span
                         key={index}
-                        className="text-[10px] bg-[rgba(228,236,244)] font-bold px-2 py-1 rounded-full"
+                        className="text-[10px] bg-accent text-accent-foreground font-bold px-2 py-1 rounded-full"
                       >
                         {category}
                       </span>

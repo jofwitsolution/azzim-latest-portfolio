@@ -13,7 +13,7 @@ const About = () => {
     <section id="about" className="padding-y">
       <div className="max-width">
         <div className="flex flex-col items-center justify-center gap-4">
-          <h2 className="text-center font-bold text-black text-[24px] md:text-[30.6px] md:leading-[37px]">
+          <h2 className="text-center font-bold text-foreground text-[24px] md:text-[30.6px] md:leading-[37px]">
             About Me
           </h2>
           <div className="w-[96px] h-[4px] bg-linear-to-r from-primary-100 to-primary-200" />
@@ -49,7 +49,7 @@ const About = () => {
             </p>
 
             <div className="mt-4 md:mt-8 space-y-3">
-              <h3 className="text-[#1F2937] font-bold text-[20.4px]">
+              <h3 className="text-foreground font-bold text-[20.4px]">
                 My UI/UX Design Process (Tool - Figma)
               </h3>
               <div className="mt-4 md:mt-6">
@@ -120,10 +120,10 @@ const About = () => {
             </div>
           </div>
           <div className="w-full md:w-[472px] justify-self-center space-y-8">
-            <Card className="w-full bg-light-200 !shadow-none">
+            <Card className="w-full bg-card border border-border !shadow-none">
               <CardHeader>
                 <CardTitle className="flex items-center gap-6">
-                  <span className="flex items-center justify-center h-12 w-12 rounded-sm bg-light-230">
+                  <span className="flex items-center justify-center h-12 w-12 rounded-sm bg-accent">
                     <Image
                       src={"/icons/pad.svg"}
                       width={24}
@@ -136,7 +136,7 @@ const About = () => {
                   </span>
                 </CardTitle>
                 <CardDescription className="mt-2">
-                  <p className="text-grey-100 text-[15px]">
+                  <p className="text-muted-foreground text-[15px]">
                     Creating intuitive, accessible, and delightful user
                     experiences through research-driven design processes. I
                     specialize in user research, wireframing, prototyping, and
@@ -145,10 +145,10 @@ const About = () => {
                 </CardDescription>
               </CardHeader>
             </Card>
-            <Card className="w-full bg-light-200 !shadow-none">
+            <Card className="w-full bg-card border border-border !shadow-none">
               <CardHeader>
                 <CardTitle className="flex items-center gap-6">
-                  <span className="flex items-center justify-center h-12 w-12 rounded-sm bg-light-230">
+                  <span className="flex items-center justify-center h-12 w-12 rounded-sm bg-accent">
                     <Image
                       src={"/icons/security.svg"}
                       width={24}
@@ -161,7 +161,7 @@ const About = () => {
                   </span>
                 </CardTitle>
                 <CardDescription className="mt-2">
-                  <p className="text-grey-100 text-[15px]">
+                  <p className="text-muted-foreground text-[15px]">
                     Identifying vulnerabilities and implementing security
                     measures to protect digital assets. My expertise includes
                     threat modeling, security assessments, and designing secure
@@ -170,10 +170,10 @@ const About = () => {
                 </CardDescription>
               </CardHeader>
             </Card>
-            <Card className="w-full bg-light-200 !shadow-none">
+            <Card className="w-full bg-card border border-border !shadow-none">
               <CardHeader className="w-full">
                 <CardTitle className="flex items-center gap-6">
-                  <span className="flex items-center justify-center h-12 w-12 rounded-sm bg-light-230">
+                  <span className="flex items-center justify-center h-12 w-12 rounded-sm bg-accent">
                     <Image
                       src={"/icons/intersection.svg"}
                       width={24}
@@ -186,7 +186,7 @@ const About = () => {
                   </span>
                 </CardTitle>
                 <CardDescription className="mt-2 w-full">
-                  <p className="text-grey-100 text-[15px] w-full">
+                  <p className="text-muted-foreground text-[15px] w-full">
                     Where my work truly shines is at the intersection of these
                     disciplines. I create secure-by-design experiences that
                     protect users while delighting them, ensuring privacy
