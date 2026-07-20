@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import { HideOnDashboard } from "@/components/navigations/HideOnDashboard";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/theme-provider";
+import AuroraBackground from "@/components/motion/AuroraBackground";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -60,6 +61,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <HideOnDashboard>
+            <AuroraBackground />
             <Navbar />
           </HideOnDashboard>
           {children}

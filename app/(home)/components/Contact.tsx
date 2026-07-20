@@ -86,7 +86,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="bg-muted/30 padding-y">
+    <section id="contact" className="section">
       <div className="max-width">
         <SectionHeading
           eyebrow="Contact"
@@ -94,13 +94,13 @@ const Contact = () => {
           subtitle="Interested in working together? Feel free to reach out for collaborations or just a friendly hello."
         />
 
-        <div className="flex flex-wrap justify-between gap-x-8 gap-y-12 max-w-[1100px] mx-auto mt-12 md:mt-20">
+        <div className="grid gap-10 max-w-[1150px] mx-auto mt-16 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
           <div>
             <h3 className="font-bold text-[20.4px]">Contact Information</h3>
 
             <div className="space-y-5 md:space-y-6 mt-6">
               <div className="flex gap-4 items-center">
-                <div className="flex items-center justify-center h-12 w-12 rounded-sm bg-accent">
+                <div className="flex items-center justify-center h-12 w-12 rounded-xl bg-linear-to-br from-primary-100/20 to-primary-200/10 ring-1 ring-inset ring-white/10 transition-transform hover:scale-110">
                   <Image
                     src={"/icons/email.svg"}
                     width={24}
@@ -119,7 +119,7 @@ const Contact = () => {
                 </div>
               </div>
               <div className="flex gap-4 items-center">
-                <div className="flex items-center justify-center h-12 w-12 rounded-sm bg-accent">
+                <div className="flex items-center justify-center h-12 w-12 rounded-xl bg-linear-to-br from-primary-100/20 to-primary-200/10 ring-1 ring-inset ring-white/10 transition-transform hover:scale-110">
                   <Image
                     src={"/icons/phone.svg"}
                     width={24}
@@ -135,7 +135,7 @@ const Contact = () => {
                 </div>
               </div>
               <div className="flex gap-4 items-center">
-                <div className="flex items-center justify-center h-12 w-12 rounded-sm bg-accent">
+                <div className="flex items-center justify-center h-12 w-12 rounded-xl bg-linear-to-br from-primary-100/20 to-primary-200/10 ring-1 ring-inset ring-white/10 transition-transform hover:scale-110">
                   <Image
                     src={"/icons/location.svg"}
                     width={24}
@@ -156,7 +156,7 @@ const Contact = () => {
                 href={"https://www.linkedin.com/in/azzim-aina-uxdesigner/"}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center justify-center h-12 w-12 rounded-sm bg-accent"
+                className="flex items-center justify-center h-12 w-12 rounded-xl bg-linear-to-br from-primary-100/20 to-primary-200/10 ring-1 ring-inset ring-white/10 transition-transform hover:scale-110"
               >
                 <Image
                   src={"/icons/linkedin-primary.svg"}
@@ -169,7 +169,7 @@ const Contact = () => {
                 href={"https://www.x.com/azzimeme"}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center justify-center h-12 w-12 rounded-sm bg-accent"
+                className="flex items-center justify-center h-12 w-12 rounded-xl bg-linear-to-br from-primary-100/20 to-primary-200/10 ring-1 ring-inset ring-white/10 transition-transform hover:scale-110"
               >
                 <Image
                   src={"/icons/twitter-primary.svg"}
@@ -182,7 +182,7 @@ const Contact = () => {
                 href={"https://www.behance.net/azzimaina"}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center justify-center h-12 w-12 rounded-sm bg-accent"
+                className="flex items-center justify-center h-12 w-12 rounded-xl bg-linear-to-br from-primary-100/20 to-primary-200/10 ring-1 ring-inset ring-white/10 transition-transform hover:scale-110"
               >
                 <Image
                   src={"/icons/behance.svg"}
@@ -194,13 +194,13 @@ const Contact = () => {
               </Link>
             </div>
           </div>
-          <div className="max-sm:w-full">
+          <div className="w-full">
             <h3 className="font-bold text-[20.4px]">Send Me a Message</h3>
-            <div className="glass-card w-full flex flex-col items-center gap-6 px-6 py-8 md:px-8 md:py-10 mt-6">
+            <div className="glass w-full flex flex-col items-center gap-6 px-6 py-8 md:px-8 md:py-10 mt-6">
               <Form {...form}>
                 <form
                   onSubmit={form.handleSubmit(onSubmit)}
-                  className="flex flex-col gap-6 w-full sm:w-[330px] md:w-[476px]"
+                  className="flex flex-col gap-6 w-full"
                 >
                   <FormField
                     control={form.control}
@@ -284,7 +284,7 @@ const Contact = () => {
 
                   <Button
                     disabled={loading}
-                    className="w-full h-11 bg-primary-100 text-light-100 hover:bg-primary-120 cursor-pointer rounded-md disabled:opacity-70"
+                    className="btn-glow w-full h-12 text-white cursor-pointer rounded-full disabled:opacity-70"
                   >
                     {loading && <Loader2 className="size-4 animate-spin" />}
                     {loading ? "Sending..." : "Send message"}

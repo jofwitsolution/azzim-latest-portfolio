@@ -7,7 +7,11 @@ const MyWork = async () => {
   const projects = await getProjects();
 
   return (
-    <section id="portfolio" className="bg-muted/30 padding-y">
+    <section id="portfolio" className="section">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-px bg-linear-to-r from-transparent via-border to-transparent"
+      />
       <div className="max-width">
         <SectionHeading
           eyebrow="Case Studies"

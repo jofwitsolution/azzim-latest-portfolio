@@ -24,14 +24,14 @@ const ResumeCards = ({ cards }: { cards: ResumeCard[] }) => {
         {cards.map((card) => (
           <div
             key={card._id}
-            className="glass-card flex flex-col items-center gap-5 p-8 text-center transition-transform duration-300 hover:-translate-y-1"
+            className="card-grad group flex flex-col items-center gap-5 p-8 text-center"
           >
             <div
-              className="flex size-20 items-center justify-center rounded-full"
+              className="flex size-20 items-center justify-center rounded-2xl ring-1 ring-inset ring-white/10 transition-transform duration-300 group-hover:scale-110"
               style={{
                 backgroundColor: card.accent
                   ? `color-mix(in oklab, ${card.accent} 18%, transparent)`
-                  : undefined,
+                  : "color-mix(in oklab, var(--color-primary-100) 16%, transparent)",
               }}
             >
               {card.icon ? (

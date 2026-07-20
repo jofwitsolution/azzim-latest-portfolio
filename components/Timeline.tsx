@@ -55,56 +55,64 @@ const Timeline = ({ experiences }: { experiences: Experience[] }) => {
   );
 
   return (
-    <div ref={root} className="relative mt-12 pl-8">
+    <div ref={root} className="relative mt-14 pl-10">
       {/* Track + animated progress line */}
-      <div className="absolute left-[7px] top-2 bottom-2 w-px bg-border" />
+      <div className="absolute left-[15px] top-2 bottom-2 w-0.5 rounded-full bg-border/70" />
       <div
         data-tl-line
-        className="absolute left-[7px] top-2 bottom-2 w-px bg-linear-to-b from-primary-100 to-primary-200"
+        className="absolute left-[15px] top-2 bottom-2 w-0.5 rounded-full bg-linear-to-b from-primary-100 via-primary-200 to-primary-600"
       />
 
-      <div className="space-y-10">
+      <div className="space-y-8">
         {experiences.map((item) => {
           const isEducation = item.kind === "education";
           const Icon = isEducation ? GraduationCap : Briefcase;
+          const color = item.color || "#6366f1";
           return (
             <div key={item._id} data-tl-item className="relative">
-              {/* Dot */}
+              {/* Node */}
               <span
-                className="absolute -left-[33px] top-1 flex size-4 items-center justify-center rounded-full ring-4 ring-background"
-                style={{ backgroundColor: item.color || "#4F46E5" }}
-              />
-              <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
-                <div className="flex items-center gap-2">
-                  <Icon
-                    className="size-4"
-                    style={{ color: item.color || "#4F46E5" }}
-                  />
-                  <h4 className="text-base font-semibold text-foreground">
-                    {item.job}
-                  </h4>
-                  <span className="rounded-full border border-border bg-muted/40 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-muted-foreground">
-                    {isEducation ? "Education" : "Experience"}
+                className="absolute -left-[38px] top-3 flex size-8 items-center justify-center rounded-full ring-4 ring-background"
+                style={{
+                  backgroundColor: `color-mix(in oklab, ${color} 20%, var(--card))`,
+                  boxShadow: `0 0 0 1px ${color}`,
+                }}
+              >
+                <Icon className="size-4" style={{ color }} />
+              </span>
+
+              <div className="card-grad group p-6">
+                <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
+                  <div className="flex items-center gap-2">
+                    <h4 className="text-base font-semibold text-foreground">
+                      {item.job}
+                    </h4>
+                    <span
+                      className="rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide"
+                      style={{
+                        backgroundColor: `color-mix(in oklab, ${color} 15%, transparent)`,
+                        color,
+                      }}
+                    >
+                      {isEducation ? "Education" : "Experience"}
+                    </span>
+                  </div>
+                  <span className="text-xs text-muted-foreground">
+                    {item.date}
+                    {item.jobType ? ` · ${item.jobType}` : ""}
                   </span>
                 </div>
-                <span className="text-xs text-muted-foreground">
-                  {item.date}
-                  {item.jobType ? ` · ${item.jobType}` : ""}
-                </span>
+                {item.company && (
+                  <p className="mb-2 text-sm font-medium" style={{ color }}>
+                    {item.company}
+                  </p>
+                )}
+                {item.role && (
+                  <p className="max-w-3xl text-sm leading-relaxed text-muted-foreground">
+                    {item.role}
+                  </p>
+                )}
               </div>
-              {item.company && (
-                <p
-                  className="mb-2 text-sm font-medium"
-                  style={{ color: item.color || "#4F46E5" }}
-                >
-                  {item.company}
-                </p>
-              )}
-              {item.role && (
-                <p className="max-w-3xl text-sm text-muted-foreground">
-                  {item.role}
-                </p>
-              )}
             </div>
           );
         })}

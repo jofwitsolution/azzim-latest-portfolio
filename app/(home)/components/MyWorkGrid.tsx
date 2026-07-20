@@ -37,15 +37,16 @@ const MyWorkGrid = ({ projects }: { projects: Project[] }) => {
       );
       if (cards.length === 0) return;
       if (prefersReducedMotion()) {
-        gsap.set(cards, { autoAlpha: 1, y: 0 });
+        gsap.set(cards, { autoAlpha: 1, y: 0, scale: 1 });
         return;
       }
       gsap.fromTo(
         cards,
-        { autoAlpha: 0, y: 24 },
+        { autoAlpha: 0, y: 28, scale: 0.97 },
         {
           autoAlpha: 1,
           y: 0,
+          scale: 1,
           duration: 0.55,
           ease: "power3.out",
           stagger: 0.08,
@@ -57,17 +58,17 @@ const MyWorkGrid = ({ projects }: { projects: Project[] }) => {
 
   return (
     <>
-      <div className="mt-10 flex flex-wrap justify-center gap-3">
+      <div className="mt-10 flex flex-wrap justify-center gap-2.5">
         {categories.map((category) => (
           <button
             key={category}
             type="button"
             onClick={() => setActive(category)}
             className={cn(
-              "rounded-full border px-4 py-1.5 text-sm font-medium transition-colors",
+              "rounded-full border px-4 py-1.5 text-sm font-medium transition-all duration-300",
               active === category
-                ? "border-primary-100 bg-primary-100 text-light-100"
-                : "border-border bg-transparent text-muted-foreground hover:border-primary-100/50 hover:text-foreground"
+                ? "border-transparent bg-linear-to-r from-primary-120 to-primary-100 text-white shadow-lg shadow-primary-100/25"
+                : "border-border bg-background/40 text-muted-foreground backdrop-blur-sm hover:border-primary-100/50 hover:text-foreground"
             )}
           >
             {category}
@@ -77,17 +78,17 @@ const MyWorkGrid = ({ projects }: { projects: Project[] }) => {
 
       <div
         ref={gridRef}
-        className="mx-auto mt-12 grid max-w-[1100px] gap-6 md:grid-cols-2 lg:grid-cols-3"
+        className="mx-auto mt-12 grid max-w-[1150px] gap-6 md:grid-cols-2 lg:grid-cols-3"
       >
         {filtered.map((project) => (
           <article
             key={project._id}
             data-work-card
-            className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-glow"
+            className="card-grad group flex flex-col overflow-hidden"
           >
-            <div className="relative h-44 w-full overflow-hidden">
+            <div className="relative h-48 w-full overflow-hidden">
               {project.mainCategory && (
-                <span className="absolute left-3 top-3 z-10 rounded-full bg-background/80 px-2.5 py-1 text-[11px] font-medium text-foreground backdrop-blur-sm">
+                <span className="absolute left-3 top-3 z-10 rounded-full border border-white/10 bg-background/70 px-2.5 py-1 text-[11px] font-medium text-foreground backdrop-blur-md">
                   {project.mainCategory}
                 </span>
               )}
@@ -97,18 +98,22 @@ const MyWorkGrid = ({ projects }: { projects: Project[] }) => {
                   fill
                   sizes="(max-width: 768px) 100vw, 33vw"
                   alt={project.title}
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
               ) : (
-                <div className="h-full w-full bg-linear-to-br from-primary-100/20 to-primary-200/20" />
+                <div className="h-full w-full bg-linear-to-br from-primary-100/25 to-primary-600/20" />
               )}
+              <div
+                aria-hidden
+                className="absolute inset-0 bg-linear-to-t from-card via-transparent to-transparent opacity-70"
+              />
             </div>
 
-            <div className="flex flex-1 flex-col gap-4 p-5">
-              <h3 className="line-clamp-2 text-lg font-bold text-foreground">
+            <div className="flex flex-1 flex-col gap-4 p-6">
+              <h3 className="line-clamp-2 text-lg font-bold text-foreground transition-colors group-hover:text-primary-100">
                 {project.title}
               </h3>
-              <p className="line-clamp-3 text-sm text-muted-foreground">
+              <p className="line-clamp-3 text-sm leading-relaxed text-muted-foreground">
                 {project.description}
               </p>
 
@@ -130,14 +135,14 @@ const MyWorkGrid = ({ projects }: { projects: Project[] }) => {
                       key={i}
                       className="flex items-start gap-2 text-sm text-muted-foreground"
                     >
-                      <span className="mt-1.5 inline-block size-2 shrink-0 rounded-full bg-green-500" />
+                      <span className="mt-1.5 inline-block size-2 shrink-0 rounded-full bg-emerald-400" />
                       <span>{result}</span>
                     </li>
                   ))}
                 </ul>
               ) : (
                 <span className="inline-flex w-max items-center gap-2 text-sm text-muted-foreground">
-                  <span className="inline-block size-2 rounded-full bg-yellow-400" />
+                  <span className="inline-block size-2 rounded-full bg-amber-400" />
                   Under development
                 </span>
               )}
@@ -147,7 +152,7 @@ const MyWorkGrid = ({ projects }: { projects: Project[] }) => {
                   {project.categories.map((category, i) => (
                     <span
                       key={i}
-                      className="rounded-full bg-accent px-2.5 py-1 text-[11px] font-medium text-accent-foreground"
+                      className="rounded-full border border-border/60 bg-muted/40 px-2.5 py-1 text-[11px] font-medium text-muted-foreground"
                     >
                       {category}
                     </span>
@@ -155,12 +160,12 @@ const MyWorkGrid = ({ projects }: { projects: Project[] }) => {
                 </div>
               )}
 
-              <div className="mt-auto flex items-center gap-4 pt-2">
+              <div className="mt-auto flex items-center gap-4 border-t border-border/50 pt-4">
                 {project.source && (
                   <Link
                     href={project.source}
                     target="_blank"
-                    className="inline-flex items-center gap-1 text-sm font-medium text-primary-100 hover:text-primary-120"
+                    className="inline-flex items-center gap-1 text-sm font-semibold text-primary-100 transition-colors hover:text-primary-200"
                   >
                     View Project <ArrowUpRight className="size-4" />
                   </Link>
@@ -169,7 +174,7 @@ const MyWorkGrid = ({ projects }: { projects: Project[] }) => {
                   <Link
                     href={project.behance}
                     target="_blank"
-                    className="inline-flex items-center gap-1 text-sm font-medium text-primary-100 hover:text-primary-120"
+                    className="inline-flex items-center gap-1 text-sm font-semibold text-primary-100 transition-colors hover:text-primary-200"
                   >
                     Case Study <ArrowUpRight className="size-4" />
                   </Link>

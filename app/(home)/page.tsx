@@ -6,6 +6,7 @@ import MyWork from "./components/MyWork";
 import Portfolio from "./components/Portfolio";
 import Resume from "./components/Resume";
 import Contact from "./components/Contact";
+import Marquee from "@/components/motion/Marquee";
 import {
   ServicesSectionSkeleton,
   WorkSectionSkeleton,
@@ -17,10 +18,28 @@ import {
 // dashboard edits reflect immediately (revalidatePath also targets "/").
 export const dynamic = "force-dynamic";
 
-const Page = () => {
+const skills = [
+  "User Research",
+  "Figma",
+  "Design Systems",
+  "Prototyping",
+  "Threat Modeling",
+  "Security Assessments",
+  "Accessibility",
+  "Wireframing",
+  "Secure UX",
+  "Penetration Testing",
+];
+
+const Page = async () => {
   return (
     <main className="top-padding">
       <HomeHero />
+
+      <div className="border-y border-border/40 bg-muted/20 py-6">
+        <Marquee items={skills} />
+      </div>
+
       <About />
       <Suspense fallback={<ServicesSectionSkeleton />}>
         <Services />

@@ -1,129 +1,181 @@
 "use client";
 
 import { useRef } from "react";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowDown, ShieldCheck, Sparkles } from "lucide-react";
+import {
+  ArrowUpRight,
+  ShieldCheck,
+  Sparkles,
+  MousePointer2,
+} from "lucide-react";
 import { gsap, useGSAP, prefersReducedMotion } from "@/lib/gsap";
+import SplitReveal from "@/components/motion/SplitReveal";
+import Magnetic from "@/components/motion/Magnetic";
 
 const HomeHero = () => {
   const root = useRef<HTMLElement>(null);
 
   useGSAP(
     () => {
-      const targets = gsap.utils.toArray<HTMLElement>("[data-hero]", root.current!);
+      const fades = gsap.utils.toArray<HTMLElement>(
+        "[data-fade]",
+        root.current!
+      );
       if (prefersReducedMotion()) {
-        gsap.set(targets, { autoAlpha: 1, y: 0 });
+        gsap.set(fades, { autoAlpha: 1, y: 0 });
         return;
       }
-      gsap.set(targets, { autoAlpha: 0, y: 28 });
+      gsap.set(fades, { autoAlpha: 0, y: 24 });
       gsap
         .timeline({ defaults: { ease: "power3.out", duration: 0.8 } })
-        .to(targets, { autoAlpha: 1, y: 0, stagger: 0.12 })
+        .to(fades, { autoAlpha: 1, y: 0, stagger: 0.12 }, 0.3)
         .from(
           "[data-hero-media]",
-          { autoAlpha: 0, scale: 0.94, duration: 1, ease: "power2.out" },
-          0.15
+          { autoAlpha: 0, scale: 0.9, duration: 1.1, ease: "power2.out" },
+          0.2
+        )
+        .from(
+          "[data-badge]",
+          { autoAlpha: 0, scale: 0.6, y: 10, stagger: 0.15, duration: 0.6 },
+          0.7
         );
     },
     { scope: root }
   );
 
   return (
-    <section
-      ref={root}
-      id="home"
-      className="relative overflow-hidden"
-    >
-      {/* Ambient glow background */}
+    <section ref={root} id="home" className="relative overflow-hidden">
+      {/* Faint blueprint grid behind the hero */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10"
-      >
-        <div className="absolute -top-32 left-1/4 h-72 w-72 rounded-full bg-primary-100/25 blur-[120px]" />
-        <div className="absolute -bottom-24 right-1/5 h-72 w-72 rounded-full bg-primary-200/20 blur-[120px]" />
-      </div>
+        className="grid-lines pointer-events-none absolute inset-0 -z-10"
+      />
 
-      <div className="max-width py-16 sm:py-20 lg:py-28">
-        <div className="flex flex-col items-center justify-center gap-y-12 gap-x-16 lg:flex-row xl:gap-x-24">
-          <header className="max-w-xl space-y-6">
-            <span
-              data-hero
-              className="inline-flex items-center gap-2 rounded-full border border-border bg-muted/40 px-3 py-1 text-xs font-medium text-muted-foreground"
-            >
+      <div className="max-width grid items-center gap-14 py-20 sm:py-24 lg:grid-cols-12 lg:gap-8 lg:py-28">
+        {/* Copy */}
+        <div className="lg:col-span-7">
+          <div data-fade className="mb-6 inline-flex">
+            <span className="eyebrow">
               <Sparkles className="size-3.5 text-primary-200" />
-              Available for select projects
+              UI/UX Designer · Cybersecurity Analyst
             </span>
+          </div>
 
-            <h1
-              data-hero
-              className="text-4xl font-bold leading-[1.1] sm:text-5xl"
-            >
-              <span className="block text-foreground">Hi, I&apos;m Azzim Aina</span>
-              <span className="gradient-text">UI/UX Designer &</span>
-              <span className="block text-foreground">Cybersecurity Analyst</span>
-            </h1>
+          <h1 className="display text-5xl leading-[1.02] text-foreground sm:text-6xl lg:text-7xl">
+            <SplitReveal
+              as="span"
+              text="I secure the interfaces"
+              trigger="load"
+              className="block"
+              delay={0.15}
+            />
+            <SplitReveal
+              as="span"
+              text="people trust."
+              trigger="load"
+              className="block"
+              delay={0.35}
+              wordClassName={(w) =>
+                w === "trust." ? "text-gradient" : undefined
+              }
+            />
+          </h1>
 
-            <p data-hero className="max-w-[480px] text-muted-foreground">
-              Creating beautiful digital experiences while ensuring they remain
-              secure. The perfect blend of creativity and technical security
-              expertise.
-            </p>
+          <p
+            data-fade
+            className="mt-7 max-w-[540px] text-lg leading-relaxed text-muted-foreground"
+          >
+            I&apos;m{" "}
+            <span className="font-medium text-foreground">Azzim Aina</span> —
+            blending human-centered design with security engineering to build
+            products that are as safe as they are beautiful.
+          </p>
 
-            <div data-hero className="flex flex-wrap gap-4">
-              <Link href="#portfolio">
-                <Button className="h-11 min-w-[150px] bg-primary-100 text-light-100 shadow-lg shadow-primary-100/25 transition-transform hover:-translate-y-0.5 hover:bg-primary-120">
-                  View My Work
-                </Button>
+          <div data-fade className="mt-9 flex flex-wrap items-center gap-4">
+            <Magnetic strength={0.4}>
+              <Link
+                href="#portfolio"
+                className="btn-glow inline-flex h-12 items-center gap-2 rounded-full px-7 text-sm font-semibold text-white"
+              >
+                View my work
+                <ArrowUpRight className="size-4" />
               </Link>
-              <Link href="#contact">
-                <Button
-                  variant="outline"
-                  className="h-11 min-w-[150px] border-primary-100/60 bg-transparent text-primary-100 transition-transform hover:-translate-y-0.5 hover:bg-primary-100/10"
-                >
-                  Contact Me
-                </Button>
+            </Magnetic>
+            <Magnetic strength={0.3}>
+              <Link
+                href="#contact"
+                className="inline-flex h-12 items-center rounded-full border border-border bg-background/40 px-7 text-sm font-semibold text-foreground backdrop-blur-sm transition-colors hover:border-primary-100/60 hover:text-primary-100"
+              >
+                Get in touch
               </Link>
-            </div>
+            </Magnetic>
+          </div>
 
-            <div
-              data-hero
-              className="flex items-center gap-2 pt-2 text-xs text-muted-foreground"
-            >
-              <ShieldCheck className="size-4 text-primary-200" />
-              Secure-by-design · Research-driven
-            </div>
-          </header>
-
-          <div data-hero-media className="w-full max-w-[480px]">
-            <div className="relative w-full">
-              <div className="absolute inset-0 rotate-[3deg] rounded-3xl bg-linear-to-br from-primary-100/40 to-primary-200/40 blur-sm" />
-              <div className="glow-border relative flex aspect-square w-full items-center justify-center bg-card">
-                <div className="rounded-full bg-linear-to-r from-primary-100 to-primary-200 p-1">
-                  <Image
-                    src="/images/azzim.png"
-                    width={312}
-                    height={312}
-                    alt="Azzim Aina"
-                    className="rounded-full"
-                    priority
-                  />
-                </div>
-              </div>
-            </div>
+          <div
+            data-fade
+            className="mt-8 inline-flex items-center gap-2 text-xs text-muted-foreground"
+          >
+            <ShieldCheck className="size-4 text-primary-200" />
+            Secure-by-design · Research-driven
           </div>
         </div>
 
-        <div className="mt-14 flex justify-center">
-          <Link
-            href="#about"
-            className="group flex flex-col items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+        {/* Portrait */}
+        <div className="lg:col-span-5">
+          <div
+            data-hero-media
+            className="relative mx-auto w-full max-w-[440px]"
           >
-            <span>Learn More</span>
-            <ArrowDown className="size-4 animate-bounce text-primary-200" />
-          </Link>
+            {/* Tilted gradient backdrop */}
+            <div
+              aria-hidden
+              className="absolute inset-0 -z-10 rotate-[3deg] rounded-3xl bg-linear-to-br from-primary-100/40 to-primary-200/40 blur-sm"
+            />
+            <div className="glow-border relative flex aspect-square w-full items-center justify-center bg-card">
+              <div className="rounded-full bg-linear-to-r from-primary-100 to-primary-200 p-1">
+                <Image
+                  src="/images/azzim.png"
+                  width={312}
+                  height={312}
+                  alt="Azzim Aina"
+                  className="rounded-full"
+                  priority
+                />
+              </div>
+            </div>
+
+            {/* Floating glass badges */}
+            <div
+              data-badge
+              className="glass animate-float absolute -left-4 top-10 flex items-center gap-2 rounded-2xl px-4 py-2.5 text-sm font-medium sm:-left-8"
+            >
+              <span className="flex size-8 items-center justify-center rounded-lg bg-primary-100/15 text-primary-100">
+                ✎
+              </span>
+              UI/UX Design
+            </div>
+            <div
+              data-badge
+              className="glass animate-float absolute -right-3 bottom-16 flex items-center gap-2 rounded-2xl px-4 py-2.5 text-sm font-medium sm:-right-8"
+              style={{ animationDelay: "1.5s" }}
+            >
+              <ShieldCheck className="size-5 text-primary-200" />
+              Security
+            </div>
+          </div>
         </div>
+      </div>
+
+      {/* Scroll cue */}
+      <div className="flex justify-center pb-10">
+        <Link
+          href="#about"
+          className="group flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground"
+        >
+          <MousePointer2 className="size-4 animate-bounce text-primary-200" />
+          Scroll to explore
+        </Link>
       </div>
     </section>
   );

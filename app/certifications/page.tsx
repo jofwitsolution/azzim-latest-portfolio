@@ -5,6 +5,7 @@ import { Calendar, Award, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 import { getCertifications } from "@/lib/data/queries";
 import Reveal from "@/components/motion/Reveal";
+import SplitReveal from "@/components/motion/SplitReveal";
 import EmptyState from "@/components/sections/EmptyState";
 
 export const metadata: Metadata = {
@@ -30,23 +31,31 @@ const Page = async () => {
 
   return (
     <main className="top-padding">
-      <div className="relative overflow-hidden bg-linear-to-r from-primary-120 to-primary-100 py-14">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-primary-200/40 blur-[100px]"
-        />
-        <div className="max-width relative flex flex-col gap-4">
-          <h1 className="text-3xl font-bold text-light-100 md:text-4xl">
-            My Professional Certifications
-          </h1>
-          <p className="max-w-2xl text-light-100/90">
-            Showcasing my expertise and commitment to industry standards through
-            recognized certifications and credentials.
-          </p>
+      <div className="relative overflow-hidden py-20 md:py-24">
+        <div aria-hidden className="grid-lines pointer-events-none absolute inset-0 -z-10" />
+        <div className="max-width relative flex flex-col gap-5">
+          <Reveal>
+            <span className="eyebrow">
+              <Award className="size-3.5 text-primary-200" />
+              Credentials
+            </span>
+          </Reveal>
+          <SplitReveal
+            as="h1"
+            text="My Professional Certifications"
+            trigger="load"
+            className="display max-w-3xl text-4xl leading-[1.05] text-foreground md:text-5xl lg:text-6xl"
+          />
+          <Reveal delay={0.15}>
+            <p className="max-w-2xl text-lg text-muted-foreground">
+              Showcasing my expertise and commitment to industry standards through
+              recognized certifications and credentials.
+            </p>
+          </Reveal>
         </div>
       </div>
 
-      <div className="max-width py-12">
+      <div className="max-width pb-20">
         <div className="flex flex-col gap-3">
           <h2 className="text-xl font-semibold text-foreground">
             My Credentials
@@ -77,7 +86,7 @@ const Page = async () => {
             {certifications.map((certification) => (
               <div
                 key={certification._id}
-                className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-glow"
+                className="card-grad group flex flex-col overflow-hidden"
               >
                 <div className="relative aspect-[16/9] w-full overflow-hidden">
                   {certification.image ? (
@@ -86,12 +95,12 @@ const Page = async () => {
                       fill
                       sizes="(max-width: 768px) 100vw, 33vw"
                       alt={certification.title}
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
                     />
                   ) : (
-                    <div className="h-full w-full bg-linear-to-br from-primary-100/20 to-primary-200/20" />
+                    <div className="h-full w-full bg-linear-to-br from-primary-100/25 to-primary-600/20" />
                   )}
-                  <span className="absolute right-3 top-3 rounded-md bg-background/90 px-2 py-1 text-[11px] font-medium backdrop-blur-sm">
+                  <span className="absolute right-3 top-3 rounded-full border border-white/10 bg-background/80 px-2.5 py-1 text-[11px] font-medium backdrop-blur-md">
                     {certification.type}
                   </span>
                 </div>

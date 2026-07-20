@@ -1,60 +1,61 @@
 import Image from "next/image";
 import Reveal from "@/components/motion/Reveal";
+import SpotlightCard from "@/components/motion/SpotlightCard";
 import SectionHeading from "@/components/sections/SectionHeading";
 
 const process = [
   {
-    step: "1. Understand the Problem",
+    step: "Understand the problem",
     points: [
       "Review the PRD and business goals",
       "Identify target users and their pain points",
-      "Ask clarifying questions to align with stakeholders",
+      "Align with stakeholders through clarifying questions",
     ],
   },
   {
-    step: "2. Research & User Insights",
+    step: "Research & user insights",
     points: [
-      "Conduct user interviews or define personas (if data isn't available)",
-      "Map user journeys or key flows",
-      "Identify usability gaps or opportunities",
+      "Run interviews or define personas when data is thin",
+      "Map user journeys and key flows",
+      "Surface usability gaps and opportunities",
     ],
   },
   {
-    step: "3. Information Architecture",
+    step: "Information architecture",
     points: [
       "Create sitemaps and user flows",
-      "Define navigation structure and page hierarchy",
+      "Define navigation structure and hierarchy",
     ],
   },
   {
-    step: "4. Wireframing",
+    step: "Wireframing",
     points: [
       "Build low-fidelity wireframes in Figma",
-      "Focus on layout, user flow, and core functionality",
-      "Share for early feedback and iteration",
+      "Focus on layout, flow, and core functionality",
+      "Share early for feedback and iteration",
     ],
   },
   {
-    step: "5. High-Fidelity UI Design",
+    step: "High-fidelity UI",
     points: [
-      "Apply brand guidelines, typography, color, and spacing",
-      "Design responsive layouts for multiple screen sizes",
-      "Ensure accessibility (contrast, tap targets, etc.)",
+      "Apply brand, typography, color, and spacing",
+      "Design responsive layouts across breakpoints",
+      "Bake in accessibility from the start",
     ],
   },
   {
-    step: "6. Prototyping",
+    step: "Prototyping",
     points: [
-      "Create interactive flows to simulate real user interaction",
-      "Test internally or with users (if time allows)",
+      "Create interactive flows that simulate real use",
+      "Test internally or with users when time allows",
     ],
   },
   {
-    step: "7. Developer Handoff",
+    step: "Developer handoff",
     points: [
-      "Use Figma's inspect & dev mode for handoff",
-      "Provide documentation: component specs, states, edge cases",
-      "Collaborate with developers during implementation",
+      "Hand off via Figma inspect & dev mode",
+      "Document component specs, states, and edge cases",
+      "Collaborate through implementation",
     ],
   },
 ];
@@ -63,95 +64,104 @@ const expertiseCards = [
   {
     icon: "/icons/pad.svg",
     title: "UI/UX Design",
-    body: "Creating intuitive, accessible, and delightful user experiences through research-driven design processes. I specialize in user research, wireframing, prototyping, and creating design systems that scale.",
+    body: "Intuitive, accessible, delightful experiences built on research. User research, wireframing, prototyping, and design systems that scale.",
   },
   {
     icon: "/icons/security.svg",
     title: "Cybersecurity Analysis",
-    body: "Identifying vulnerabilities and implementing security measures to protect digital assets. My expertise includes threat modeling, security assessments, and designing secure user flows that don't compromise on experience.",
+    body: "Finding vulnerabilities and hardening digital assets. Threat modeling, security assessments, and secure user flows that never compromise experience.",
   },
   {
     icon: "/icons/intersection.svg",
     title: "The Intersection",
-    body: "Where my work truly shines is at the intersection of these disciplines. I create secure-by-design experiences that protect users while delighting them, ensuring privacy controls are intuitive and security measures don't impede usability.",
+    body: "Where it shines: secure-by-design experiences that protect users while delighting them — privacy controls that feel intuitive, not obstructive.",
   },
 ];
 
 const About = () => {
   return (
-    <section id="about" className="padding-y">
+    <section id="about" className="section">
       <div className="max-width">
         <SectionHeading
           eyebrow="About Me"
           title="Design meets security"
-          subtitle="I bridge the gap between beautiful design and robust security, bringing a unique perspective to digital products."
+          subtitle="I bridge beautiful design and robust security, bringing a rare perspective to digital products."
         />
 
-        <div className="mx-auto mt-14 grid max-w-[1100px] items-start gap-12 md:mt-20 lg:grid-cols-2 lg:gap-16">
-          <Reveal direction="right" className="max-w-[520px] space-y-6">
-            <h3 className="text-xl font-bold text-foreground">
-              My Dual Expertise
+        <div className="mx-auto mt-16 grid max-w-[1150px] items-start gap-12 lg:grid-cols-2 lg:gap-16">
+          {/* Narrative */}
+          <Reveal direction="right" className="space-y-6 lg:sticky lg:top-28">
+            <h3 className="text-2xl font-bold text-foreground">
+              My dual expertise
             </h3>
-            <p className="text-muted-foreground">
-              As both a UI/UX Designer and Cybersecurity Analyst, I bring a rare
-              combination of skills to the table. My journey began in design,
-              creating intuitive and engaging user experiences that delight
-              customers and drive business goals.
-            </p>
-            <p className="text-muted-foreground">
-              Over time, I developed a passion for cybersecurity, recognizing
-              that the best digital products are not only beautiful and
-              functional but also secure. This dual perspective allows me to
-              create designs that consider security from the ground up, rather
-              than as an afterthought.
-            </p>
-            <p className="text-muted-foreground">
-              Today, I help organizations build digital products that users love
-              to use and attackers find difficult to exploit.
-            </p>
+            <div className="space-y-4 text-muted-foreground">
+              <p>
+                As both a UI/UX Designer and Cybersecurity Analyst, I bring a rare
+                combination to the table. My journey began in design — crafting
+                intuitive, engaging experiences that delight customers and drive
+                business goals.
+              </p>
+              <p>
+                Over time I grew a passion for cybersecurity, recognizing that the
+                best products aren&apos;t only beautiful and functional but also
+                secure. That dual lens lets me design with security from the ground
+                up, never as an afterthought.
+              </p>
+              <p>
+                Today I help organizations build products that users love to use —
+                and attackers find difficult to exploit.
+              </p>
+            </div>
 
-            <div className="space-y-4 pt-2">
-              <h3 className="text-xl font-bold text-foreground">
-                My UI/UX Design Process{" "}
-                <span className="text-muted-foreground text-base font-medium">
-                  (Tool — Figma)
+            <div className="glass mt-4 space-y-5 p-6 md:p-7">
+              <h4 className="flex items-center gap-2 text-lg font-bold text-foreground">
+                My UI/UX process
+                <span className="text-sm font-medium text-muted-foreground">
+                  (Figma)
                 </span>
-              </h3>
-              <div className="space-y-4">
-                {process.map((phase) => (
-                  <div key={phase.step}>
-                    <p className="font-medium text-foreground">{phase.step}</p>
-                    <ul className="ml-6 mt-1 list-disc text-sm text-muted-foreground">
-                      {phase.points.map((point) => (
-                        <li key={point}>{point}</li>
-                      ))}
-                    </ul>
-                  </div>
+              </h4>
+              <ol className="space-y-4">
+                {process.map((phase, i) => (
+                  <li key={phase.step} className="flex gap-4">
+                    <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-primary-100 to-primary-200 text-xs font-bold text-white">
+                      {i + 1}
+                    </span>
+                    <div>
+                      <p className="font-semibold text-foreground">{phase.step}</p>
+                      <ul className="mt-1 space-y-0.5 text-sm text-muted-foreground">
+                        {phase.points.map((point) => (
+                          <li key={point} className="flex gap-2">
+                            <span className="mt-2 inline-block size-1 shrink-0 rounded-full bg-primary-200/70" />
+                            {point}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </li>
                 ))}
-              </div>
+              </ol>
             </div>
           </Reveal>
 
-          <Reveal
-            stagger={0.12}
-            direction="left"
-            className="w-full space-y-6 justify-self-center lg:max-w-[480px]"
-          >
+          {/* Expertise cards */}
+          <Reveal stagger={0.12} direction="left" className="space-y-6">
             {expertiseCards.map((card) => (
-              <div
+              <SpotlightCard
                 key={card.title}
-                className="glass-card group p-6 transition-transform duration-300 hover:-translate-y-1"
+                className="card-grad group p-7"
               >
                 <div className="flex items-center gap-4">
-                  <span className="flex size-12 items-center justify-center rounded-xl bg-accent transition-colors group-hover:bg-primary-100/15">
-                    <Image src={card.icon} width={24} height={24} alt="" />
+                  <span className="flex size-14 items-center justify-center rounded-2xl bg-linear-to-br from-primary-100/20 to-primary-200/10 ring-1 ring-inset ring-white/10 transition-transform duration-300 group-hover:scale-110">
+                    <Image src={card.icon} width={26} height={26} alt="" />
                   </span>
-                  <span className="text-lg font-semibold text-foreground">
+                  <h3 className="text-xl font-semibold text-foreground">
                     {card.title}
-                  </span>
+                  </h3>
                 </div>
-                <p className="mt-4 text-sm text-muted-foreground">{card.body}</p>
-              </div>
+                <p className="mt-4 leading-relaxed text-muted-foreground">
+                  {card.body}
+                </p>
+              </SpotlightCard>
             ))}
           </Reveal>
         </div>

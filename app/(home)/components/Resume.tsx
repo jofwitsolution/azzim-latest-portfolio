@@ -11,7 +11,7 @@ const Resume = async () => {
   ]);
 
   return (
-    <section id="resume" className="padding-y">
+    <section id="resume" className="section">
       <div className="max-width">
         <SectionHeading
           eyebrow="Resume"
@@ -27,8 +27,8 @@ const Resume = async () => {
           )}
         </div>
 
-        <div className="mx-auto mt-16 max-w-[1150px]">
-          <h3 className="text-center text-xl font-bold text-foreground">
+        <div className="mx-auto mt-20 max-w-[1150px]">
+          <h3 className="text-center text-2xl font-bold text-foreground">
             Experience &amp; Education
           </h3>
           {experiences.length === 0 ? (
