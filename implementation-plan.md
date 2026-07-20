@@ -74,17 +74,23 @@ database-managed (CRUD) from a secured `/dashboard`, alongside the existing Blog
 - [x] 2.5 Add `ADMIN_PASSWORD` + `AUTH_SECRET` to `.env` and document in README.
 
 ## Phase 3 — CRUD APIs
-- [ ] 3.1 `app/api/projects` (GET list, POST) + `app/api/projects/[id]` (GET, PUT, DELETE).
-- [ ] 3.2 `app/api/experiences` + `[id]`.
-- [ ] 3.3 `app/api/resume-cards` + `[id]`.
-- [ ] 3.4 `app/api/certifications` + `[id]`.
-- [ ] 3.5 `app/api/services` + `[id]`.
-- [ ] 3.6 Guard all write methods (POST/PUT/DELETE) with `requireAuth()`; return proper status codes.
+- [x] 3.1 `app/api/projects` (GET list, POST) + `app/api/projects/[id]` (GET, PUT, DELETE).
+- [x] 3.2 `app/api/experiences` + `[id]`.
+- [x] 3.3 `app/api/resume-cards` + `[id]`.
+- [x] 3.4 `app/api/certifications` + `[id]`.
+- [x] 3.5 `app/api/services` + `[id]`.
+  *(Also added `app/api/portfolio-items` + `[id]` — same CRUD scope, needed for the portfolio grid.)*
+  *(Handlers are generated from a shared factory `lib/api/rest.ts` + config registry `lib/api/resources.ts`;
+  zod schemas in `lib/validation.ts`.)*
+- [x] 3.6 Guard all write methods (POST/PUT/DELETE) with `requireAuth()`; return proper status codes.
 - [ ] 3.7 (Optional) Migrate Blog write auth from `?key=` to the new session guard for consistency.
-- [ ] 3.8 **Cloudinary integration:**
-  - `lib/cloudinary.ts` — configured server-side `cloudinary` SDK instance (cloud name, key, secret).
-  - `app/api/upload/sign` (POST, `requireAuth`) — returns a signature/timestamp for the signed
-    `CldUploadWidget` flow.
+  **→ Deferred to 4.9** (the blog manager UI threads `?key=` through its fetches; migrate auth and UI
+  together when the manager is linked into the dashboard, to avoid a half-migration that breaks it).
+- [x] 3.8 **Cloudinary integration:**
+  - `lib/cloudinary.ts` — configured server-side `cloudinary` SDK instance (cloud name, key, secret) +
+    a best-effort `destroyAsset(public_id)` helper.
+  - `app/api/upload/sign` (POST, `requireAuth`) — returns a signature for the signed
+    `CldUploadWidget` flow (uploads namespaced under the `azzim-portfolio` folder).
   - On resource DELETE (or when an asset is replaced on PUT), call `cloudinary.uploader.destroy(public_id)`
     to remove the old asset so storage doesn't leak orphans.
 

@@ -35,7 +35,6 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
-
 ## Dashboard Authentication
 
 The CMS dashboard (`/dashboard/*`) and all content write APIs are protected by a
@@ -57,6 +56,7 @@ node -e "console.log(require('crypto').randomBytes(48).toString('base64url'))"
 ```
 
 Routes:
+
 - `GET /login` — styled password form (redirects to `/dashboard` if already signed in).
 - `POST /api/auth/login` — validates the password, sets the session cookie.
 - `POST /api/auth/logout` — clears the session cookie.
@@ -65,15 +65,56 @@ In route handlers / server components, use the helpers in `lib/auth.ts`:
 `getSession()` (returns the session or `null`) and `requireAuth()` (returns the
 session or throws `AuthError` — guard write methods with it and return `401`).
 
+## Content CRUD APIs
+
+REST endpoints back the dashboard's create/update/delete. `GET` is public (same
+data the site renders); `POST`/`PUT`/`DELETE` require the admin session
+(`requireAuth()` → `401`). Bodies are validated with zod (`400` on failure) and
+successful writes `revalidatePath("/")` so the public site reflects changes.
+
+| Collection             | List / create          | Item (read / update / delete) |
+| ---------------------- | ---------------------- | ----------------------------- |
+| Projects               | `/api/projects`        | `/api/projects/[id]`          |
+| Portfolio items        | `/api/portfolio-items` | `/api/portfolio-items/[id]`   |
+| Experience & Education | `/api/experiences`     | `/api/experiences/[id]`       |
+| Resume cards           | `/api/resume-cards`    | `/api/resume-cards/[id]`      |
+| Certifications         | `/api/certifications`  | `/api/certifications/[id]`    |
+| Services               | `/api/services`        | `/api/services/[id]`          |
+
+Handlers are generated from a shared factory (`lib/api/rest.ts`) and a per-model
+config registry (`lib/api/resources.ts`).
+
+## File uploads (Cloudinary)
+
+All dashboard uploads (images, resume PDFs, certification files) go to
+Cloudinary via a **signed** flow — the secret never reaches the client. The
+`CldUploadWidget` requests a signature from `POST /api/upload/sign`
+(`requireAuth`-guarded), which signs the params server-side. Uploads are
+namespaced under the `azzim-portfolio` folder. Each asset field stores both the
+`secure_url` and its `public_id`; deleting a record or replacing an asset calls
+`cloudinary.uploader.destroy(public_id)` (`destroyAsset` in `lib/cloudinary.ts`)
+so storage doesn't accumulate orphans.
+
+Environment variables:
+
+```
+CLOUDINARY_CLOUD_NAME=your-cloud-name              # server-side cloud name
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=your-cloud-name  # same value, exposed to the upload widget
+CLOUDINARY_API_KEY=your-api-key                    # server only
+CLOUDINARY_API_SECRET=your-api-secret              # server only — never expose
+```
+
 ## Blog Setup
 
 This project includes a simple blog built with Next.js App Router and MongoDB (Mongoose), with SSR pages and a rich text editor for creating posts.
 
 Prerequisites:
+
 - Node.js 18+
 - A MongoDB connection string
 
 Environment:
+
 - Create a .env.local file in the project root and set:
 
 ```
@@ -82,14 +123,16 @@ MANAGE_KEY=your-secret-manage-key
 ```
 
 Install and run:
+
 - npm install
 - npm run dev
 
 Routes:
+
 - GET /blog — Server-rendered paginated list of posts (title, date, cover image, excerpt)
 - GET /blog/[slug] — Server-rendered blog detail page (full content, extra images, videos)
 - GET /blog/manage?key=YOUR_KEY — Client page with tabs to Create, Update, and Delete posts (Quill editor for content). Protected by middleware; the `key` must match `MANAGE_KEY`.
-- API: 
+- API:
   - GET /api/blogs?page=1&limit=9&q=term — Paginated list with optional search
   - GET /api/blogs/[slug] — Single post by slug
   - POST /api/blogs?key=YOUR_KEY — Create post (server generates slug from title; requires `key`)
@@ -98,6 +141,7 @@ Routes:
   - DELETE /api/blogs/id/[id]?key=YOUR_KEY — Delete a post (requires `key`)
 
 Blog schema (Mongoose):
+
 - title: string (required)
 - slug: string (required, unique)
 - excerpt: string
@@ -110,6 +154,7 @@ Blog schema (Mongoose):
 - publishedAt: Date
 
 Notes:
+
 - Access manage UI at /blog/manage?key=YOUR_KEY (replace with your MANAGE_KEY). The page is protected by Next.js middleware.
 - Creating, updating, and deleting via API requires adding `?key=YOUR_KEY` to the request URL.
 - The list page uses the single coverImage.
