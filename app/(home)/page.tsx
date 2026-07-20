@@ -3,14 +3,12 @@ import HomeHero from "./components/HomeHero";
 import About from "./components/About";
 import Services from "./components/Services";
 import MyWork from "./components/MyWork";
-import Portfolio from "./components/Portfolio";
 import Resume from "./components/Resume";
 import Contact from "./components/Contact";
 import Marquee from "@/components/motion/Marquee";
 import {
   ServicesSectionSkeleton,
   WorkSectionSkeleton,
-  GallerySectionSkeleton,
   ResumeSectionSkeleton,
 } from "@/components/skeletons/sections";
 
@@ -47,9 +45,7 @@ const Page = async () => {
       <Suspense fallback={<WorkSectionSkeleton />}>
         <MyWork />
       </Suspense>
-      <Suspense fallback={<GallerySectionSkeleton />}>
-        <Portfolio />
-      </Suspense>
+
       <Suspense fallback={<ResumeSectionSkeleton />}>
         <Resume />
       </Suspense>

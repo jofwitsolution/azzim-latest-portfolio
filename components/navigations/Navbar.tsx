@@ -14,7 +14,7 @@ const primaryLinks = [
   { label: "Home", href: "/#home", section: "home" },
   { label: "About", href: "/#about", section: "about" },
   { label: "Work", href: "/#portfolio", section: "portfolio" },
-  { label: "Gallery", href: "/#gallery", section: "gallery" },
+  // { label: "Gallery", href: "/#gallery", section: "gallery" },
   { label: "Résumé", href: "/#resume", section: "resume" },
 ] as const;
 
