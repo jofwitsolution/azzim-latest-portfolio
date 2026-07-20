@@ -20,8 +20,16 @@ export const navbarLinks = [
                 route: "/#about",
             },
             {
-                label: "My Portfolio",
+                label: "Services",
+                route: "/#services",
+            },
+            {
+                label: "My Work",
                 route: "/#portfolio",
+            },
+            {
+                label: "Gallery",
+                route: "/#gallery",
             },
             {
                 label: "My Resume",
@@ -59,8 +67,16 @@ export const mobileNavLinks = [
         route: "/blog",
     },
     {
-        label: "Portfolio",
+        label: "Services",
+        route: "/#services",
+    },
+    {
+        label: "My Work",
         route: "/#portfolio",
+    },
+    {
+        label: "Gallery",
+        route: "/#gallery",
     },
     {
         label: "Resume",

@@ -1,10 +1,19 @@
-import { services } from "@/lib/data/mock";
 import { navbarLinks } from "@/lib/data/nav-links";
+import { getServices } from "@/lib/data/queries";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const Footer = () => {
+const Footer = async () => {
+  // Footer renders in the root layout on every route (including static ones),
+  // so guard the DB read — a failure should degrade to no services, never break
+  // the page build/render.
+  let services: Awaited<ReturnType<typeof getServices>> = [];
+  try {
+    services = await getServices();
+  } catch {
+    services = [];
+  }
   return (
     <footer className="bg-[#111827] padding-y text-light-230">
       <div className="max-width">
@@ -33,16 +42,18 @@ const Footer = () => {
                 ))}
               </div>
             </div>
-            <div>
-              <h5 className="mb-4 text-light-100 text-[15.3px] font-semibold">
-                Services
-              </h5>
-              <div className="flex flex-col gap-2">
-                {services.map((item) => (
-                  <span key={item.title}>{item.title}</span>
-                ))}
+            {services.length > 0 && (
+              <div>
+                <h5 className="mb-4 text-light-100 text-[15.3px] font-semibold">
+                  Services
+                </h5>
+                <div className="flex flex-col gap-2">
+                  {services.map((item) => (
+                    <span key={item._id}>{item.title}</span>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
         <div>

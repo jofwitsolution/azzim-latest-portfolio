@@ -1,202 +1,159 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import Image from "next/image";
-import React from "react";
+import Reveal from "@/components/motion/Reveal";
+import SectionHeading from "@/components/sections/SectionHeading";
+
+const process = [
+  {
+    step: "1. Understand the Problem",
+    points: [
+      "Review the PRD and business goals",
+      "Identify target users and their pain points",
+      "Ask clarifying questions to align with stakeholders",
+    ],
+  },
+  {
+    step: "2. Research & User Insights",
+    points: [
+      "Conduct user interviews or define personas (if data isn't available)",
+      "Map user journeys or key flows",
+      "Identify usability gaps or opportunities",
+    ],
+  },
+  {
+    step: "3. Information Architecture",
+    points: [
+      "Create sitemaps and user flows",
+      "Define navigation structure and page hierarchy",
+    ],
+  },
+  {
+    step: "4. Wireframing",
+    points: [
+      "Build low-fidelity wireframes in Figma",
+      "Focus on layout, user flow, and core functionality",
+      "Share for early feedback and iteration",
+    ],
+  },
+  {
+    step: "5. High-Fidelity UI Design",
+    points: [
+      "Apply brand guidelines, typography, color, and spacing",
+      "Design responsive layouts for multiple screen sizes",
+      "Ensure accessibility (contrast, tap targets, etc.)",
+    ],
+  },
+  {
+    step: "6. Prototyping",
+    points: [
+      "Create interactive flows to simulate real user interaction",
+      "Test internally or with users (if time allows)",
+    ],
+  },
+  {
+    step: "7. Developer Handoff",
+    points: [
+      "Use Figma's inspect & dev mode for handoff",
+      "Provide documentation: component specs, states, edge cases",
+      "Collaborate with developers during implementation",
+    ],
+  },
+];
+
+const expertiseCards = [
+  {
+    icon: "/icons/pad.svg",
+    title: "UI/UX Design",
+    body: "Creating intuitive, accessible, and delightful user experiences through research-driven design processes. I specialize in user research, wireframing, prototyping, and creating design systems that scale.",
+  },
+  {
+    icon: "/icons/security.svg",
+    title: "Cybersecurity Analysis",
+    body: "Identifying vulnerabilities and implementing security measures to protect digital assets. My expertise includes threat modeling, security assessments, and designing secure user flows that don't compromise on experience.",
+  },
+  {
+    icon: "/icons/intersection.svg",
+    title: "The Intersection",
+    body: "Where my work truly shines is at the intersection of these disciplines. I create secure-by-design experiences that protect users while delighting them, ensuring privacy controls are intuitive and security measures don't impede usability.",
+  },
+];
 
 const About = () => {
   return (
     <section id="about" className="padding-y">
       <div className="max-width">
-        <div className="flex flex-col items-center justify-center gap-4">
-          <h2 className="text-center font-bold text-foreground text-[24px] md:text-[30.6px] md:leading-[37px]">
-            About Me
-          </h2>
-          <div className="w-[96px] h-[4px] bg-linear-to-r from-primary-100 to-primary-200" />
-          <p className="max-w-[768px] text-center mt-1 md:mt-4">
-            I bridge the gap between beautiful design and robust security,
-            bringing a unique perspective to digital products.
-          </p>
-        </div>
+        <SectionHeading
+          eyebrow="About Me"
+          title="Design meets security"
+          subtitle="I bridge the gap between beautiful design and robust security, bringing a unique perspective to digital products."
+        />
 
-        <div className="grid lg:grid-cols-2 items-center max-w-[1100px] gap-12 md:gap-20 mx-auto mt-12 md:mt-20">
-          <div className="space-y-6 max-w-[472px] justify-self-center">
-            <h3 className="text-[#1F2937] font-bold text-[20.4px]">
+        <div className="mx-auto mt-14 grid max-w-[1100px] items-start gap-12 md:mt-20 lg:grid-cols-2 lg:gap-16">
+          <Reveal direction="right" className="max-w-[520px] space-y-6">
+            <h3 className="text-xl font-bold text-foreground">
               My Dual Expertise
             </h3>
-            <p>
+            <p className="text-muted-foreground">
               As both a UI/UX Designer and Cybersecurity Analyst, I bring a rare
               combination of skills to the table. My journey began in design,
               creating intuitive and engaging user experiences that delight
               customers and drive business goals.
             </p>
-            <p>
+            <p className="text-muted-foreground">
               Over time, I developed a passion for cybersecurity, recognizing
               that the best digital products are not only beautiful and
               functional but also secure. This dual perspective allows me to
               create designs that consider security from the ground up, rather
               than as an afterthought.
             </p>
-            <p>
+            <p className="text-muted-foreground">
               Today, I help organizations build digital products that users love
-              to use and attackers find difficult to exploit. This unique
-              combination has proven valuable in an era where both user
-              experience and security are paramount concerns.
+              to use and attackers find difficult to exploit.
             </p>
 
-            <div className="mt-4 md:mt-8 space-y-3">
-              <h3 className="text-foreground font-bold text-[20.4px]">
-                My UI/UX Design Process (Tool - Figma)
+            <div className="space-y-4 pt-2">
+              <h3 className="text-xl font-bold text-foreground">
+                My UI/UX Design Process{" "}
+                <span className="text-muted-foreground text-base font-medium">
+                  (Tool — Figma)
+                </span>
               </h3>
-              <div className="mt-4 md:mt-6">
-                <div>
-                  <p>1. Understand the Problem</p>
-                  <ul className="ml-8 list-disc">
-                    <li>Review the PRD and business goals</li>
-                    <li>Identify target users and their pain points</li>
-                    <li>Ask clarifying questions to align with stakeholders</li>
-                  </ul>
-                </div>
-              </div>
-              <div>
-                <p>2. Research & User Insights</p>
-                <ul className="ml-8 list-disc">
-                  <li>
-                    Conduct user interviews or define personas (if data isn’t
-                    available)
-                  </li>
-                  <li>Map user journeys or key flows</li>
-                  <li>Identify usability gaps or opportunities</li>
-                </ul>
-              </div>
-              <div>
-                <p>3. Information Architecture</p>
-                <ul className="ml-8 list-disc">
-                  <li>Create sitemaps and user flows</li>
-                  <li>Define navigation structure and page hierarchy</li>
-                </ul>
-              </div>
-              <div>
-                <p>4. Wireframing</p>
-                <ul className="ml-8 list-disc">
-                  <li>Build low-fidelity wireframes in Figma</li>
-                  <li>Focus on layout, user flow, and core functionality</li>
-                  <li>Share for early feedback and iteration</li>
-                </ul>
-              </div>
-              <div>
-                <p>5. High-Fidelity UI Design</p>
-                <ul className="ml-8 list-disc">
-                  <li>
-                    Apply brand guidelines, typography, color, and spacing
-                  </li>
-                  <li>Design responsive layouts for multiple screen sizes</li>
-                  <li>Ensure accessibility (contrast, tap targets, etc.)</li>
-                </ul>
-              </div>
-              <div>
-                <p>6. Prototyping</p>
-                <ul className="ml-8 list-disc">
-                  <li>
-                    Create interactive flows to simulate real user interaction
-                  </li>
-                  <li>Test internally or with users (if time allows)</li>
-                </ul>
-              </div>
-              <div>
-                <p>7. Developer Handoff</p>
-                <ul className="ml-8 list-disc">
-                  <li>Use Figma’s inspect & dev mode for handoff</li>
-                  <li>
-                    Provide documentation: component specs, states, edge cases
-                  </li>
-                  <li>Collaborate with developers during implementation</li>
-                </ul>
+              <div className="space-y-4">
+                {process.map((phase) => (
+                  <div key={phase.step}>
+                    <p className="font-medium text-foreground">{phase.step}</p>
+                    <ul className="ml-6 mt-1 list-disc text-sm text-muted-foreground">
+                      {phase.points.map((point) => (
+                        <li key={point}>{point}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
               </div>
             </div>
-          </div>
-          <div className="w-full md:w-[472px] justify-self-center space-y-8">
-            <Card className="w-full bg-card border border-border !shadow-none">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-6">
-                  <span className="flex items-center justify-center h-12 w-12 rounded-sm bg-accent">
-                    <Image
-                      src={"/icons/pad.svg"}
-                      width={24}
-                      height={24}
-                      alt="pad"
-                    />
+          </Reveal>
+
+          <Reveal
+            stagger={0.12}
+            direction="left"
+            className="w-full space-y-6 justify-self-center lg:max-w-[480px]"
+          >
+            {expertiseCards.map((card) => (
+              <div
+                key={card.title}
+                className="glass-card group p-6 transition-transform duration-300 hover:-translate-y-1"
+              >
+                <div className="flex items-center gap-4">
+                  <span className="flex size-12 items-center justify-center rounded-xl bg-accent transition-colors group-hover:bg-primary-100/15">
+                    <Image src={card.icon} width={24} height={24} alt="" />
                   </span>
-                  <span className="font-semibold text-[17px] leading-[23px]">
-                    UI/UX Design
+                  <span className="text-lg font-semibold text-foreground">
+                    {card.title}
                   </span>
-                </CardTitle>
-                <CardDescription className="mt-2">
-                  <p className="text-muted-foreground text-[15px]">
-                    Creating intuitive, accessible, and delightful user
-                    experiences through research-driven design processes. I
-                    specialize in user research, wireframing, prototyping, and
-                    creating design systems that scale.
-                  </p>
-                </CardDescription>
-              </CardHeader>
-            </Card>
-            <Card className="w-full bg-card border border-border !shadow-none">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-6">
-                  <span className="flex items-center justify-center h-12 w-12 rounded-sm bg-accent">
-                    <Image
-                      src={"/icons/security.svg"}
-                      width={24}
-                      height={24}
-                      alt="pad"
-                    />
-                  </span>
-                  <span className="font-semibold text-[17px] leading-[23px]">
-                    Cybersecurity Analysis
-                  </span>
-                </CardTitle>
-                <CardDescription className="mt-2">
-                  <p className="text-muted-foreground text-[15px]">
-                    Identifying vulnerabilities and implementing security
-                    measures to protect digital assets. My expertise includes
-                    threat modeling, security assessments, and designing secure
-                    user flows that don't compromise on experience.
-                  </p>
-                </CardDescription>
-              </CardHeader>
-            </Card>
-            <Card className="w-full bg-card border border-border !shadow-none">
-              <CardHeader className="w-full">
-                <CardTitle className="flex items-center gap-6">
-                  <span className="flex items-center justify-center h-12 w-12 rounded-sm bg-accent">
-                    <Image
-                      src={"/icons/intersection.svg"}
-                      width={24}
-                      height={24}
-                      alt="pad"
-                    />
-                  </span>
-                  <span className="font-semibold text-[17px] leading-[23px]">
-                    The Intersection
-                  </span>
-                </CardTitle>
-                <CardDescription className="mt-2 w-full">
-                  <p className="text-muted-foreground text-[15px] w-full">
-                    Where my work truly shines is at the intersection of these
-                    disciplines. I create secure-by-design experiences that
-                    protect users while delighting them, ensuring privacy
-                    controls are intuitive and security measures don't impede
-                    usability.
-                  </p>
-                </CardDescription>
-              </CardHeader>
-            </Card>
-          </div>
+                </div>
+                <p className="mt-4 text-sm text-muted-foreground">{card.body}</p>
+              </div>
+            ))}
+          </Reveal>
         </div>
       </div>
     </section>

@@ -77,7 +77,8 @@ export const certificationResource = defineResource({
   createSchema: certificationCreateSchema,
   updateSchema: certificationUpdateSchema,
   assets: [{ url: "image", publicId: "imagePublicId" }],
-  revalidate: PUBLIC_PATHS,
+  // Certifications render on their own page (plus reflected counts on home).
+  revalidate: [...PUBLIC_PATHS, "/certifications"],
 });
 
 export const serviceResource = defineResource({

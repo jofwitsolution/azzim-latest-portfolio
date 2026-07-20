@@ -1,211 +1,47 @@
-"use client";
-
-import React, { useState } from "react";
-import Image from "next/image";
-import { saveAs } from "file-saver";
-import { Button } from "@/components/ui/button";
+import { getResumeCards, getExperiences } from "@/lib/data/queries";
+import SectionHeading from "@/components/sections/SectionHeading";
+import EmptyState from "@/components/sections/EmptyState";
+import ResumeCards from "./ResumeCards";
 import Timeline from "@/components/Timeline";
-import TooltipWrapper from "@/components/TooltipWrapper";
 
-const Resume = () => {
-  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
-  const [pdfUrl, setPdfUrl] = useState("");
+const Resume = async () => {
+  const [cards, experiences] = await Promise.all([
+    getResumeCards(),
+    getExperiences(),
+  ]);
 
-  const handlePreview = (url: string) => {
-    setPdfUrl(url);
-    setIsPreviewOpen(true);
-  };
-
-  const handleDownload = (url: string, name: string) => {
-    saveAs(url, name);
-  };
   return (
     <section id="resume" className="padding-y">
       <div className="max-width">
-        <div className="flex flex-col items-center justify-center gap-4">
-          <h2 className="text-center font-bold text-foreground text-[24px] md:text-[30.6px] md:leading-[37px]">
-            Resume
-          </h2>
-          <div className="w-[96px] h-[4px] bg-linear-to-r from-primary-100 to-primary-200" />
-          <p className="max-w-[600px] text-center mt-1 md:mt-4">
-            Download my resume for a comprehensive view of my experience and
-            skills in both UI/UX design and cybersecurity.
-          </p>
+        <SectionHeading
+          eyebrow="Resume"
+          title="Experience & Résumé"
+          subtitle="Download my resume for a comprehensive view of my experience and skills in both UI/UX design and cybersecurity."
+        />
+
+        <div className="mt-14 md:mt-20">
+          {cards.length === 0 ? (
+            <EmptyState message="Résumé downloads will be available soon." />
+          ) : (
+            <ResumeCards cards={cards} />
+          )}
         </div>
 
-        <div className="grid md:grid-cols-2 max-w-[1100px] mx-auto gap-x-8 gap-y-8 mt-12 md:mt-20">
-          <div className="bg-card border border-border md:w-full flex flex-col items-center shadow gap-6 px-6 py-8 md:px-8 md:py-10 rounded-xl">
-            <div className="h-[80px] w-[80px] rounded-full flex items-center justify-center bg-accent">
-              <Image src={"/icons/bag.svg"} width={40} height={40} alt="uiux" />
-            </div>
-
-            <TooltipWrapper message="Click to preview the CV">
-              <h3
-                onClick={() => handlePreview("/docs/azzim-aina-uiux-cv.pdf")}
-                className="font-bold text-[20.4px] text-center"
-              >
-                UI/UX Design Resume
-              </h3>
-            </TooltipWrapper>
-
-            <p className="text-[13.6px] text-center max-w-[320px]">
-              A comprehensive overview of my design experience, process, and
-              skills. Includes case studies and measurable results from previous
-              projects.
-            </p>
-
-            <Button
-              onClick={() =>
-                handleDownload(
-                  "/docs/azzim-aina-uiux-cv.pdf",
-                  "azzim-aina-uiux-cv"
-                )
-              }
-              className="w-[120px] h-[40px] md:w-[151px] md:h-[50px] bg-primary-100 text-light-100 hover:bg-primary-120 cursor-pointer"
-            >
-              <Image
-                src={"/icons/download.svg"}
-                width={20}
-                height={20}
-                alt="download"
-                className="max-md:hidden"
-              />
-              <span className="text-[13.6px]">Download CV</span>
-            </Button>
-          </div>
-          <div className="bg-card border border-border md:w-full flex flex-col items-center shadow gap-6 px-6 py-8 md:px-8 md:py-10 rounded-xl">
-            <div className="h-[80px] w-[80px] rounded-full flex items-center justify-center bg-primary-240">
-              <Image
-                src={"/icons/security.svg"}
-                width={40}
-                height={40}
-                alt="security"
-              />
-            </div>
-
-            <TooltipWrapper message="Click to preview the CV">
-              <h3
-                onClick={() => handlePreview("/docs/azzim-aina-cyber-cv.pdf")}
-                className="font-bold text-[20.4px] text-center"
-              >
-                Cybersecurity Resume
-              </h3>
-            </TooltipWrapper>
-
-            <p className="text-[13.6px] text-center max-w-[320px]">
-              Detailing my technical expertise in cybersecurity, including
-              certifications, security assessments, and threat mitigation
-              strategies.
-            </p>
-
-            <Button
-              onClick={() =>
-                handleDownload(
-                  "/docs/azzim-aina-cyber-cv.pdf",
-                  "azzim-aina-cyber-cv"
-                )
-              }
-              className="w-[120px] h-[40px] md:w-[151px] md:h-[50px] bg-primary-220 text-light-100 hover:bg-primary-200 cursor-pointer"
-            >
-              <Image
-                src={"/icons/download.svg"}
-                width={20}
-                height={20}
-                alt="download"
-                className="max-md:hidden"
-              />
-              <span className="text-[13.6px]">Download CV</span>
-            </Button>
-          </div>
-        </div>
-
-        <div className="mt-10 md:mt-16 max-w-[1150px] mx-auto">
-          <h3 className="text-center font-bold text-[20.4px]">
-            Experience & Education
+        <div className="mx-auto mt-16 max-w-[1150px]">
+          <h3 className="text-center text-xl font-bold text-foreground">
+            Experience &amp; Education
           </h3>
-
-          <Timeline />
-        </div>
-
-        {isPreviewOpen && (
-          <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
-            <div className="bg-card p-4 rounded-lg w-full overflow-auto">
-              <iframe
-                src={pdfUrl}
-                className="w-full h-[90vh]"
-                title="PDF Preview"
-              />
-              <div className="flex w-full justify-end">
-                <Button
-                  className="mt-4 bg-red-500 hover:bg-red-400 text-white cursor-pointer"
-                  onClick={() => setIsPreviewOpen(false)}
-                >
-                  Close
-                </Button>
-              </div>
+          {experiences.length === 0 ? (
+            <div className="mt-10">
+              <EmptyState message="Timeline entries will appear here soon." />
             </div>
-          </div>
-        )}
+          ) : (
+            <Timeline experiences={experiences} />
+          )}
+        </div>
       </div>
     </section>
   );
 };
 
 export default Resume;
-
-export const projects = [
-  {
-    title: "Cryptocurrency & Learning Platform",
-    category: "UI/UX Design",
-    category_bg: "#E0E7FF",
-    description:
-      "Designed a Cryptocurrency & Learning Platform called NOFOMOE to Unlock the power of cryptocurrency and education in one seamless platform.",
-    source: "#",
-    image: "/images/projects/nofomoe.png",
-  },
-  {
-    title: "Devcent",
-    category: "UI/UX Design",
-    category_bg: "#CFFAFE",
-    description:
-      "An innovative online learning platform designed to equip learners with in-demand tech skills. Tech education...",
-    source: "https://devcent.net",
-    image: "/images/projects/devcent.png",
-  },
-  {
-    title: "Diesel NG",
-    category: "UI/UX Design",
-    category_bg: "#E0E7FF",
-    description:
-      "A go-to source for the most up-to-date diesel (AGO) depot prices in Nigeria. They provide accurate information..",
-    source: "https://www.dieselng.com",
-    image: "/images/projects/dieselng.png",
-  },
-  {
-    title: "Prompay",
-    category: "UI/UX Design",
-    category_bg: "#E0E7FF",
-    description:
-      "Prompay is an online platform that lets you earn money while you learn! Experience the joy of answering questions to earn.",
-    source: "https://theprompay.com",
-    image: "/images/projects/prompay.png",
-  },
-  {
-    title: "BibzyCarter Model",
-    category: "UI/UX Design",
-    category_bg: "#E0E7FF",
-    description:
-      "BibzyCarter Model. A Professional Model Website. BibzyCarter Model BibzyCarter Model BibzyCarter Model.",
-    source: "https://bibzy-carter-model.vercel.app/",
-    image: "/images/projects/bibzycarter.png",
-  },
-  {
-    title: "Pawmeets",
-    category: "UI/UX Design",
-    category_bg: "#E0E7FF",
-    description:
-      "The ultimate online marketplace for dogs and puppies. Mobile app that helps dog breeders connect to find matching studs services",
-    source: "#",
-    image: "/images/projects/pawmeets.png",
-  },
-];

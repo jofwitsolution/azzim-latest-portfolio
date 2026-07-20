@@ -131,27 +131,37 @@ database-managed (CRUD) from a secured `/dashboard`, alongside the existing Blog
 - [x] 5.5 **Run the seed** against the configured `MONGODB_URI` and verify documents exist.
 
 ## Phase 6 — Wire Frontend to the Database
-- [ ] 6.1 Convert home page + section components to Server Components that fetch from the DB
+- [x] 6.1 Convert home page + section components to Server Components that fetch from the DB
   (Projects/MyWork, Portfolio, Experience timeline, Resume cards, Certifications, Services).
-- [ ] 6.2 Remove dependency on `lib/data/mock.ts` (keep as reference/backup only).
-- [ ] 6.3 Ensure empty-state handling when a collection has no rows.
-- [ ] 6.4 Add `revalidatePath`/`revalidate` so edits in the dashboard reflect on the public site.
-- [ ] 6.5 Add `loading.tsx` / `<Suspense>` skeleton fallbacks for streamed sections so async data
+  *(Home page + `Services`/`MyWork`/`Portfolio`/`Resume` are async Server Components reading via
+  `lib/data/queries.ts`; small client children carry only interactivity — `MyWorkGrid` (filter),
+  `ResumeCards` (PDF modal), `Timeline`. Certifications page + Footer services also DB-backed.)*
+- [x] 6.2 Remove dependency on `lib/data/mock.ts` (keep as reference/backup only).
+  *(Only `scripts/seed.ts` still imports it, as the seed source; no runtime/UI code references it.)*
+- [x] 6.3 Ensure empty-state handling when a collection has no rows.
+  *(Shared `components/sections/EmptyState.tsx` rendered by every section + the certifications page.)*
+- [x] 6.4 Add `revalidatePath`/`revalidate` so edits in the dashboard reflect on the public site.
+  *(REST factory already revalidates `/`; certifications now also revalidates `/certifications`.
+  Public DB-backed pages are `export const dynamic = "force-dynamic"` so edits reflect immediately.)*
+- [x] 6.5 Add `loading.tsx` / `<Suspense>` skeleton fallbacks for streamed sections so async data
   shows skeletons (not blank space) before content resolves.
+  *(Per-section `<Suspense>` fallbacks in `components/skeletons/sections.tsx`; `certifications/loading.tsx`.)*
 
 ## Phase 7 — Modern Redesign of Public Site
 *(All motion via GSAP + ScrollTrigger; async data shows skeletons first.)*
-- [ ] 7.1 Hero: gradient/glow background, refined typography, GSAP timeline entrance
+- [x] 7.1 Hero: gradient/glow background, refined typography, GSAP timeline entrance
   (staggered headline/CTA, subtle parallax), dark-first.
-- [ ] 7.2 About & Services: glass cards, icon treatment, hover glow, scroll-reveal stagger.
-- [ ] 7.3 MyWork / Projects: modern case-study cards, category filter chips, GSAP hover motion +
+- [x] 7.2 About & Services: glass cards, icon treatment, hover glow, scroll-reveal stagger.
+- [x] 7.3 MyWork / Projects: modern case-study cards, category filter chips, GSAP hover motion +
   staggered reveal on scroll.
-- [ ] 7.4 Portfolio grid: masonry/creative grid with overlay + links, staggered GSAP reveal.
-- [ ] 7.5 Experience & Education: restyle Timeline for dark theme with scroll-driven line/entry animation.
-- [ ] 7.6 Resume + Certifications sections restyle; improve PDF preview modal.
-- [ ] 7.7 Contact: modern form styling, better states.
-- [ ] 7.8 Navbar + Footer polish (sticky/blur nav, theme toggle, active states).
-- [ ] 7.9 Apply the `<Reveal>`/scroll-reveal primitives consistently across sections + consistent
+- [x] 7.4 Portfolio grid: masonry/creative grid with overlay + links, staggered GSAP reveal.
+- [x] 7.5 Experience & Education: restyle Timeline for dark theme with scroll-driven line/entry animation.
+  *(Replaced `react-vertical-timeline-component` with a custom GSAP timeline: scrubbed gradient
+  progress line + per-entry reveal, experience/education icon + badge.)*
+- [x] 7.6 Resume + Certifications sections restyle; improve PDF preview modal.
+- [x] 7.7 Contact: modern form styling, better states.
+- [x] 7.8 Navbar + Footer polish (sticky/blur nav, theme toggle, active states).
+- [x] 7.9 Apply the `<Reveal>`/scroll-reveal primitives consistently across sections + consistent
   spacing rhythm; respect `prefers-reduced-motion`.
 
 ## Phase 8 — Polish, QA & Docs

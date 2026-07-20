@@ -19,6 +19,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { Loader2 } from "lucide-react";
+import SectionHeading from "@/components/sections/SectionHeading";
 
 const formSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
@@ -86,18 +88,13 @@ const Contact = () => {
   return (
     <section id="contact" className="bg-muted/30 padding-y">
       <div className="max-width">
-        <div className="flex flex-col items-center justify-center gap-4">
-          <h2 className="text-center font-bold text-foreground text-[24px] md:text-[30.6px] md:leading-[37px]">
-            Get in Touch
-          </h2>
-          <div className="w-[96px] h-[4px] bg-linear-to-r from-primary-100 to-primary-200" />
-          <p className="max-w-[768px] text-center mt-1 md:mt-4">
-            Interested in working together? Feel free to reach out for
-            collaborations or just a friendly hello.
-          </p>
-        </div>
+        <SectionHeading
+          eyebrow="Contact"
+          title="Get in Touch"
+          subtitle="Interested in working together? Feel free to reach out for collaborations or just a friendly hello."
+        />
 
-        <div className="flex flex-wrap justify-between gap-x-8 gap-y-12 max-w-[1100px] mx-auto mt-8 md:mt-18">
+        <div className="flex flex-wrap justify-between gap-x-8 gap-y-12 max-w-[1100px] mx-auto mt-12 md:mt-20">
           <div>
             <h3 className="font-bold text-[20.4px]">Contact Information</h3>
 
@@ -199,7 +196,7 @@ const Contact = () => {
           </div>
           <div className="max-sm:w-full">
             <h3 className="font-bold text-[20.4px]">Send Me a Message</h3>
-            <div className="w-full bg-card border border-border flex flex-col items-center shadow gap-6 px-6 py-8 md:px-8 md:py-10 rounded-xl mt-6">
+            <div className="glass-card w-full flex flex-col items-center gap-6 px-6 py-8 md:px-8 md:py-10 mt-6">
               <Form {...form}>
                 <form
                   onSubmit={form.handleSubmit(onSubmit)}
@@ -285,7 +282,11 @@ const Contact = () => {
                     )}
                   />
 
-                  <Button className="w-full h-[40px] bg-primary-100 text-light-100 hover:bg-primary-120 cursor-pointer rounded-md">
+                  <Button
+                    disabled={loading}
+                    className="w-full h-11 bg-primary-100 text-light-100 hover:bg-primary-120 cursor-pointer rounded-md disabled:opacity-70"
+                  >
+                    {loading && <Loader2 className="size-4 animate-spin" />}
                     {loading ? "Sending..." : "Send message"}
                   </Button>
                 </form>

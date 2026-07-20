@@ -1,79 +1,89 @@
-import { projects } from "@/lib/data/mock";
-import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import { ArrowUpRight } from "lucide-react";
+import { getPortfolioItems } from "@/lib/data/queries";
+import SectionHeading from "@/components/sections/SectionHeading";
+import EmptyState from "@/components/sections/EmptyState";
+import Reveal from "@/components/motion/Reveal";
 
-const Portfolio = () => {
+const Portfolio = async () => {
+  const items = await getPortfolioItems();
+
   return (
-    <section id="portfolio" className="bg-muted/30 padding-y">
+    <section id="gallery" className="padding-y">
       <div className="max-width">
-        <div className="flex flex-col items-center justify-center gap-4">
-          <h2 className="text-center font-bold text-foreground text-[24px] md:text-[30.6px] md:leading-[37px]">
-            My Portfolio
-          </h2>
-          <div className="w-[96px] h-[4px] bg-linear-to-r from-primary-100 to-primary-200" />
-          <p className="max-w-[768px] text-center mt-1 md:mt-4">
-            Explore my work across UI/UX design and cybersecurity projects.
-          </p>
-          <h3 className="mt-6 text-center text-foreground">All Projects</h3>
-        </div>
+        <SectionHeading
+          eyebrow="Gallery"
+          title="Selected Portfolio"
+          subtitle="A snapshot of shipped products and design explorations."
+        />
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 place-items-center max-w-[1100px] mx-auto gap-x-4 gap-y-8 mt-12 md:mt-20">
-          {projects.map((project) => (
-            <div
-              key={project.title}
-              className="max-w-[309.33px] bg-card border border-border shadow-lg rounded-[12px] overflow-hidden"
-            >
-              <Image
-                src={project.image}
-                width={310}
-                height={224}
-                alt={project.title}
-              />
+        {items.length === 0 ? (
+          <div className="mt-14">
+            <EmptyState message="Portfolio pieces will show up here soon." />
+          </div>
+        ) : (
+          <Reveal
+            stagger={0.08}
+            className="mx-auto mt-14 grid max-w-[1100px] auto-rows-[220px] grid-cols-2 gap-4 md:grid-cols-3"
+          >
+            {items.map((item, index) => {
+              const hasLink = Boolean(item.source && item.source !== "#");
+              // Give a little rhythm: every 5th tile spans two rows.
+              const tall = index % 5 === 0;
+              const tileClass = `group relative block overflow-hidden rounded-2xl border border-border bg-card ${
+                tall ? "row-span-2" : ""
+              }`;
+              const inner = (
+                <>
+                  {item.image ? (
+                    <Image
+                      src={item.image}
+                      fill
+                      sizes="(max-width: 768px) 50vw, 33vw"
+                      alt={item.title}
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="h-full w-full bg-linear-to-br from-primary-100/20 to-primary-200/20" />
+                  )}
 
-              <div className="px-3 py-4 min-h-[220px] md:min-h-[260px] justify-between flex flex-col">
-                <div>
-                  <div className="flex justify-between gap-2">
-                    <h4 className="max-w-[150px] text-foreground font-semibold line-clamp-2">
-                      {project.title}
-                    </h4>
-                    <div
-                      className={cn(
-                        "flex items-center justify-center w-max h-max p-2 rounded-sm"
-                      )}
-                      style={{ backgroundColor: project.category_bg }}
-                    >
-                      <span className="line-clamp-2 text-primary-300 text-[10px]">
-                        {project.category}
+                  <div className="absolute inset-0 flex flex-col justify-end bg-linear-to-t from-black/80 via-black/20 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    {item.category && (
+                      <span className="mb-1 text-[11px] font-medium uppercase tracking-wide text-primary-240">
+                        {item.category}
                       </span>
+                    )}
+                    <div className="flex items-center justify-between gap-2">
+                      <h3 className="line-clamp-2 font-semibold text-light-100">
+                        {item.title}
+                      </h3>
+                      {hasLink && (
+                        <ArrowUpRight className="size-5 shrink-0 text-light-100" />
+                      )}
                     </div>
                   </div>
+                </>
+              );
 
-                  <p className="text-[13.6px] mt-4">{project.description}</p>
+              return hasLink ? (
+                <Link
+                  key={item._id}
+                  href={item.source}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={tileClass}
+                >
+                  {inner}
+                </Link>
+              ) : (
+                <div key={item._id} className={tileClass}>
+                  {inner}
                 </div>
-
-                <div className="">
-                  <Link
-                    href={project.source}
-                    target="_blank"
-                    className="flex gap-4 items-center"
-                  >
-                    <span className="text-[13.6px] text-primary-100">
-                      View Project
-                    </span>
-                    <Image
-                      src={"/icons/open-link.svg"}
-                      width={16}
-                      height={16}
-                      alt="open-link"
-                    />
-                  </Link>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+              );
+            })}
+          </Reveal>
+        )}
       </div>
     </section>
   );
