@@ -241,3 +241,17 @@
     box-shadow: var(--shadow-glow);
   }
 }
+
+/*
+ * Cloudinary upload widget interop with Radix modal dialogs.
+ *
+ * When a modal <Dialog> is open, Radix sets `pointer-events: none` on <body>
+ * and only re-enables it inside the dialog branch. The Cloudinary upload widget
+ * mounts its iframe as a direct child of <body> (outside that branch), so it
+ * inherits `pointer-events: none` and silently swallows every click. Re-enable
+ * pointer events on the widget so it stays interactive above the dialog.
+ * Kept unlayered + `!important` so it beats Radix's inline body style. */
+iframe.cloudinary-widget,
+iframe[src*="upload-widget.cloudinary.com"] {
+  pointer-events: auto !important;
+}

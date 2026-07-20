@@ -17,7 +17,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import QuillEditor from "@/components/editor/QuillEditor";
 import "quill/dist/quill.snow.css";
 
@@ -50,8 +50,6 @@ type BlogItem = {
 };
 
 export default function ManageBlog() {
-  const searchParams = useSearchParams();
-  const manageKey = searchParams.get("key") || "";
   const router = useRouter();
   const [activeTab, setActiveTab] = useState<"create" | "update" | "delete">(
     "create"
@@ -107,19 +105,16 @@ export default function ManageBlog() {
             .map((s) => s.trim())
             .filter(Boolean)
         : [];
-      const res = await fetch(
-        `/api/blogs?key=${encodeURIComponent(manageKey)}`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            ...values,
-            images,
-            videos,
-            tags,
-          }),
-        }
-      );
+      const res = await fetch("/api/blogs", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...values,
+          images,
+          videos,
+          tags,
+        }),
+      });
       if (!res.ok) {
         const { message } = await res
           .json()
@@ -221,19 +216,16 @@ export default function ManageBlog() {
             .map((s) => s.trim())
             .filter(Boolean)
         : [];
-      const res = await fetch(
-        `/api/blogs/id/${selected._id}?key=${encodeURIComponent(manageKey)}`,
-        {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            ...values,
-            images,
-            videos,
-            tags,
-          }),
-        }
-      );
+      const res = await fetch(`/api/blogs/id/${selected._id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...values,
+          images,
+          videos,
+          tags,
+        }),
+      });
       if (!res.ok) {
         const { message } = await res
           .json()
@@ -259,10 +251,7 @@ export default function ManageBlog() {
     )
       return;
     try {
-      const res = await fetch(
-        `/api/blogs/id/${id}?key=${encodeURIComponent(manageKey)}`,
-        { method: "DELETE" }
-      );
+      const res = await fetch(`/api/blogs/id/${id}`, { method: "DELETE" });
       if (!res.ok && res.status !== 204) throw new Error("Failed to delete");
       toast.success("Blog post deleted");
       setResults((prev) => prev.filter((p) => p._id !== id));

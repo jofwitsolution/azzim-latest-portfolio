@@ -1,6 +1,7 @@
 import {NextRequest} from "next/server";
 import {dbConnect} from "@/lib/db/mongoose";
 import BlogModel, {generateUniqueSlug} from "@/models/Blog";
+import {requireAuth, AuthError} from "@/lib/auth";
 
 export async function GET(_req: NextRequest, {params}: { params: Promise<{ id: string }> }) {
     await dbConnect();
@@ -11,15 +12,16 @@ export async function GET(_req: NextRequest, {params}: { params: Promise<{ id: s
 }
 
 export async function PUT(req: NextRequest, {params}: { params: Promise<{ id: string }> }) {
-    await dbConnect();
-    // Verify manage key from query param
-    const { searchParams } = new URL(req.url);
-    const provided = searchParams.get("key") || "";
-    const expected = process.env.MANAGE_KEY || "";
-    if (!expected || provided !== expected) {
-        return new Response(JSON.stringify({ message: "Unauthorized" }), { status: 401 });
+    try {
+        await requireAuth();
+    } catch (err) {
+        if (err instanceof AuthError) {
+            return new Response(JSON.stringify({ message: "Unauthorized" }), { status: 401 });
+        }
+        throw err;
     }
 
+    await dbConnect();
     const {id} = await params;
     const body = await req.json();
 
@@ -35,15 +37,16 @@ export async function PUT(req: NextRequest, {params}: { params: Promise<{ id: st
 }
 
 export async function DELETE(req: NextRequest, {params}: { params: Promise<{ id: string }> }) {
-    await dbConnect();
-    // Verify manage key from query param
-    const { searchParams } = new URL(req.url);
-    const provided = searchParams.get("key") || "";
-    const expected = process.env.MANAGE_KEY || "";
-    if (!expected || provided !== expected) {
-        return new Response(JSON.stringify({ message: "Unauthorized" }), { status: 401 });
+    try {
+        await requireAuth();
+    } catch (err) {
+        if (err instanceof AuthError) {
+            return new Response(JSON.stringify({ message: "Unauthorized" }), { status: 401 });
+        }
+        throw err;
     }
 
+    await dbConnect();
     const {id} = await params;
     const deleted = await BlogModel.findByIdAndDelete(id);
     if (!deleted) return new Response(JSON.stringify({message: "Not found"}), {status: 404});

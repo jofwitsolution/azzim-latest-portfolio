@@ -16,6 +16,7 @@ import ExperienceModel from "@/models/Experience";
 import ResumeCardModel from "@/models/ResumeCard";
 import CertificationModel from "@/models/Certification";
 import ServiceModel from "@/models/Service";
+import BlogModel from "@/models/Blog";
 import type {
   Project,
   PortfolioItem,
@@ -84,4 +85,60 @@ export async function getServices(): Promise<Service[]> {
   await dbConnect();
   const docs = await ServiceModel.find().sort({ order: 1, createdAt: -1 }).lean();
   return serialize<Service[]>(docs);
+}
+
+/**
+ * Generic list read by resource key — used by the dashboard manager pages so
+ * they don't each need a bespoke query. Returns serialized, client-safe docs.
+ */
+export async function getResourceItems(
+  key: string
+): Promise<Record<string, unknown>[]> {
+  switch (key) {
+    case "projects":
+      return getProjects();
+    case "portfolio-items":
+      return getPortfolioItems();
+    case "experiences":
+      return getExperiences();
+    case "resume-cards":
+      return getResumeCards();
+    case "certifications":
+      return getCertifications();
+    case "services":
+      return getServices();
+    default:
+      return [];
+  }
+}
+
+/** Document counts per collection for the dashboard overview. */
+export async function getCollectionCounts(): Promise<Record<string, number>> {
+  await dbConnect();
+  const [
+    projects,
+    portfolioItems,
+    experiences,
+    resumeCards,
+    certifications,
+    services,
+    blog,
+  ] = await Promise.all([
+    ProjectModel.countDocuments(),
+    PortfolioItemModel.countDocuments(),
+    ExperienceModel.countDocuments(),
+    ResumeCardModel.countDocuments(),
+    CertificationModel.countDocuments(),
+    ServiceModel.countDocuments(),
+    BlogModel.countDocuments(),
+  ]);
+  return {
+    projects,
+    "portfolio-items": portfolioItems,
+    experiences,
+    "resume-cards": resumeCards,
+    certifications,
+    services,
+    blog,
+  };
 }

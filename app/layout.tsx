@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navigations/Navbar";
 import Footer from "@/components/Footer";
+import { HideOnDashboard } from "@/components/navigations/HideOnDashboard";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/theme-provider";
 
@@ -58,10 +59,14 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar />
+          <HideOnDashboard>
+            <Navbar />
+          </HideOnDashboard>
           {children}
           <Toaster position="bottom-right" />
-          <Footer />
+          <HideOnDashboard>
+            <Footer />
+          </HideOnDashboard>
         </ThemeProvider>
       </body>
     </html>

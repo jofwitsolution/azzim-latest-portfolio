@@ -1,6 +1,7 @@
 import {NextRequest} from "next/server";
 import {dbConnect} from "@/lib/db/mongoose";
 import BlogModel, {generateUniqueSlug} from "@/models/Blog";
+import {requireAuth, AuthError} from "@/lib/auth";
 
 export async function GET(req: NextRequest) {
     await dbConnect();
@@ -33,15 +34,17 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-    await dbConnect();
-    // Verify manage key from query param
-    const { searchParams } = new URL(req.url);
-    const provided = searchParams.get("key") || "";
-    const expected = process.env.MANAGE_KEY || "";
-    if (!expected || provided !== expected) {
-        return new Response(JSON.stringify({ message: "Unauthorized" }), { status: 401 });
+    // Guard with the admin session (migrated from the legacy ?key= param).
+    try {
+        await requireAuth();
+    } catch (err) {
+        if (err instanceof AuthError) {
+            return new Response(JSON.stringify({ message: "Unauthorized" }), { status: 401 });
+        }
+        throw err;
     }
 
+    await dbConnect();
     const body = await req.json();
 
     const {

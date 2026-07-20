@@ -83,9 +83,10 @@ database-managed (CRUD) from a secured `/dashboard`, alongside the existing Blog
   *(Handlers are generated from a shared factory `lib/api/rest.ts` + config registry `lib/api/resources.ts`;
   zod schemas in `lib/validation.ts`.)*
 - [x] 3.6 Guard all write methods (POST/PUT/DELETE) with `requireAuth()`; return proper status codes.
-- [ ] 3.7 (Optional) Migrate Blog write auth from `?key=` to the new session guard for consistency.
-  **→ Deferred to 4.9** (the blog manager UI threads `?key=` through its fetches; migrate auth and UI
-  together when the manager is linked into the dashboard, to avoid a half-migration that breaks it).
+- [x] 3.7 (Optional) Migrate Blog write auth from `?key=` to the new session guard for consistency.
+  **→ Done in 4.9** — blog write routes (`POST /api/blogs`, `PUT`/`DELETE /api/blogs/id/[id]`) now use
+  `requireAuth()`; `middleware.ts` guards `/blog/manage` by session; `ManageBlog.tsx` no longer threads
+  `?key=` through its fetches. Legacy `MANAGE_KEY` retired from the request path.
 - [x] 3.8 **Cloudinary integration:**
   - `lib/cloudinary.ts` — configured server-side `cloudinary` SDK instance (cloud name, key, secret) +
     a best-effort `destroyAsset(public_id)` helper.
@@ -95,19 +96,28 @@ database-managed (CRUD) from a secured `/dashboard`, alongside the existing Blog
     to remove the old asset so storage doesn't leak orphans.
 
 ## Phase 4 — Dashboard UI (`/dashboard`)
-- [ ] 4.1 Dashboard layout with a sidebar (shadcn `sidebar` already present) + header + logout.
-- [ ] 4.2 Overview page: counts per collection + quick links.
-- [ ] 4.3 Reusable admin building blocks: data table/list, resource form dialog, delete confirm,
+- [x] 4.1 Dashboard layout with a sidebar (shadcn `sidebar` already present) + header + logout.
+  (`app/dashboard/layout.tsx` + `components/dashboard/dashboard-shell.tsx` — collapsible sidebar nav,
+  sticky header with theme toggle + view-site, `LogoutButton`; public Navbar/Footer hidden on `/dashboard`.)
+- [x] 4.2 Overview page: counts per collection + quick links.
+  (`app/dashboard/page.tsx` — `getCollectionCounts()` stat cards linking to each manager, Suspense skeleton.)
+- [x] 4.3 Reusable admin building blocks: data table/list, resource form dialog, delete confirm,
   a **Cloudinary upload field** (`CldUploadWidget`) with live image/PDF preview and remove/replace,
   drag-to-reorder (or order number input).
-- [ ] 4.3b Loading states: skeleton rows while lists load, skeleton form while an item loads for
+  (Driven by a declarative `lib/dashboard/config.ts` registry: `ResourceManager` list, `ResourceForm`
+  dialog, `DeleteDialog`, `UploadField` signed upload with preview + replace/remove, order-number input.)
+- [x] 4.3b Loading states: skeleton rows while lists load, skeleton form while an item loads for
   edit, and submit/pending states on every mutation.
-- [ ] 4.4 Projects manager (list, create, edit, delete).
-- [ ] 4.5 Experience & Education manager (with kind toggle).
-- [ ] 4.6 Resume cards manager.
-- [ ] 4.7 Certifications manager.
-- [ ] 4.8 Services manager.
-- [ ] 4.9 Link the existing Blog manager into the dashboard nav (and secure via session).
+  (`loading.tsx` → `ResourceManagerSkeleton`, overview stat-card skeleton, pending states on submit/delete
+  and a fade while the list refreshes.)
+- [x] 4.4 Projects manager (list, create, edit, delete). *(+ Portfolio manager, same building blocks.)*
+- [x] 4.5 Experience & Education manager (with kind toggle via a `kind` select).
+- [x] 4.6 Resume cards manager.
+- [x] 4.7 Certifications manager.
+- [x] 4.8 Services manager.
+  *(All six managers are generated from the shared config at `app/dashboard/[resource]/page.tsx`.)*
+- [x] 4.9 Link the existing Blog manager into the dashboard nav (and secure via session).
+  (Sidebar links to `/blog/manage`; auth migrated to the shared session — see 3.7.)
 
 ## Phase 5 — Seed Script
 - [x] 5.1 `scripts/seed.ts` — connect via existing `dbConnect()`, read arrays from `lib/data/mock.ts`
