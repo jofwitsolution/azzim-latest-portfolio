@@ -110,15 +110,15 @@ database-managed (CRUD) from a secured `/dashboard`, alongside the existing Blog
 - [ ] 4.9 Link the existing Blog manager into the dashboard nav (and secure via session).
 
 ## Phase 5 — Seed Script
-- [ ] 5.1 `scripts/seed.ts` — connect via existing `dbConnect()`, read arrays from `lib/data/mock.ts`
+- [x] 5.1 `scripts/seed.ts` — connect via existing `dbConnect()`, read arrays from `lib/data/mock.ts`
   (projects, myWork, experiences, certifications, services) + the two resume cards from `Resume.tsx`.
-- [ ] 5.2 Map static shapes → model shapes; split `experiences` array into experience vs education by
+- [x] 5.2 Map static shapes → model shapes; split `experiences` array into experience vs education by
   content; assign `order` from array index. For asset fields, **upload the existing `/public` images
   and PDFs to Cloudinary** (`cloudinary.uploader.upload`) and persist the returned `secure_url` +
   `public_id` (skip re-upload on idempotent runs).
-- [ ] 5.3 Make it idempotent (upsert by slug/title, or `--fresh` flag to wipe+reseed).
-- [ ] 5.4 Add `"seed": "tsx scripts/seed.ts"` script; install `tsx` + `dotenv` if needed.
-- [ ] 5.5 **Run the seed** against the configured `MONGODB_URI` and verify documents exist.
+- [x] 5.3 Make it idempotent (upsert by slug/title, or `--fresh` flag to wipe+reseed).
+- [x] 5.4 Add `"seed": "tsx scripts/seed.ts"` script; install `tsx` + `dotenv` if needed.
+- [x] 5.5 **Run the seed** against the configured `MONGODB_URI` and verify documents exist.
 
 ## Phase 6 — Wire Frontend to the Database
 - [ ] 6.1 Convert home page + section components to Server Components that fetch from the DB
