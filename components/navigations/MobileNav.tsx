@@ -19,12 +19,15 @@ import Link from "next/link";
 const MobileNav = () => {
   return (
     <Sheet>
-      <SheetTrigger className="cursor-pointer" asChild>
+      <SheetTrigger
+        aria-label="Open menu"
+        className="cursor-pointer inline-flex items-center justify-center rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      >
         <Image
           src={"/icons/menu.svg"}
           width={30}
           height={30}
-          alt="menu"
+          alt=""
           priority
         />
       </SheetTrigger>
@@ -83,7 +86,7 @@ const MobileNav = () => {
                   src={"/icons/twitter-primary.svg"}
                   width={24}
                   height={24}
-                  alt="linkedin"
+                  alt="X (Twitter)"
                 />
               </Link>
             </SheetClose>

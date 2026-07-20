@@ -165,14 +165,29 @@ database-managed (CRUD) from a secured `/dashboard`, alongside the existing Blog
   spacing rhythm; respect `prefers-reduced-motion`.
 
 ## Phase 8 — Polish, QA & Docs
-- [ ] 8.1 Responsive pass (mobile → desktop) on public site and dashboard.
-- [ ] 8.2 Accessibility: focus states, contrast in both themes, alt text, aria labels.
-- [ ] 8.3 `next build` / lint clean; fix type errors.
-- [ ] 8.4 Update `README.md` (auth, dashboard routes, seed command, env vars — including
+- [x] 8.1 Responsive pass (mobile → desktop) on public site and dashboard.
+  *(Reviewed public sections + dashboard managers — layouts already use responsive `sm:`/`md:`
+  breakpoints, `min-w-0`/`truncate`/`flex-wrap` cards (no overflowing tables) and `sizes` on images
+  from the Phase 7 redesign; no horizontal-overflow regressions found.)*
+- [x] 8.2 Accessibility: focus states, contrast in both themes, alt text, aria labels.
+  *(Most interactive controls already carry `aria-label`/`sr-only` names. Fixed the mobile-nav
+  trigger — it was a bare `<img>` acting as a button (not keyboard-focusable, no accessible name);
+  now a real `SheetTrigger` button with `aria-label="Open menu"` + focus ring — and corrected a
+  mislabeled Twitter icon `alt`.)*
+- [x] 8.3 `next build` / lint clean; fix type errors.
+  *(`next build` passes clean, type-check included. ESLint was unconfigured — added
+  `eslint`/`eslint-config-next` (`next/core-web-vitals`); `npm run lint` runs clean with no errors,
+  only pre-existing `<img>`/exhaustive-deps warnings in legacy blog code.)*
+- [x] 8.4 Update `README.md` (auth, dashboard routes, seed command, env vars — including
   `CLOUDINARY_CLOUD_NAME` / `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`,
   `CLOUDINARY_API_SECRET`, and the upload preset).
-- [ ] 8.5 Manual QA checklist: login, each CRUD create/edit/delete, public site reflects changes,
+  *(Replaced the create-next-app boilerplate with a real overview + install (`--legacy-peer-deps`),
+  scripts table, env-var table, dashboard routes and seed command; added `.env.example`; rewrote the
+  Blog section to reflect the session-based write auth (retired `?key=`).)*
+- [x] 8.5 Manual QA checklist: login, each CRUD create/edit/delete, public site reflects changes,
   theme toggle persists.
+  *(Added `QA-CHECKLIST.md` covering setup, auth, per-resource CRUD, public reflection,
+  theming/motion, responsive/a11y, and the contact form.)*
 
 ---
 

@@ -1,39 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Azzim Aina — Portfolio + CMS
+
+A modern, **dark-by-default** personal portfolio with a secured CMS dashboard. Projects,
+Experience & Education, Resume cards, Certifications, Services and the Blog are all managed
+from `/dashboard` and stored in MongoDB, with file uploads on Cloudinary.
+
+**Stack:** Next.js 15 (App Router, Turbopack) · React 19 · TypeScript (strict) · Tailwind CSS v4 ·
+MongoDB/Mongoose · shadcn/ui · react-hook-form + zod · next-themes · GSAP · Cloudinary.
 
 ## Getting Started
 
-First, run the development server:
+Prerequisites: Node.js 18+ and a MongoDB connection string.
 
 ```bash
+# Install (React 19 + react-quill peer ranges require legacy-peer-deps)
+npm install --legacy-peer-deps
+
+# Copy env template and fill in values
+cp .env.example .env      # then edit .env
+
+# Seed the database from the static content (idempotent; --fresh wipes + reseeds)
+npm run seed
+
+# Run the dev server (Turbopack)
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) for the public site and
+[http://localhost:3000/dashboard](http://localhost:3000/dashboard) for the CMS (redirects to
+`/login`).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command         | What it does                                                        |
+| --------------- | ------------------------------------------------------------------- |
+| `npm run dev`   | Dev server (Turbopack).                                             |
+| `npm run build` | Production build — type-checks the whole project; must pass clean.  |
+| `npm run start` | Serve the production build.                                         |
+| `npm run lint`  | ESLint (`next/core-web-vitals`).                                    |
+| `npm run seed`  | Seed the DB from `lib/data/mock.ts`; uploads seed assets to Cloudinary. Pass `--fresh` to wipe + reseed. |
 
-## Learn More
+## Environment variables
 
-To learn more about Next.js, take a look at the following resources:
+All required keys are listed in [`.env.example`](.env.example). Copy it to `.env` and fill in
+values. Summary:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Variable | Scope | Purpose |
+| --- | --- | --- |
+| `MONGODB_URI` | server | MongoDB connection string. |
+| `ADMIN_PASSWORD` | server | Password entered on `/login`. |
+| `AUTH_SECRET` | server | Signs/verifies the session cookie. |
+| `CLOUDINARY_CLOUD_NAME` | server | Cloudinary cloud name. |
+| `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` | client | Same value, exposed to the upload widget. |
+| `CLOUDINARY_API_KEY` | server | Cloudinary API key. |
+| `CLOUDINARY_API_SECRET` | server | Cloudinary API secret — never expose to the client. |
+| `NEXT_PUBLIC_EMAILJS_*` | client | EmailJS service/template/public key for the contact form. |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Dashboard
 
-## Deploy on Vercel
+The CMS lives under `/dashboard` (a collapsible sidebar shell with theme toggle and logout):
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `/dashboard` — overview with a count per collection and quick links.
+- `/dashboard/projects`, `/dashboard/portfolio-items`, `/dashboard/experiences`,
+  `/dashboard/resume-cards`, `/dashboard/certifications`, `/dashboard/services` — each is a
+  list + create/edit/delete manager generated from a shared config
+  (`lib/dashboard/config.ts`), with a signed Cloudinary upload field and an order input.
+- `/blog/manage` — the existing Blog manager, linked from the sidebar and secured by the same
+  session.
 
 ## Dashboard Authentication
 
@@ -104,41 +136,25 @@ CLOUDINARY_API_KEY=your-api-key                    # server only
 CLOUDINARY_API_SECRET=your-api-secret              # server only — never expose
 ```
 
-## Blog Setup
+## Blog
 
-This project includes a simple blog built with Next.js App Router and MongoDB (Mongoose), with SSR pages and a rich text editor for creating posts.
-
-Prerequisites:
-
-- Node.js 18+
-- A MongoDB connection string
-
-Environment:
-
-- Create a .env.local file in the project root and set:
-
-```
-MONGODB_URI=your-mongodb-connection-string
-MANAGE_KEY=your-secret-manage-key
-```
-
-Install and run:
-
-- npm install
-- npm run dev
+A blog built with the App Router and MongoDB (Mongoose): SSR list/detail pages and a Quill
+rich-text editor for authoring. Write access uses the **same admin session** as the rest of the
+dashboard — the old `?key=`/`MANAGE_KEY` guard has been retired from the request path.
 
 Routes:
 
-- GET /blog — Server-rendered paginated list of posts (title, date, cover image, excerpt)
-- GET /blog/[slug] — Server-rendered blog detail page (full content, extra images, videos)
-- GET /blog/manage?key=YOUR_KEY — Client page with tabs to Create, Update, and Delete posts (Quill editor for content). Protected by middleware; the `key` must match `MANAGE_KEY`.
+- `GET /blog` — Server-rendered paginated list of posts (title, date, cover image, excerpt).
+- `GET /blog/[slug]` — Server-rendered detail page (full content, extra images, videos).
+- `GET /blog/manage` — Create / Update / Delete tabs (Quill editor). Guarded by the middleware
+  session; unauthenticated visitors are redirected to `/login`.
 - API:
-  - GET /api/blogs?page=1&limit=9&q=term — Paginated list with optional search
-  - GET /api/blogs/[slug] — Single post by slug
-  - POST /api/blogs?key=YOUR_KEY — Create post (server generates slug from title; requires `key`)
-  - GET /api/blogs/id/[id] — Fetch a single post by id
-  - PUT /api/blogs/id/[id]?key=YOUR_KEY — Update a post (changing title regenerates slug; requires `key`)
-  - DELETE /api/blogs/id/[id]?key=YOUR_KEY — Delete a post (requires `key`)
+  - `GET /api/blogs?page=1&limit=9&q=term` — Paginated list with optional search.
+  - `GET /api/blogs/[slug]` — Single post by slug.
+  - `POST /api/blogs` — Create (server generates the slug; `requireAuth()`).
+  - `GET /api/blogs/id/[id]` — Fetch a single post by id.
+  - `PUT /api/blogs/id/[id]` — Update (changing the title regenerates the slug; `requireAuth()`).
+  - `DELETE /api/blogs/id/[id]` — Delete (`requireAuth()`).
 
 Blog schema (Mongoose):
 
@@ -155,8 +171,9 @@ Blog schema (Mongoose):
 
 Notes:
 
-- Access manage UI at /blog/manage?key=YOUR_KEY (replace with your MANAGE_KEY). The page is protected by Next.js middleware.
-- Creating, updating, and deleting via API requires adding `?key=YOUR_KEY` to the request URL.
+- Access the manage UI at `/blog/manage` after logging in — it is protected by the same session
+  middleware as the rest of the dashboard.
+- Create/update/delete via the API require the admin session cookie (`requireAuth()`).
 - The list page uses the single coverImage.
 - Additional images and videos only show on the detail page.
 - The create page accepts URLs for images and videos; no binary upload is handled.
