@@ -12,7 +12,6 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { z } from "zod";
-import emailjs from "@emailjs/browser";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
@@ -43,46 +42,33 @@ const Contact = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    // Handle form submission logic here
-    // console.log(values);
     setLoading(true);
 
-    emailjs
-      .send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID as string,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID as string,
-        {
-          from_name: values.name,
-          to_name: "Azzim",
-          from_email: values.email,
-          subject: values.subject,
-          to_email: "azzimaina@gmail.com",
-          message: values.message,
-        },
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
-      )
-      .then(
-        () => {
-          setLoading(false);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
 
-          toast.success(
-            "Thank you. I will get back to you as soon as possible."
-          );
+      if (!res.ok) {
+        throw new Error("Request failed");
+      }
 
-          form.reset({
-            name: "",
-            email: "",
-            message: "",
-            subject: "",
-          });
-        },
-        (error) => {
-          setLoading(false);
-          console.error(error);
+      toast.success("Thank you. I will get back to you as soon as possible.");
 
-          toast.error("Ahh, something went wrong. Please try again.");
-        }
-      );
+      form.reset({
+        name: "",
+        email: "",
+        message: "",
+        subject: "",
+      });
+    } catch (error) {
+      console.error(error);
+      toast.error("Ahh, something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

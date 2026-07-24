@@ -53,7 +53,9 @@ values. Summary:
 | `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` | client | Same value, exposed to the upload widget. |
 | `CLOUDINARY_API_KEY` | server | Cloudinary API key. |
 | `CLOUDINARY_API_SECRET` | server | Cloudinary API secret — never expose to the client. |
-| `NEXT_PUBLIC_EMAILJS_*` | client | EmailJS service/template/public key for the contact form. |
+| `RESEND_API_KEY` | server | Resend API key for the contact form — never expose to the client. |
+| `RESEND_FROM` | server | Verified sender address emails are sent from (optional; defaults to `onboarding@resend.dev`). |
+| `CONTACT_TO` | server | Inbox that contact-form submissions are delivered to (optional; defaults to `azzimaina@gmail.com`). |
 
 ## Dashboard
 

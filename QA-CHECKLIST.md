@@ -5,7 +5,7 @@ changes, and theming/responsiveness. Check both **light and dark** themes and at
 **mobile** and one **desktop** width for each visual item.
 
 ## Setup
-- [ ] `.env` is populated from `.env.example` (Mongo, auth, Cloudinary, EmailJS).
+- [ ] `.env` is populated from `.env.example` (Mongo, auth, Cloudinary, Resend).
 - [ ] `npm run seed` populates the collections (or `npm run seed -- --fresh` to reset).
 - [ ] `npm run build` passes clean; `npm run lint` reports no errors.
 
@@ -51,4 +51,4 @@ Services, Blog.**
 
 ## Contact form
 - [ ] Validation blocks empty/invalid submissions.
-- [ ] A valid submission sends via EmailJS and shows a success toast; failure shows an error.
+- [ ] A valid submission sends via Resend (`/api/contact`) and shows a success toast; failure shows an error.
